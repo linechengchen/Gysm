@@ -1,4 +1,9 @@
 /**index.wxss**/
+.banner{
+  width: 750rpx;
+  height: 300rpx;
+
+}
 .userinfo {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-{
+﻿{
   "pages": [
     "pages/index/index",
     "pages/logs/logs"
@@ -14,11 +14,11 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "第一页面"
+        "text": "主页"
       },
       {
         "pagePath": "pages/logs/logs",
-        "text": "第二页面"
+        "text": "主页"
       }
     ]
   },
