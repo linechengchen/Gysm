@@ -5,20 +5,24 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#ff8200",
+    "navigationBarTitleText": "果易数码",
+    "navigationBarTextStyle": "white"
   },
 
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "第一页面"
+        "text": "主页",
+        "iconPath": "images/主页.png",
+        "selectedIconPath": "images/主页.png"
       },
       {
         "pagePath": "pages/logs/logs",
-        "text": "第二页面"
+        "text": "回收",
+        "iconPath": "images/回收.png",
+        "selectedIconPath": "images/回收.png"
       }
     ]
   },
