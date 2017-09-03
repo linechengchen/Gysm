@@ -24,28 +24,13 @@
         <image class="select-arrow-icon" src="/images/icon-arrow.png"></image>
       </view>
     </picker>
-    <!--<view bindtap="showSearch" class="select-title">筛选
-    </view>-->
-  </view>
-  <!-- <view wx:if="{{result.totalCount}}"  class="notice">
-    您的题目总数：{{result.totalCount}} 题
-  </view> -->
-  <!--<view wx:if="{{result.notice}}" class="notice">
-    <image class="icon-notice" src="/images/icon-notice.png"></image>{{result.notice}}
-  </view>-->
- <!-- <view class="teacher-list"> 
-    <audio bindended="voiceStop" src="" id="my_audio"></audio>
-    <view wx:key="*this" wx:for="{{teacherList}}" class="teacher-item">
-      <image bindtap="showTeacherInfo" data-uuid="{{item.autoId}}" class="teacher-head" src="{{urlPath}}{{item.photo}}"></image>
-      <view bindtap="showTeacherInfo" data-uuid="{{item.autoId}}" class="teacher-info">
-        <view class="teacher-name">{{(item.question||'...工作人员正加紧识别照片题目')}}</view>
-        <view class="recommend">难度: {{item.difficulty}}</view>
-        <view class="score">分值: {{item.score}}</view>
-      </view>
-      <image bindtap="playVoice" data-voice-src="{{item.voice}}" data-index="{{index}}" wx:if="{{item.voice!=''}}" class="icon-voice" src="{{item.voiceIcon}}"></image>
-      <view bindtap="showTeacherInfo" data-uuid="{{item.uuid}}" class="bespeak">答 疑</view>
+    <view bindtap="showSearch" class="select-title">筛选
     </view>
-  </view> -->
+  </view>
+
+
+
+
   <view class="mask{{pickerDateState?' mask-hide':''}}">
     <view class="picker-date{{pickerDateState?' picker-date-hide':' picker-date-show'}}">
       <view class="picker-button">
@@ -62,7 +47,7 @@
       </picker-view>
     </view>
   </view>
-       <view class="c-minheight wx-view_TQ4nqD" data-c_e_id="wx_view878d6007">
+     
         <!-- <view class="_other_text_LxtT2c2" data-c_e_id="_other_text1d60a2a3">
             热门商品
         </view> -->
@@ -115,9 +100,10 @@
                     <text class="c-block wx-text_WEMSkk" data-c_e_id="wx_text0d61bfbf">￥247.00</text>
                 </view>
             </navigator>
-        </view>
+      
     </view>
   
+
 
 
   
