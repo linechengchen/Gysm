@@ -1,7 +1,11 @@
 {
   "pages": [
+    
+    "pages/chuzu/chuzu",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/huishou/huishou",
+    "pages/logs/logs",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,7 +13,6 @@
     "navigationBarTitleText": "果易数码",
     "navigationBarTextStyle": "white"
   },
-
   "tabBar": {
     "list": [
       {
@@ -19,10 +22,16 @@
         "selectedIconPath": "images/主页.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/huishou/huishou",
         "text": "回收",
         "iconPath": "images/回收.png",
         "selectedIconPath": "images/回收.png"
+      },
+      {
+        "pagePath": "pages/chuzu/chuzu",
+        "text": "出租",
+        "iconPath": "images/主页.png",
+        "selectedIconPath": "images/主页.png"
       }
     ]
   },
@@ -31,5 +40,4 @@
     "downloadFile": 10000
   },
   "debug": true
-
 }

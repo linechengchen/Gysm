@@ -1,0 +1,21 @@
+.fenge
+{
+  height: 10px;
+  background: 7B68EE;
+}
+.title
+{
+color: "#fff";
+width: 100%;
+}
+
+.radio_view_hide{
+ display: none;
+}
+.radio_view_show{
+ display: block;
+}
+.reselection
+{
+ flex-direction: row;
+}
