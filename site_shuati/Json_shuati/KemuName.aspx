@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="KemuName.aspx.cs" Inherits="main_jsonKemuName" %>

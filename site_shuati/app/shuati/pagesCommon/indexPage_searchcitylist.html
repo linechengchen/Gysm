@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>选择城市 </title><!--Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG  我们的rEoheGjBWGqww04O94lIdYY9l6IF755B-->
+    <script src="https://api.map.baidu.com/api?v=2.0&amp;ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG"></script>
+    <!--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=2eb75c537be2afc0ac47f37f4f62d4f6&plugin=AMap.CitySearch"></script>-->
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.min.js"></script>
+    <script src="../source/js/mui.indexedlist.js"></script>
+    <script src="../source/js/author.js?r=1"></script>
+    <script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <!--<script src="../source/js/ajax_xs.js"></script>-->
+    <!--<script src="../source/js/public.js"></script>-->
+
+    <link href="../source/mui/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link href="../source/css/mui.indexedlist.css" rel="stylesheet" />
+    <link href="../source/css/searchcity.css" rel="stylesheet" />
+    <style type="text/css">
+        .mui-icon .mui-icon-search {
+            color: #b5b4b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="mui-content">
+        <div id="list" class="mui-indexed-list" style="background-color: #fff;">
+            <div style="padding: 10px 15px;background-color: #fff;">
+                <div class="mui-indexed-list-search mui-input-row mui-search" style="border-bottom: none;">
+                    <input id="searchCityInput" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索城市" />
+                </div>
+            </div>
+            <div id="indexed_list_bar" class="mui-indexed-list-bar">
+            </div>
+            <div class="mui-indexed-list-alert"></div>
+            <div class="mui-indexed-list-inner">
+                <h5 style="margin-bottom:8px;">定位城市</h5>
+                <div class="user-city-list">
+                    <div class="user-city-row">
+                        <div id="currentCity" class="user-city-item active">
+                            定位中
+                        </div>
+                    </div>
+                </div>
+                <h5 style="margin-bottom:8px;">热门城市</h5>
+                <div class="user-city-list">
+                    <div id="user_city_row" class="user-city-row">
+                    </div>
+                </div>
+                <div class="mui-indexed-list-empty-alert">
+                    没有数据
+                </div>
+
+                <div class="jiucuo-btn" id="jiucuo-btn">未找到您的城市？点此添加</div>
+                <ul class="mui-table-view" id="ul"></ul>
+                <ul id="normalCityList" class="mui-table-view"></ul>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+
+        document.getElementById("jiucuo-btn").addEventListener('tap', function (e) {
+            e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+            var btnArray = ['取消', '确定'];
+            var title1 = '感谢同学输入城市';
+            var title2 = '输入城市，以便更好的为您服务：';
+            var sum1 = '例：北京、上海、广州、杭州';
+            mui.prompt(title2, sum1, title1, btnArray, function (e) {
+                try {
+                    if (e.index == 1) {
+                        var answer1 = (e.value);//parseInt
+                        //alert('填写名称：' + e.value);
+                        //var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                        //params22.answer1 = answer1;
+                        //localStorage.setItem("department_name", answer1);
+                        var data1 = {
+                            "city_name": answer1 || '', "user_id": localUserInfo.user_id || '',
+                            "city_id": localUserInfo.city_id || '' //, "city_name": localUserInfo.city_name
+                        }
+                        $.when(postCity(data1)).done(function (json) {
+                            try {
+                                if (json && json.code == 200) {
+                                    mui.toast("提交成功！谢谢你");
+                                }
+                                else
+                                    mui.toast("提交失败,联系爱帮女生,谢谢你");
+                            } catch (e) {
+                                mui.toast(e);
+                                console.error('101-' + e); //mui.toast('85-' + e);
+                            }
+                        });
+                        window.location.href = window.location.href;
+                    } else {
+                    }
+                } catch (e) {
+                    console.error(e);//mui.toast('85-' + e);
+                }
+            })
+        });
+
+        $(function () {
+            if (localCityInfo && localCityInfo.city_id && localCityInfo.city_name) {
+                if (params.msg && params.msg == 'chooseSchool') {
+                    myhref.href = ('indexPage_selectSchool.html'); return;
+                }
+                $("#currentCity").text(localCityInfo.city_name).attr("data-id", localCityInfo.city_id);
+            }
+            if (params.msg && params.msg == 'chooseSchool')
+                mui.toast('请您正确选择城市所在城市,才能为您匹配正确题库与服务');
+
+            $.when(getCurrentCityGPS('#currentCity')).done(function (data) {
+                if (data && data.city_name) {
+                    $("#currentCity").text(data.city_name).attr("data-id", data.city_id);
+                } else {
+                    //mui.toast("无定位权限 获取城市异常");
+                }
+            });
+            $.when(getAllCity()).done(function (data) {
+                if (data.code == 200) {
+                    // 字母列表
+                    var normalCity = data.data.normalCity;
+                    var hotCity = data.data.hotCities;
+                    for (var i = 0, length = normalCity.length; i < length; i++) {
+                        var _nc = normalCity[i];
+                        $('#indexed_list_bar').append('<a>' + _nc.initial + '</a>');
+                        $("#normalCityList").append(getCharCityBlock(_nc.initial, _nc.cities));
+                        //$("#normalCityList").append(getCityBlock(_nc.cities));
+                    }
+                    for (var j = 0, length = hotCity.length; j < length; j++) {
+                        var _hc = hotCity[j];
+                        $("#user_city_row").append('<div class="user-city-item" data-id="' + _hc.id + '">' + _hc.name + '</div>')
+                    }
+                    mui.init();
+                    mui.ready(function () {
+                        var list = document.getElementById('list');
+                        list.style.height = document.body.offsetHeight + 'px';
+                        window.indexedList = new mui.IndexedList(list);
+                    });
+                }
+            });
+
+            function getCharCityBlock(char, cityList) {
+                var li1 = '<li data-group="' + char + '" class="mui-table-view-divider mui-indexed-list-group" style="font-size:18px;color:#666666">' + char + '</li>';
+                var li2 = getCityBlock(cityList);
+                return li1 + li2;
+            }
+
+            function getCityBlock(cityList) {
+                var li2 = "";
+                for (var c = 0, cl = cityList.length; c < cl; c++) {
+                    var _city = cityList[c];
+                    li2 += '<li data-id="' + _city.id + '" class="mui-table-view-cell mui-indexed-list-item">' + _city.name + '</li>'
+                }
+                return li2;
+            }
+
+            //点击城市，然后选中，返回首页
+            $("#list").on('tap', '.user-city-item,.mui-indexed-list-item', function () {
+                var city_id = $(this).attr("data-id");
+                var city_name = $(this).text();
+                if (city_id && city_name != '定位中') {
+                    //本地local存储设置
+                    setLocalCityInfo(city_id, city_name);
+                    console.log("选中城市:" + city_name);
+                    mui.openWindow({
+                        url: 'indexPage_selectSchool.html'
+                    });
+                    ////aspnet服务端设置
+                    //$.when(editCookie(city_id)).done(function (data) {
+                    //    //myhref.href = "indexPage.html";
+                    //    //打开下一页
+                    //    mui.openWindow({
+                    //        url: 'indexPage_selectSchool.html'
+                    //    });
+                    //});
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+body{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.complaint_reporting{
+	width: 100%;
+	height: 48px;
+	background: #FFFFFF;
+}
+.complaint_reporting .complaint{
+	width: 49%;
+	height: 48px;
+	float: left;
+}
+.complaint_reporting .complaint .complatitle{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	border-right: 1px solid #DDDDDD;
+	margin-top: 15px;
+	font-size: 15px;
+}
+.complaint_reporting .complaint .complaxuanz{
+	width: 38%;
+	font-size: 15px;
+	color: #424242;
+	height: 3px;
+	margin: 0 0 0 31%;
+	text-align: center;
+	background: #ff8200;/*color: #1AD46E;*/
+}
+
+.complaint_reporting .reporting{
+	width: 49%;
+	height: 48px;
+	float: left;
+}
+.complaint_reporting .reporting .reporttitle{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	margin-top: 15px;
+	color: #999999;
+	font-size: 15px;
+}
+.complaint_reporting .reporting .reportxuanz{
+	width: 38%;
+	font-size: 15px;
+	color: #424242;
+	height: 3px;
+	margin: 0 0 0 31%;
+	text-align: center;
+	background: #ff8200;/*color: #ff8200;/*color: #1AD46E;*/*/
+}
+.downallcon{
+	width: 100%;
+	margin-top: 12px;
+	overflow: hidden;
+}
+.downallcon .chooseidea{
+	width: 100%;
+	height: 284px;
+	background: #FFFFFF;
+}
+.downallcon .chooseidea li{
+	width: calc(100% - 32px);
+	height: 45px;
+	line-height: 45px;
+	margin-left: 16px;
+	font-size: 15px;
+	color: #424242;
+}
+.downallcon .chooseidea li img{
+	width: 22px;
+	margin-top: 12px;
+	float: right;
+}
+.downallcon .textareas{
+	background: #FFFFFF;
+	margin-top:12px;
+	padding-bottom: 12px;
+}
+.downallcon .textareas textarea{
+	width: 100%;
+	height: 100px;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	font-family: "微软雅黑";
+}
+
+.upload {
+	width: calc(100% - 8px);
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 8px;
+	padding-bottom: 12px;
+}
+.upload .uploads_div{
+	float: left;
+}
+.upload .uploads_div img{
+	width: 79px;
+	height: 79px;
+	margin-left: 8px;
+	float: left;
+}
+.upload .uploads_input {
+	position: absolute;
+    width: 79px;
+    height: 79px;
+    font-size: 0;
+    opacity: 0;
+    filter: alpha(opacity=1);
+    cursor: pointer;
+    margin: 0 0 0 -79px;
+}
+
+.content{
+	width: 100%;
+	margin: 12px 0 0 0;
+	background: #FFFFFF;
+	border-top: 1px solid #E4E4E4;
+	border-bottom: 1px solid #E4E4E4;
+	text-align: center;
+}
+.content textarea{
+	width: calc(100% - 32px);
+	height: 100px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	padding: 20px 16px 0 16px;
+	border: none;
+	resize: none;
+	text-align: center;
+}
+.reportime{
+	width: 100%;
+	height:210px;
+	margin-top: 12px;
+}
+.reportime li{
+	width:calc(100% - 16px);
+	padding: 12px 0 0 16px;
+	height: 57px;
+	background: #FFFFFF;
+	margin-bottom: 1px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.reportime li .litop{
+	width: 100%;
+	color: #999999;
+}
+.reportime li .lidown{
+	width: 100%;
+	margin-top: 6px;
+}
+.reportime li .lidown img{
+	width: 22px;
+	float: left;
+}
+.reportime li .lidown .licon{
+	width: calc(70% - 12px);
+	float: left;
+	font-size: 15px;
+	margin-left: 12px;
+	outline: none;
+	margin-top: -3px;
+	border: none;
+}
+
+.textareas{
+	width: 100%;
+	background: #FFFFFF;
+}
+.textareas textarea{
+	width: calc(100% - 32px);
+	height: 100px;
+	border: none;
+	outline: none; 
+	font-size: 15px;
+	font-family: "微软雅黑";
+}
+.xxtishi{
+	width: calc(100% - 16px);
+	height: 30px;
+	color: #999999;
+	text-align: right;
+	font-size: 13px;
+}
+
+.zhu{
+	width: calc(100% - 32px);
+	padding: 10px 16px 10px 16px;
+	font-size: 13px;
+	color: #888888;
+	background: #F2F2F2;
+}
+
+.tijiao_but{
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	bottom: 0;
+	background-color: #91E3B5;
+	border: none;
+	outline: none;
+	color: #FFFFFF;
+	font-size: 18px;
+	-webkit-appearance: none;
+}

@@ -1,0 +1,79 @@
+
+			html, body {
+				height: 100%;
+				position: relative;
+			}
+			body {
+				margin: 0;
+				padding: 0;
+				color: #000;
+				background: #eee;
+				font-size: 14px;
+			}
+			#cover1 {
+				text-align:center ;
+				margin:0px auto;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				background: rgba(0, 0, 0, 0.7) ;
+			}
+			#cover1 img {			 
+				/*height:100%;*/
+                width:53%;
+				margin:0px auto;	
+			}
+            #cover1_shenqing {
+                text-align: center;
+                margin: 0px auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: none;
+                z-index: 20000;
+                background: rgba(0, 0, 0, 0.7);
+            }
+
+            #cover1_shenqing img {
+                margin: 0px auto;
+                /*height: 100%;*/
+                width:53%;
+            }
+            
+			#cover2 {
+				text-align:center ;
+				margin:0px auto;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				background: rgba(0, 0, 0, 0.7) ;
+			}
+			#cover2 img {
+				 margin:0px auto;				 
+				 /*height:100%;*/
+                 width:50%;
+			}
+            
+			.swiper-container {
+				width: 100%;
+				height: 45%;
+			}
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+			}
+			.swiper-slide img {
+				width: 100%;
+				height: 100%;
+			}

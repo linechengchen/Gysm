@@ -1,0 +1,310 @@
+.after:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.before:before {
+  display: block;
+  content: '';
+  clear: both;
+}
+.veryCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.verticalCenter {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+}
+.horizontalCenter {
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.full {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+header.mui-bar-nav {
+  border-bottom: 1px solid #e5e5e5;
+}
+body > nav.mui-bar.mui-bar-tab {
+  background-color: #fff;
+}
+.mui-content > .mui-table-view:first-child {
+  margin-top: 0;
+}
+.mui-bar-nav {
+  box-shadow: none;
+}
+.mui-content {
+  background-color: #eee;
+}
+.mui-table-cell,
+.mui-table-view-cell {
+  vertical-align: top !important;
+}
+.mui-bar-tab .mui-tab-item {
+  color: #666;
+  height: 90%;
+}
+.mui-bar-tab > a {
+  display: table-cell;
+  overflow: hidden;
+  width: 1%;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #929292;
+}
+.mui-bar-tab > a.rightBorder {
+  position: relative;
+}
+.mui-bar-tab > a.rightBorder:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 60%;
+  background-color: #e5e5e5;
+  top: 20%;
+  right: 0;
+}
+.mui-tab-item .mui-icon > img,
+a .mui-icon > img {
+  display: inline-block;
+  width: 25px;
+}
+.mui-tab-item .mui-icon > img.selection,
+a .mui-icon > img.selection {
+  display: none;
+}
+.mui-tab-item.mui-active .mui-icon > img.normal,
+a.mui-active .mui-icon > img.normal {
+  display: none;
+}
+.mui-tab-item.mui-active .mui-icon > img.selection,
+a.mui-active .mui-icon > img.selection {
+  display: inline-block;
+}
+.user-bar-tab {
+  padding: 5px 0;
+}
+.user-bar-tab > a {
+  padding: 5px 0;
+}
+.user-bar-tab > a .mui-icon ~ .mui-tab-label {
+  font-size: 11px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-bar-tab > a .mui-text {
+  width: auto;
+  height: auto;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: 18px;
+}
+.user-bar-tab > a .mui-tab-label {
+  color: #999;
+}
+.good-mui-bar-tab > a:first-child {
+  color: #007aff;
+}
+.good-mui-bar-tab > a:nth-child(3) {
+  color: #fff;
+  background-color: #3278C8;
+}
+.mui-input-group:before,
+.mui-input-group:after {
+  height: 0;
+}
+.mui-input-group .mui-input-row:last-child:after {
+  height: 0;
+}
+.mui-table-view:before,
+.mui-table-view:after {
+  height: 0;
+}
+.mui-table-view .mui-media-object.head-img {
+  border-radius: 50%;
+}
+.mui-table-view .mui-media-object.icon-img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+.mui-navigate-right .mui-tip {
+  right: 35px;
+}
+.mui-tip {
+  font-size: 11px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+  text-decoration: none;
+  color: #bbb;
+}
+textarea,
+input {
+  font-size: 14px;
+}
+.address-mui-table-view > .mui-table-view-cell > a > .mui-media-body > .mui-ellipsis {
+  padding: 5px 0;
+}
+.mui-toast-container
+{
+    position: fixed;
+    z-index: 9999;
+    bottom: 50px;
+
+    width: 100%;
+
+    -webkit-transition: opacity .8s;
+            transition: opacity .8s;
+
+    opacity: 0;
+    bottom: 50% !important;
+}
+.mui-toast-container.mui-active
+{
+    opacity: 1;
+}
+
+.mui-toast-message
+{
+    font-size: 14px;
+
+    width: 270px;
+    margin: 5px auto;
+    padding: 5px;
+
+    text-align: center;
+
+    color: #000;
+    border-radius: 7px;
+    background-color: #d8d8d8;
+      background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+.mui-btn.mui-btn-long {
+  min-width: 225px;
+  border-radius: 22px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+.mui-input-range input[type='range'] {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  margin: 17px 0;
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  background-color: #016df1;
+  -webkit-appearance: none !important;
+}
+.mui-input-range input[type='range']::-webkit-slider-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid #016df1;
+  background-color: #fff;
+  background-clip: padding-box;
+  -webkit-appearance: none !important;
+}
+.mui-btn-disabled {
+  background-color: #c8c7cc;
+  color: #fff;
+  border: 1px solid #c8c7cc;
+}
+.mui-btn-short {
+  padding: 2px 6px;
+}
+.mui-input-range .mui-tooltip {
+  width: auto;
+}
+.mui-checkbox input[type='checkbox'].smallCheckbox {
+  width: 24px;
+  height: 22px;
+  top: 7px;
+  right: 10px;
+}
+.mui-checkbox input[type='checkbox'].smallCheckbox:before {
+  font-size: 24px;
+}
+.order-table-view {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.order-table-view > .first {
+  padding: 5px 15px;
+}
+.order-table-view > .first:after {
+  left: 0;
+}
+.order-table-view > .third {
+  line-height: 25px;
+}
+.mui-slider .mui-slider-group {
+  height: 100%;
+}
+.mui-slider .mui-slider-group .mui-slider-item > a:not(.mui-control-item) {
+  height: 100%;
+}
+.mui-slider .mui-slider-group .mui-slider-item > a > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.mui-card {
+  margin: 10px 0px;
+  box-shadow: none;
+}
+.mui-card-header:after {
+  margin: 0 15px;
+}
+.ys-input-group .mui-input-row {
+  border-bottom: 1px solid #c8c7cc;
+}
+.ys-input-group .mui-input-row input {
+  padding-left: 0;
+  padding-right: 0;
+}
+.ys-input-group .mui-input-row:after {
+  display: none;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-group .mui-slider-item {
+  border-top: none;
+}
+h5,
+.mui-h5 {
+  font-weight: 300;
+}
+/*# sourceMappingURL=mui_overwrite.css.map */

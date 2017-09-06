@@ -1,0 +1,12 @@
+﻿
+        
+        //微信登录：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe8a74eed4d29c6f3&redirect_uri=wxe8a74eed4d29c6f3%3A%2F%2Foauth&response_type=code&scope=snsapi_userinfo,snsapi_friend,snsapi_message&state=none&uin=NzQyODE1NQ%3D%3D&lang=zh_CN&version=26050630&key=c3a61915c793cc99cc7936cbd4b689efc05d636bd5ce009a5f08415aca07d5621ebe801ad143adde539283ea620f592856ae105f658e0f44b548d514faec1477573af52e27ae3c1a9e2a9d02f7e124f9&pass_ticket=IuI4K25RDimFjn7m3ESPCiSuPzD8Ya0D3MLEgP7FiMw%3D
+        //qq：https://c.isdspeed.qq.com/code.cgi?domain=mobile.opensdk.com&cgi=opensdk&type=0&code=0&time=0&rate=1&uin=null&data=os_ver%3D6.0%26qq_ver%3D6.7.0.496%26result%3D0%26tmcost%3D0%26apn%3D%26cmd%3DLOGIN_CHECK_AGENT%26code%3D0%26rate%3D1%26appid%3D1105611943%26network%3Dwifi%26platform%3D1%26model_name%3DEDI-AL10
+        //https://mapp.qzone.qq.com/cgi-bin/mapp/mapp_policy_config?mType=yingyongbao&status_os=6.0&status_version=23&status_machine=EDI-AL10&sdkp=a&sdkv=1.5&appid=0
+        //https://mapp.qzone.qq.com/cgi-bin/mapp/mapp_policy_config?mType=yingyongbao&status_os=6.0&status_version=23&status_machine=EDI-AL10&sdkp=a&sdkv=1.5&appid=1105611943
+        //https://c.isdspeed.qq.com/code.cgi?domain=mobile.opensdk.com&cgi=opensdk&type=0&code=0&time=0&rate=1&uin=455628241&data=os_ver%3D6.0%26qq_ver%3D6.7.0.496%26result%3D0%26tmcost%3D0%26apn%3D%26cmd%3DLOGIN_GETAUTHLIST_AGENT%26uin%3D455628241%26code%3D0%26rate%3D1%26appid%3D1105611943%26network%3Dwifi%26platform%3D1%26model_name%3DEDI-AL10
+        //https://appsupport.qq.com/cgi-bin/appstage/mstats_batch_report?mType=yingyongbao
+        //微博：https://api.weibo.cn/2/guest/push_active?networktype=wifi&moduleID=700&checktoken=edfe8ca52a7167b966a47eaf2d5cd023&wb_version=3342&c=android&i=b7cd3c5&s=d61e3c20&ua=HUAWEI-EDI-AL10__weibo__7.3.0__android__android6.0&wm=9006_2001&aid=01AlMirHKH7A0N-WCJtJDbscIh0vB2z6DLh3mybgHOuCkWyng.&did=0f607264fc6318a92b9e13c65db7cd3c3553909b&v_f=2&from=1073095010&gsid=_2AkMvkoIXf8NhqwJRmPoXzG3rZIt0zAHEieKZznPMJRM3HRl-3T9jql0MtRWPVbMbXidUiSKUfh2N9QdAkW2Xpg..&lang=zh_CN&skin=default&oldwm=9006_2001&sflag=1&luicode=10000365
+        //https://112.25.52.161/gchatpic_new/3275167183/2606413644-3105053733-DC76E4CBE8343EBA131D5FA4AD9C452C/198?vuin=455628241&term=2&cldver=6.7.0.3095&rf=naio&msgTime=1489920925&mType=picGd
+
+

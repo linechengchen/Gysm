@@ -1,0 +1,342 @@
+@import url('init.less');
+body{
+	color: #555;
+	background-color: #eee;
+	font-size: 15px;
+	font-family: -apple-system, BlinkMacSystemFont;
+	font-weight: 300;
+}
+[v-cloak]{
+	display: none;
+}
+.mui-badge-cart{
+	position: relative;
+	left: 28px;
+	top: 3px;
+}
+ .mui-pull-bottom-wrapper {
+        text-align: center;
+    }
+.blueColor{
+	color: @blue !important;
+}
+.linkColor{
+	color: @linkBlue !important;
+}
+.redColor{
+	color: @red !important;
+}
+.greyColor{
+	color: @lineColor !important;
+}
+.textColor{
+	color: #999 !important;
+}
+.greenColor{
+	color:@green !important;
+}
+.yellowColor{
+	color: @yellow !important;
+}
+.greenBg{
+	// background-color: @green !important;
+	// color: #fff;
+	    color: #fff;
+    border: 1px solid @green;
+    background-color: @green;
+}
+.full{
+	.full;
+	.after;
+}
+.textbook_cover{
+	position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 140%;
+    margin-bottom: 10px;
+    background: #fafafa;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1),0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    &>img{
+    	display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+.title{
+	// font-size: 14px;
+	// padding: 15px 10px 5px;
+	// color: #999;
+}
+.imageIcon{
+	display: inline-block;
+	vertical-align: middle;
+}
+.verticalSplitLine{
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	width: 1px;
+	height: 80%;
+}
+.innerCenter{
+	&>img{
+		display: block;
+		margin: 0 auto;
+	}
+	&>div{
+		margin: 0 auto;
+		text-align: center;
+	}
+}
+.userRulesPopover{
+    width: 85%;
+    background-color: #fff;
+    border-radius: 15px;
+    -webkit-transform: translate3d(-50%, -50%, 0) scale(1);
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    .inner{
+    	padding: 0 20px;
+    	&>h1{
+	    	font-size: 18px;
+		    height: 50px;
+		    line-height: 50px;
+		    text-align: center;
+	    }
+	    &>div{
+	    	border-top: 1px solid @lightLineColor;
+	    	text-align: left;
+	    	padding: 16px 0;
+	    	&>h4{
+	    		font-size: 15px;
+	    		color: #666;
+	    		text-align: left;
+	    	}
+	    	&>p{
+	    		margin-bottom: 20px;
+	    		&:last-child{
+	    			margin-bottom: 0;
+	    		}
+	    	}
+	    }
+    }
+}
+.fixedCartButton{
+	position: fixed;
+	bottom: 65px;
+	right: 20px;
+	z-index: 9;
+	&>img{
+		display: block;
+		width: 45px;
+		height: 45px;
+	}
+}
+.smallCartIcon{
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	bottom: 1px;
+	right: 5px;
+	padding: 5px;
+	box-sizing: content-box;
+}
+.pay{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid #ebebeb;
+	background-color: #fff;
+	padding-right:120px;
+	line-height: 50px;
+	.sure{
+		width: 120px;
+		min-height: 100%;
+		// background-color: @blue;
+		text-align: center;
+		// color: #fff;
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		top: -1px;
+		border-radius: 0;
+		font-size: 16px;
+	}
+}
+.mui-table-view-cell > .mui-slider-handle.mui-navigate-right:after, .mui-table-view-cell > .mui-slider-handle .mui-navigate-right:after{
+	right: 15px;
+}
+.timelineBox{
+	padding: 21px;
+	.innerBox{
+		.line{
+			position: relative;
+			padding: 0px 10px 15px 20px;
+			line-height: 1;
+			color: #999;
+			font-size: 16px;
+			&:after{
+				position: absolute;
+				left: -6px;
+				top: 1px;
+				content: '';
+				display: block;
+				width: 11px;
+				height: 11px;
+				background-color: #999;
+				border-radius: 50%;
+			}
+			&:before{
+				position: absolute;
+				left: -1px;
+				top: 2px;
+				content: '';
+				display: block;
+				height: 100%;
+				width: 1px;
+				background-color: #999;
+			}
+			&.been{
+				&:after{
+					background-color: #016df1;
+				}
+			}
+			&:last-child{
+				&:before{
+					display: none;
+				}
+			}
+		}
+	}
+}
+.coupon{
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 0px rgba(0,0,0,0.2);
+	margin-bottom: 14px;
+	&:before{
+		content: ' ';
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background-color: #eee;
+		.verticalCenter;
+		left: -5px;
+		z-index: 1;
+	}
+	&:after{
+		content: ' ';
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background-color: #eee;
+		.verticalCenter;
+		right: -5px;
+		z-index: 1;
+	}
+	.couponBody{
+		padding: 15px 21px;
+		&>img{
+			width: 68px;
+			height: 68px;
+			border-radius: 50%;
+		}
+		.after;
+	}
+	.couponFoot{
+		background-color: #fff;
+		padding: 6px 23px;
+	}
+}
+.couponDetail{
+	&:before,&:after{
+		display: none;
+	}
+	.topPart{
+		position: relative;
+		border-bottom: 1px dashed @lineColor;
+		padding: 25px 0;
+		.beforeFakeClass{
+			position: absolute;
+			display: block;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			bottom: -5px;
+			left: -5px;
+			z-index: 1;
+		}
+		.afterFakeClass{
+			position: absolute;
+			display: block;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			bottom: -5px;
+			right: -5px;
+			z-index: 1;
+		}
+		table{
+			margin: 20px 15px 0;
+			font-size: 12px;
+			th{
+				width: 65px;
+				text-align: right;
+				vertical-align: top;
+				font-weight: normal;
+			}
+			td{
+				color: @lineColor;
+			}
+		}
+	}
+	.bottomPart{
+		padding: 20px 0 0;
+	}
+}
+.ys-mui-search{
+    .rightSearchIcon{
+        display: none;
+    }
+    &.mui-active{
+        &:before{
+            display: none;
+        }
+        .rightSearchIcon{
+            display: block;
+            position: absolute;
+            top: 6px;
+            right: auto;
+            left: 5px;
+            margin-right: 0px;
+            font-size: 0;
+            line-height: 1;
+            .mui-icon{
+                font-size: 20px;
+            }
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

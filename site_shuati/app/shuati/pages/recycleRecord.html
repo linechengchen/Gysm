@@ -1,0 +1,181 @@
+﻿<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="keywords" content="seokeywords" />
+    <meta name="description" content="seodescription" />
+    <link rel="stylesheet" href="../source/css/weui.min.css" />
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <script type="text/javascript" src="../source/js/vue.min.js"></script>
+    <script type="text/javascript" src="../source/js/fastclick.min.js"></script>
+    <title>捐书记录</title>
+    <style>
+/*     @font-face {
+        font-family: 'icomoon';
+        src: url('https://cloudbook-h5.oss-cn-shanghai.aliyuncs.com/recomm/front/Regular.ttf');
+        font-weight: normal;
+        font-style: normal;
+    } */
+    
+    body {
+        font-family: "-apple-system, BlinkMacSystemFont,'Helvetica Neue',Helvetica,sans-serif";
+        background-color: #eee;
+        /* background: url('img/group25.png') no-repeat bottom; */
+        background-size: 100%;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .container {
+        width: 100%;
+    }
+    
+    .headContent {
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .time {
+        font-size: 12px!important;
+        color: #999;
+        margin-top: 6px;
+    }
+    
+    .Score {
+        color: #1cc100;
+        font-size: 17px;
+    }
+    
+    .theme-loading {
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+    }
+    
+    .theme-loading img {
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        vertical-align: -4px;
+    }
+            [v-cloak]{
+        display: none;
+    }
+    </style>
+    <script type="text/javascript" src="../source/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../source/js/common.js"></script>
+    <script type="text/javascript" src="../source/js/ajax_xs.js"></script>
+    <script type="text/javascript" src="../source/js/ajax_xs_my.js"></script>
+    <script type="text/javascript" src="../source/js/public.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../source/mui/js/mui.min.js"></script>
+    <script>
+    </script>
+        <script>
+    $(function() {
+        FastClick.attach(document.body);
+        var data = {
+            page: 1,
+            recordList: [],
+            waiting:true,
+            show:false
+        }
+        var page = 1;
+        var isEnd = false;
+        var isLoading = false;
+
+        var getList = function() {
+            if (isEnd || isLoading) {
+                return;
+            }
+            console.log('test');
+            $.when(donateList(page)).done(function(ret) {
+                console.log(ret);
+                if (ret.code == 200) {
+                    // ret.data.records=null;
+                    if (ret.data.records!=null) {
+                         data.recordList = data.recordList.concat(ret.data.records);
+                    }
+                   
+                    if (!data.recordList) {
+                        data.recordList=[]
+                    }
+                    vm.show=true;
+                    console.log(data.recordList);
+                    isEnd = ret.data.pager.pages == page;
+                   
+                    page++;
+                    if (isEnd) {
+                        console.log(isEnd);
+                        vm.waiting=false;
+                    }
+                }
+            });
+        }
+
+
+        var screenHeight = window.screen.height;
+        window.onscroll = function() {
+            if (screenHeight + document.body.scrollTop >= document.body.scrollHeight) {
+                setTimeout(function() {
+                    getList();
+                }, 1000)
+
+            }
+        };
+        getList();
+        //传token到列表页
+        var GoToList = function(item) {
+            myhref.href = 'recycleDetail.html?' + encodeObj({id:item.id});
+        }
+        var vm=new Vue({
+            el: '#app',
+            data: data,
+            methods: {
+                GoToList: GoToList
+            }
+        })
+
+        
+    })
+    </script>
+</head>
+
+<body id="app">
+    <div class="container" v-show="show" v-cloak>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" v-for="item in recordList" v-on:click="GoToList(item)" v-if="recordList.length>0">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p class="headContent" v-if="item.status == 0">捐书：预约成功</p>
+                    <p class="headContent" v-if="item.status == 1">捐书：已完成</p>
+                    <p class="headContent" v-if="item.status == 2">捐书：预约取消</p>
+                    <p class="time" style="">{{item.appointTime?item.appointTime.split("T").join(" "):""}}</p>
+                </div>
+                <div class="weui_cell_ft">
+                    <span class="Score" v-if="item.status == 1">积分+{{item.score}}</span>
+                </div>
+            </a>
+        </div>
+        <p class="theme-loading" v-if="waiting">
+            <img src="../source/images/loading.gif" alt=""> 正在努力加载
+        </p>
+                <p class="theme-loading" v-if="recordList.length==0">
+             暂无记录
+        </p>
+    </div>
+</body>
+
+</html>

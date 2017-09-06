@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>注册新用户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui.css" />
+    <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/icons-extra.css" />
+    <link rel="stylesheet" href="../css/zui.css" />
+    <style>
+        body{
+          background-image:url('../image/WechatIMG5.jpeg');
+          background-size:100%;
+        }
+
+        .area {
+            margin: 20px auto 0px auto;
+        }
+
+        .mui-input-group {
+            margin-top: 10px;
+        }
+
+        .mui-input-group:first-child {
+            margin-top: 20px;
+        }
+
+        .mui-input-group label {
+            width: 22%;
+        }
+
+        .mui-input-row label~input,
+        .mui-input-row label~select,
+        .mui-input-row label~textarea {
+            width: 78%;
+        }
+
+        .mui-checkbox input[type=checkbox],
+        .mui-radio input[type=radio] {
+            top: 6px;
+        }
+
+        .mui-content-padded {
+            margin-top: 25px;
+        }
+
+        .mui-btn {
+            padding: 10px;
+        }
+
+        .link-area {
+          display: block;
+          margin-top: 150px;
+          text-align: center;
+        }
+
+        .spliter {
+            color: #bbb;
+            padding: 0px 8px;
+        }
+
+        .oauth-area {
+            position: absolute;
+            bottom: 20px;
+            left: 0px;
+            text-align: center;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .oauth-area .oauth-btn {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-size: 30px 30px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin: 0px 20px;
+            border: solid 1px #ddd;
+            border-radius: 25px;
+        }
+
+        .oauth-area .oauth-btn:active {
+            border: solid 1px #aaa;
+        }
+
+        .oauth-area .oauth-btn.disabled {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content" style="margin-top: 240px;background-color: rgba(247, 247, 247, 0);">
+        <form id='login-form' class="mui-input-group" style="filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.7;">
+            <div class="mui-input-row">
+                <label style="text-align: center;"><span class="mui-icon mui-icon-contact"></span></label>
+                <input id='account' type="text" class="mui-input-clear mui-input" placeholder="选择大学">
+            </div>
+            <div class="mui-input-row">
+                <label style="text-align: center;"><span class="mui-icon mui-icon-contact"></span></label>
+                <input id='account' type="text" class="mui-input-clear mui-input" placeholder="选择院系">
+            </div>
+            <div class="mui-input-row">
+                <label style="text-align: center;"><span class="mui-icon mui-icon-contact"></span></label>
+                <input id='account' type="text" class="mui-input mui-input" placeholder="手机帐号">
+            </div>
+            <div class="mui-input-row">
+                <label style="text-align: center;"><span class="mui-icon mui-icon-contact"></span></label>
+                <input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入短信验证码" style="width: 50%;float: left;">
+                <input type="button" data_time="60" id="phoneButton" value="获取手机验证码"  style="width: 27%;height: 100%;float: left;"/>
+            </div>
+            <div class="mui-input-row mui-password">
+                <label style="text-align: center;"><span class="mui-icon mui-icon-locked"></span></label>
+                <input type="password" class="mui-input-password" data-input-password="3" placeholder="请输入你的密码"><span class="mui-icon mui-icon-eye"></span>
+            </div>
+        </form>
+        <div class="mui-content-padded">
+            <button id='login' class="mui-btn mui-btn-block" style="background-image: url(../image/WechatIMG3.jpeg);background-size: 100%;height: 52px;"></button>
+            <div class="link-area"><a id='reg'>注册账号</a> <span class="spliter">|</span> <a id='forgetPassword'>忘记密码</a>
+            </div>
+        </div>
+        <div class="mui-content-padded oauth-area"></div>
+    </div>
+</body>
+<script src="../js/mui.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+	mui.init();
+ 	mui.ready(function() {
+ 		
+ 		
+ 		var countDownTime =60;
+ 		
+		var phoneButton = document.getElementById('phoneButton');		
+		phoneButton.addEventListener('tap', function(event) {
+			
+			countDown(this);
+			
+			$.when(getPhoneCode()).done(function(res) {
+				
+				console.log(res)
+			});
+		})
+	
+		/**
+		 * 获取手机验证码
+		 */
+		function getPhoneCode() {
+			var ajax = $.ajax({
+                dataType: "json",
+                url: "http://stbd.aibangxs.com/site_shuati/Json_xianshu/user/vcode.aspx？mobile=18605887655",
+                type: "GET"
+            });
+            return ajax;
+		}
+		
+		/**
+		 * 倒计时
+		 */
+		function countDown(val) {
+			
+			if(countDownTime == 0) {
+				val.removeAttribute("disabled");
+				val.setAttribute("value","获取短信验证码");
+				countDownTime = 60;
+			}else {
+				val.setAttribute("disabled", true);
+				val.setAttribute('value',"重新发送"+countDownTime+"秒");
+				countDownTime--;
+				
+			   setTimeout(function() { 
+				  countDown(val) 
+			   },1000);
+			}
+		}
+ 	});
+ 
+</script>
+
+</html>

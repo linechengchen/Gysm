@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>我的</title>
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/my.css" />
+		<link rel="stylesheet" type="text/css" href="http://7xiyzj.com2.z0.glb.qiniucdn.com/20160409_changswiper.min.css" />
+        <!--zlg-->
+        <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+        
+        <script src="../source_jz/7xiyzi_js/20160409_weixinjquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <!--<script src="../source_jz/7xiyzi_js/mochuan-mlink.min.js"></script>-->
+		<script src="../source_jz/js/public_jianzhi.js" type="text/javascript" charset="utf-8"></script>
+        <!--<script src="../source_jz/7xiyzi_js/20160409_weixinowl.carousel.min.js" type="text/javascript" charset="utf-8"></script>-->
+        <script type="text/javascript" src="../source_jz/7xiyzi_js/artTemplate.js"></script>
+        <!--<script src="../source_jz/7xiyzi_js/20160409_weixinswiper.min.js" type="text/javascript" charset="utf-8"></script>-->
+        <script src="../source_jz/7xiyzi_js/jquery.cookie.js"></script>
+		<!--<script src="../source_jz/js/localStorage.js" type="text/javascript" charset="utf-8"></script>-->
+        <script src="../source_jz/7xiyzi_js/20160409_weixinpromise.min.js"></script>
+		<script src="../source_jz/js/ajax_jz_pack.js"></script>
+		<!--<script src="../source_jz/js/JudgeBrowser.js" type="text/javascript" charset="utf-8"></script>-->
+        <script src="../source_jz/7xiyzi_js/20160409_weixinjquery.foggy.js" type="text/javascript" charset="utf-8"></script>
+
+        <link href="../source/mui/fonts/font_shuati/iconfont.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+        <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+        <link rel="stylesheet" href="../source/css/index.css?20160904">
+
+        <style>
+            /*cch*/
+            a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            body {
+                margin: 0 0 0 0;
+                font-family: -apple-system, BlinkMacSystemFont;
+                font-weight: 300;
+            }
+
+            header {
+                text-align: left;
+            }
+            hide
+            {
+                display:none;
+            }
+        </style><!--cch-->
+
+	</head>
+	<body>
+		<!--页面加载 开始-->
+        <div id="preloader1" style="display: none;">
+            <div id="status1">
+                <p class="center-text"><span></span></p>
+            </div>
+        </div>
+			<div id="bodr">
+				<a href="set.html" class="header_btn_right_wenzi btn_set" style="display: none;"></a>
+				<div class="titles"></div>
+				<script type="text/html" id="titlehead">
+					<div class="headpic">
+						{{if headImg != null}}
+                        <img class="logohead" src="{{ head_img_url}}" />
+						<div class="headimg" style="display: none;"></div>
+						{{/if}} {{if headImg == null}}
+						<img class="logohead" src="" style="display: none;" />
+						<div class="headimg"></div>
+						{{/if}}
+					</div>
+					<input type="file" name="pic" id="up_img">
+					<div class="username" id="nams">{{(real_name)?real_name:"未填姓名"}}</div>
+					<div class="userschool" id="schools">{{school_name}}  {{department_name}}</div>
+				</script>
+                <div class="collection" name="a_jz" style="display:none">
+                    <ul>
+                        <a onclick="jumpWeb()">
+                            <li>
+                                <span class="bangfenbiico"><img src="https://ojlf2aayk.qnssl.com/qtb@3x.png"></span>
+                                <span class="qtbcon">
+                                    <div class="bangfenbi">帮粉币</div>
+                                    <div class="moneys">0</div>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="myresume.html">
+                            <li style="border-right: none;">
+                                <span class="bangfenbiico"><img src="https://ojlf2aayk.qnssl.com/jianli@3x.png"></span>
+                                <span class="qtbcon">
+                                    <div class="bangfenbi">我的简历</div>
+                                    <div class="perfect">0</div>
+                                </span>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+
+                <div class="collection" name="a_st" style="display:none">
+                    <ul>
+                        <a href="#">
+                            <li>
+                                <span class="bangfenbiico"><img src="https://ojlf2aayk.qnssl.com/qtb@3x.png"></span>
+                                <span class="qtbcon">
+                                    <div class="bangfenbi">资料贡献榜</div>
+                                    <div class="moneys">0</div>
+                                </span>
+                            </li>
+                        </a>
+                        <a href="kemu_shuatiSchedule.html">
+                            <li style="border-right: none;">
+                                <span class="bangfenbiico"><img src="https://ojlf2aayk.qnssl.com/jianli@3x.png"></span>
+                                <span class="qtbcon">
+                                    <div class="bangfenbi">刷题进度</div>
+                                    <div class="perfect">0</div>
+                                </span>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="list_branch" name="a_st" style="display:none">
+                    <ul>
+                        <div style="width: 100%; height: 12px; background: #F2F2F2;"></div>
+                        <a id="realNameAuto">
+                            <!--<a data-url="http://localhost:62259/app/jianzhi/auth/auth/zmxy/myauthentication" onclick="jumpWeb(this)">-->
+                            <li>
+                                <img src="../../../source_7niu//22px-shimingrenzheng@3x.png" />
+                                <div class="namesa">实名加V</div>
+                                <div class="money realname"></div>
+                            </li>
+                        </a>
+                        <li class="last" id="zhima">
+                            <img src="../../../source_7niu//22px-zhimaxinyong@3x.png" />
+                            <div class="namesa">芝麻信用</div>
+                            <div class="money" id="credit"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list_branch" name="a_jz" style="display:none">
+                    <ul>
+                        <a href="mycollect.html">
+                            <li>
+                                <img src="../../../source_7niu//2016090522px-colled@3x.png" />
+                                <div class="namesa">我的收藏</div>
+                                <div class="money" id="jzs">0</div>
+                            </li>
+                        </a>
+                        <li style="border:none;" id="neteasCloud">
+                            <img src="../../../source_7niu//2016121222px-teach@3x.png" />
+                            <div class="namesa" id="partJobClass">兼职云课堂</div>
+                        </li>
+                        <div style="width: 100%; height: 12px; background: #F2F2F2;"></div>
+                        <a id="realNameAuto">
+                            <!--<a data-url="http://localhost:62259/app/jianzhi/auth/auth/zmxy/myauthentication" onclick="jumpWeb(this)">-->
+                            <li>
+                                <img src="../../../source_7niu//22px-shimingrenzheng@3x.png" />
+                                <div class="namesa">实名加V</div>
+                                <div class="money realname"></div>
+                            </li>
+                        </a>
+                        <a href="workthrough.html">
+                            <li>
+                                <img src="../../../source_7niu//22px-jianzhijingli@3x.png" />
+                                <div class="namesa">兼职经历</div>
+                                <div class="money" id="jingli">0</div>
+                            </li>
+                        </a>
+                        <a href="healthyCard.html">
+                            <li>
+                                <img src="../../../source_7niu//22px-healthycard@3x.png" />
+                                <div class="namesa">健康证</div>
+                                <div class="money healthcard"></div>
+                            </li>
+                        </a>
+                        <li class="last" id="zhima">
+                            <img src="../../../source_7niu//22px-zhimaxinyong@3x.png" />
+                            <div class="namesa">芝麻信用</div>
+                            <div class="money" id="credit"></div>
+                        </li>
+                    </ul>
+                </div>
+
+				
+                <nav class="mui-bar mui-bar-tab">
+                    <a id="menu_sy" class="mui-tab-item" data-href="indexpage.html">
+                        <span class="mui-icon">
+                            <span class="icon iconfont icon-rili1"></span>
+                        </span>
+                        <span class="mui-tab-label">首页</span>
+                    </a>
+
+                    <a id="menu_gw" class="mui-tab-item " data-href="jobreading.html" style="display:none">
+                        <span class="mui-icon">
+                            <span class="icon iconfont icon-jianzhi01"></span>
+                        </span>
+                        <span class="mui-tab-label">岗位</span>
+
+                    </a>
+                    <a id="menu_bmd" class="mui-tab-item" data-href="report.html" style="display:none">
+                        <span class="mui-icon">
+                            <span class="icon iconfont icon-faxian1 "></span>
+                        </span>
+                        <span class="mui-tab-label">报名单</span>
+                    </a>
+                    <a id="menu_wd" class="mui-tab-item mui-active" data-href="../pagesCommon/my.html">
+                        <span class="mui-icon">
+                            <span class="icon iconfont icon-wode2 "></span>
+                        </span>
+                        <span class="mui-tab-label">我的</span>
+                    </a>
+                </nav>
+
+
+				</div>
+				<div style="width: 100%; height: 50px;"></div>
+				<!--弹窗-->
+				<div class="ghdlzh" style="display:none;">
+					<div class="bg_back"></div>
+					<div class="tishi">
+						<img src="http://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinload.gif" />
+						<p>上传中...</p>
+					</div>
+				</div>
+				<input type="hidden" class="imgvalue" value="" />
+	</body>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            //zlg
+            if (app_path1 == "jianzhi") {
+                $('#menu_gw').show();
+                $('#menu_bmd').show();
+                $("*[name='a_jz']").show();
+            }
+            if (app_path1 == "shuati") {
+                $("*[name='a_st']").show();
+            }
+
+            var redirect_uri = window.location.href;
+            //var user_id = localUserInfo.user_id;// getCookie("identity_new"); 使用新方法
+            var token = getLocalUserInfo().token;
+            //向下滑动时返回顶部
+            $("body").append('<div class="gotop" id="gotop"><div>');
+            $(window).scroll(function() {
+                $(document).scrollTop() > 300 ? $("#gotop").fadeIn() : $("#gotop").fadeOut()
+            });
+            $("#gotop").click(function() {
+                $("html,body").animate({
+                    scrollTop: 0
+                }, 300)
+            });
+
+            function information() { //工作经历收藏数帮粉币余额
+                var data = {};
+                data.token = token;
+                postAjax('/user/information/refresh.aspx', data).then(function (data) {
+                    if(data.success) {
+                        console.log(data.data);
+                        $("#jingli").text(data.data.applyCount);
+                        $("#jzs").text(data.data.favoriteCount);
+                        $('.moneys').text(data.data.money + "元");
+                        if(data.data.haveHealthCertificate == true) {
+                            $('.healthcard').text("已上传");
+                        } else {
+                            $('.healthcard').text("未上传");
+                        }
+                    }
+                });
+            }
+            information();
+            initData();
+            var $userimg = $("#userimg");
+            //用户基本信息
+            function initData() {
+                var data = {};
+                data.token = token;
+                data.user_id = localUserInfo.user_id;
+                data.openid = localUserInfo.openid;
+                data.unionid = localUserInfo.unionid;
+                postAjax('/user/information.aspx', data).then(function (data) {
+                    //是否获取数据成功
+                    if(data.success) {
+                        $("#status").hide();//.fadeOut();
+                        $("#preloader").hide();//.delay(300).fadeOut("slow");
+                        console.log(data);
+                        var jData = data.data.data;//data.data.data[0];
+                        console.log(jData);
+                        $(".btn_set").show();
+                        $(".titles").html(template("titlehead", jData)); //头部
+                        if(data.data.personalVariableMenu != null){
+                            $('#partJobClass').text(data.data.personalVariableMenu[0].shareContent);
+                            $('#neteasCloud').click(function(){
+                                location.href = 'neteascloud.html';
+                            });
+                        }else{
+                            $('#neteasCloud').hide();
+                        }
+                        var headimg, nameone = "未"; // 声明变量。 
+                        if (jData)
+                            headimg = (jData.user_name) || jData.real_name || jData.nick_name || "未";
+                        if (headimg)
+                            nameone = headimg.substr(0, 1); // 获取子字符串。 
+                        $('.headimg').text(nameone);
+                        if(data.data.headImg != null) {
+                            $('.imgvalue').val('1');
+                        } else {
+                            $('.imgvalue').val('0');
+                        }
+
+                        if (jData) {
+                            if (jData.authenticateStatus == "NOT_SUBMIT") {
+                                $('.realname').text("未认证");
+                            } else if (jData.authenticateStatus == "AUTHENTICATING") {
+                                $('.realname').text("认证中");
+                            } else if (jData.authenticateStatus == "SUCCESS") {
+                                $('.realname').text("已认证");
+                            } else if (jData.authenticateStatus == "FAIL") {
+                                $('.realname').text("认证失败");
+                            }
+                        }
+
+                        var zmScore = data.data.zmScore;
+                        if(zmScore != null) {
+                            $('#credit').text(zmScore + "分");
+                        }
+                        $('#cishu').text(data.data.applyNumber);
+                        $("#up_img").change(function() {
+                            //创建FormData对象
+                            var data = new FormData();
+                            data.append('appKey', appKey);
+                            data.append('version', version);
+                            data.append('token', token);
+                            //为FormData对象添加数据
+                            var f = null;
+                            $.each($('#up_img')[0].files, function(i, file) {
+                                data.append('imageFile', file);
+                                f = file;
+                            });
+                            $.ajax({
+                                url: fixUrlJson + "/user/update/headImg.aspx",
+                                type: 'POST',
+                                data: data,
+                                dataType: 'json',
+                                cache: false,
+                                contentType: false, //不可缺
+                                processData: false, //不可缺
+                                success: function(jData) {
+                                    //是否获取数据成功
+                                    if(jData.success) {
+                                        var reader = new FileReader();
+                                        reader.readAsDataURL(f);
+                                        reader.onload = function(e) {
+                                            if($('.imgvalue').val() == 0) {
+                                                $(".headimg").hide();
+                                                $(".logohead").show();
+                                                $(".logohead").attr("src", this.result);
+                                            } else if($('.imgvalue').val() == 1) {
+                                                $(".logohead").attr("src", this.result);
+                                            }
+                                            $(".blur").attr("src", this.result);
+                                        }
+                                        popover("上传成功");
+                                    } else {
+                                        //提示取数据失败原因
+                                        popover(jData.errMsg);
+                                    }
+                                },
+                                error: function() {
+                                    alert('网络错误');
+                                },
+                                beforeSend: function() {
+                                    $(".ghdlzh").fadeIn();
+                                },
+                                complete: function() {
+                                    $(".ghdlzh").fadeOut();
+                                }
+                            });
+                        });
+
+                        $('#zhima').click(function() {
+                            myhref.href = authUrl + "/auth/zmxy/myauthentication.aspx?token=" + token;
+                        });
+
+                        $("#realNameAuto").click(function() {
+                            myhref.href = authUrl + "/index.aspx?token=" + token;
+                        });
+                    } else {
+                        $("#userimg").empty();
+                        mui.toast(data.errMsg);
+                        //提示取数据失败原因 
+                        //if(data.errCode == "4004") {
+                        //    location.href = "../pagesCommon/login.html";
+                        //}
+
+                        //$(".logohead").click(function() {
+                        //    location.href = "../pagesCommon/login.html";
+                        //});
+                        //$("#nams").click(function() {
+                        //    location.href = "../pagesCommon/login.html";
+                        //});
+                        //$(".through").click(function() {
+                        //    location.href = "../pagesCommon/login.html";
+                        //});
+                        //$(".colle").click(function() {
+                        //    location.href = "../pagesCommon/login.html";
+                        //});
+                    }
+                });
+
+            }
+
+            inquiry();
+            function inquiry() { //查询简历是否完善
+                var data = {};
+                data.token = token;
+                postAjax('/userResume/simpleInfo.aspx', data).then(function (data) {
+                    if(data.success) {
+                        console.log(data);
+                        $('.perfect').text('已完善' + data.data.jobRemuse + '%');
+                    } else {
+                        popover(data.errMsg);
+                    }
+                });
+            }
+
+            function jumpWeb() { //跳转帮粉币
+                myhref.href = GREENTREASURE + "?token=" + token;
+            }
+            //		localStorage.setItem("key", 2); //设置键的值 
+            //		alert(localStorage.getItem("key"));//获取键的值
+        });
+	</script>
+    <!--cch 首页下面导航栏-->
+    <script src="../source/mui/js/mui.min.js"></script>
+    <script src="../source/js/author.js"></script>
+    <script src="../../common/source/js/authorCommon.js?r=15"></script>
+
+</html>

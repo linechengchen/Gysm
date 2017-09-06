@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script src="../source/js/authorCommon.js?r=15"></script>
+    <title>注册</title>
+    <script>
+        var app
+        if (window.sessionStorage && window.sessionStorage["regUrl"]) {
+            myhref.href = window.sessionStorage["regUrl"];
+            window.sessionStorage.removeItem["regUrl"];
+        } else {
+            myhref.href = window.location.href.replace("pagesCommon/redirect.html", "pages/indexpage1_" + params.app_path1 + ".html");
+        }
+    </script>
+</html>

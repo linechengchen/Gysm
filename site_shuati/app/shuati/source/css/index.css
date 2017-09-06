@@ -1,0 +1,155 @@
+.fenge{
+    height:10px; background-color:#eee;
+}
+header.mui-bar {
+  background: rgba(255, 255, 255, 0);
+  height:40px;/*add*/
+}
+.mui-bar .mui-title {
+  left: 80px;
+  right: 10px;
+}
+.mui-bar .mui-btn-link {
+  color: #000;
+}
+.mui-bar.top .mui-btn-link {
+  color: #333;/*#fff;*/  
+  top: -3px;
+}
+.mui-bar.top .mui-search-right .mui-icon-search {
+  color: #eee;
+}
+.mui-bar.top input[type='search'] {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #333;/*#fff;*/
+}
+.mui-bar.top input[type='search']::-webkit-input-placeholder {
+  color: #333;/*#fff;*/
+}
+.mui-bar.top input[type='search']::-moz-placeholder {
+  color: #333;/*#fff;*/
+}
+.mui-bar.top input[type='search']:-ms-input-placeholder {
+  color: #333;/*#fff;*/
+}
+.mui-search-right {
+  position: relative;
+  font-size: 0;
+  height: 40px;/*44px;*/
+}
+.mui-search-right .mui-icon-search {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 24px;
+}
+input[type='search'] {
+  font-size: 12px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding-right: 30px;
+  text-align: left;
+}
+.index-bg-header {
+  width: 100%;
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.index-bg-header .mui-slider {
+  width: 100%;
+  /*height: 100%;*/
+  height: 75%;
+  top: 25%;
+}
+.user-left-placeholder {
+  height: 120px;
+}
+.user-right-placeholder {
+  width: 45px;
+  height: 45px;
+}
+.user-right-td {
+  border-left: 1px solid #f2f2f2;
+  text-align: center;
+  padding: 11px 0;
+}
+.user-right-td > a {
+  display: inline-block;
+}
+.user-right-td > a .user-right-placeholder {
+  display: inline-block;
+  vertical-align: middle;
+}
+.user-right-td > a .user-right-line {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+.user-right-placeholder.yellow {
+  background: #ffd693;
+}
+.user-right-line {
+  padding-left: 20px;
+}
+@media (max-width: 350px) {
+  .user-right-line {
+    padding-left: 10px;
+  }
+}
+.user-right-line p {
+  margin: 0;
+}
+.mui-table-view-cell:after {
+  background: none;
+}
+.user-book-image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 140%;
+  margin-bottom: 10px;
+  background: #fafafa;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1), 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.user-book-image > img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.user-tab-item {
+  vertical-align: top;
+  text-align: center;
+  padding: 5px;
+}
+.mui-tab-label.user-book-label {
+  font-size: 12px;
+  line-height: 1.4;
+  display: inline-block;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.mui-tip {
+  font-size: 12px;
+  color: #000;
+}
+.recommendImage {
+  display: block;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.recommendImage > img {
+  width: 100%;
+  display: block;
+}
+/*# sourceMappingURL=index.css.map */

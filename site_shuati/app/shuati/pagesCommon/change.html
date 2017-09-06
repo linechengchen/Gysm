@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>修改密码</title>
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/login.css" />
+        <script src="../source_jz/7xiyzi_js/20160409_weixinjquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		
+        <script src="../source_jz/7xiyzi_js/jquery.cookie.js"></script>
+		<script src="../source_jz/js/localStorage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/js/public_jianzhi.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../source_jz/7xiyzi_js/20160409_weixinpromise.min.js"></script>
+		<script src="../source_jz/js/ajax_jz_pack.js"></script>
+        <script src="../source_jz/7xiyzi_js/20160409_weixinJudgeBrowser.js" type="text/javascript" charset="utf-8"></script>
+       
+        <script src="../source/mui/js/mui.min.js"></script>
+        <script src="../source/js/author.js"></script>
+        <script src="../../common/source/js/authorCommon.js?r=15"></script>
+
+</head>
+<script type="text/javascript">
+		(function(m, ei, q, i, a, j, s) {
+		    m[a] = m[a] || function() {
+		        (m[a].a = m[a].a || []).push(arguments)
+		    };
+		    j = ei.createElement(q),
+		        s = ei.getElementsByTagName(q)[0];
+		    j.async = true;
+		    j.charset = 'UTF-8';
+		    j.src = i + '?v=' + new Date().getUTCDate();
+		    s.parentNode.insertBefore(j, s);
+		})(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+		_MEIQIA('entId', 53303);
+	</script>
+	<body>
+		<!--页面加载 开始-->
+	  	<div id="preloader1">
+	   		<div id="status1">
+	    		<p class="center-text"><span></span></p>
+	    	</div>
+	 	</div>
+	 	<script type="text/javascript">
+			$("#status").hide();//.fadeOut();
+			$("#preloader").hide();//.delay(300).fadeOut("slow");
+		</script>
+		<header>
+			<a href="javascript:window.history.go(-1)" class="header_btn_left_back btn_back_jianzhi"></a>
+			修改密码
+		</header>
+		<div class="changea">
+			<div class="fontone">旧密码</div>
+			<input type="password" name="oldPassword" id="oldPassword" placeholder="请输入旧密码" />
+			<!--分隔线-->
+			<div class="line"></div>
+			<div class="fonttwo">新密码</div>
+			<input type="password" name="password" id="password" value="" placeholder="请输入新密码" />
+			
+			<div class="line"></div>
+			<div class="fonttwo">确认密码</div>
+			<input type="password" name="confirmPassword" id="confirmPassword" value="" placeholder="请输入确认密码" />
+			
+			<input class="button" type="button" name="button" id="button" value="确定" onclick="logining()" />
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		if(isAlipay()) {
+			$("header").hide();
+			$("body").css({"margin":"0"});
+		}	
+		function logining() {
+			var data = {};
+			var user_id = localUserInfo.user_id;// getCookie("identity_new");
+			data.oldPassword = $("#oldPassword").val();
+			data.password = $("#password").val();
+			data.confirmPassword = $("#confirmPassword").val();
+			data.token = token;
+
+			if(isEmpty(data.oldPassword)) {
+				alert("请输入旧密码");
+			} else if(isEmpty(data.password)) {
+				alert("请输入新密码");
+			} else if(isEmpty(data.confirmPassword)) {
+				alert("请输入确认密码");
+			} else if(data.oldPassword == data.password) {
+				alert("新旧密码不能相同");
+			} else if(data.password != data.confirmPassword) {
+				alert("两次密码不相同");
+			} else {
+				postAjax("/account/updatePassword.aspx" ,data).then(function(data) {
+				
+				alert(data.errMsg);
+				if(data.success) {
+					window.location.replace("../pagesCommon/login.html");
+				}				
+			});
+			}		
+		}
+	</script>
+
+</html>

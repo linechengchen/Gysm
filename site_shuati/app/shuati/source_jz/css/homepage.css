@@ -1,0 +1,457 @@
+body{
+	margin: 0;
+}
+input{
+	-webkit-appearance: none;
+}
+/*3.0版本*/
+.btn_backs{
+	position: absolute;
+	width: 10px;
+	height: 18px;
+	margin-top: 12px;
+	padding-left: 12px;
+}
+.colorful{
+	color: #ff8200;
+}
+.list_list {
+	width: 100%;
+	margin-top: 12px;
+}
+
+.list_list .loading {
+	width: 100%;
+	height: 35px;
+	background: #FFFFFF;
+	line-height: 35px;
+	text-align: center;
+	color: #8F8F94;
+	display: none;
+}
+
+.list_list .loading img {
+	margin-top: 8px;
+	width: 14px;
+}
+
+.list_list ul {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.list_list ul li {
+	background: #ffffff;
+	width: 100%;
+	border-bottom: 1px solid #E4E4E4;
+	padding: 0 0 10px 0;
+}
+
+.list_list ul li .partjobcontent {
+	width: calc(100% - 24px);
+	margin-left: 16px;
+}
+
+.list_list ul li .partjobcontent .headimglogo {
+	margin-top: 10px;
+	width: 54px;
+	border-radius: 8px;
+}
+
+.partjobtitle {
+	width: calc(100% - 58px);
+	float: right;
+}
+
+.partjobtitle .title_left {
+	width: 65%;
+	padding-top: 10px;
+	margin-left: 16px;
+	color: #333333;
+	font-size: 18px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.partjobtitle .salary_right {
+	float: right;
+	text-align: right;
+	margin-top: -20px;
+	color: #FF8564;
+	font-size: 15px;
+}
+
+.list_list ul li .partjobcontent .fuli {
+	width: 80%;
+	margin-left: 75px;
+	margin-top: -30px;
+	margin-bottom: 41px;
+	padding-bottom: 12px;
+	border-bottom: 1px dashed #DDDDDD;
+}
+
+.list_list ul li .partjobcontent .fuli input {
+	height: 22px;
+	background: rgba(205, 213, 215, 0.1);
+	border: 1px solid rgba(205, 213, 215, 0.5);
+	font-size: 12px;
+	color: #888888;
+	border-radius: 4px;
+	margin: 0 6px 0 0;
+}
+
+.list_list ul li .partjobcontent .time_times {
+	width: 100%;
+	margin: -25px 0 0 75px;
+}
+
+.list_list ul li .partjobcontent .time_times .timeaddress {
+	width: 15px;
+}
+
+.list_list ul li .partjobcontent .time_times .color_font {
+	font-size: 13px;
+	color: #666666;
+	margin: -20px 65px 0 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.list_list ul li .partjobcontent .time_times .color_font .datatitle {
+	/*margin-left: 0px;*/
+	float: left;
+}
+
+.list_list ul li .partjobcontent .time_times .color_font ul {
+	float: left;
+	width: 70%;
+	height: 20px;
+	overflow: hidden;
+}
+
+.list_list ul li .partjobcontent .time_times .color_font ul li {
+	float: left;
+	width: 20px;
+	border: none;
+	height: 20px;
+	margin: 0 0 0 5px;
+}
+
+.list_list ul li .partjobcontent .place_places {
+	width: 100%;
+	margin: 7px 0 0 75px;
+}
+
+.list_list ul li .partjobcontent .place_places .timeaddress {
+	width: 15px;
+}
+
+.list_list ul li .partjobcontent .place_places .color_font {
+	width: 50%;
+	font-size: 13px;
+	color: #666666;
+	margin: -21px 0 0 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.list_list ul li .partjobcontent .kilometers {
+	float: right;
+	font-size: 11px;
+	color: #888888;
+	margin-top: -18px;
+}
+
+.list_list ul li .part_voucher {
+	width: calc(100% - 60px);
+	margin: 8px 0 0 81px;
+	overflow: hidden;
+}
+
+.list_list ul li .part_voucher .vouch_small {
+	width: 50%;
+	overflow: hidden;
+	float: left;
+}
+
+.list_list ul li .part_voucher .vouch_small.width60 {
+	width: 63%;
+}
+
+.list_list ul li .part_voucher .vouch_small .vouch_img {
+	width: 14px;
+	margin: 0 0 0 10px;
+	float: left;
+}
+
+.list_list ul li .part_voucher .vouch_small .vouch_content {
+	float: left;
+	font-size: 12px;
+	color: #666666;
+	margin: -1px 0 0 6px;
+}
+
+
+.brief{
+	width: calc(100% - 32px);
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-top: 10px;
+	overflow: hidden;
+	background: #FFFFFF;
+}
+.brief .title_two{
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.brief .title_two .tupic{
+	width: 5px;
+	height: 15px;
+	background: #ff8200;/*color: #1AD46E;*/
+	box-shadow: 0 0 10px #ff8200;/*color: #1AD46E;*/
+	float: left;
+	margin-top: 12.5px;
+}
+.brief .title_two .tita{
+	font-size: 17px;
+	color: #888888;
+	float: left;
+	margin-left: 8px;
+}
+.brief p{
+	font-size: 15px;
+	color: #424242;
+	padding-bottom: 16px;
+}
+.comaddress{
+	width: calc(100% - 32px);
+	height: 205px;
+	padding-left: 16px;
+	padding-right: 16px;
+	background: #FFFFFF;
+	border-bottom: 1px solid #DDDDDD;
+}
+.comaddress .addmap{
+	width: 100%;
+	height: 136px;
+	padding-top: 16px;
+	border-radius: 8px;
+}
+.comaddress .addthing{
+	width: 90%;
+	font-size: 15px;
+	color: #666666;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	margin-top: 16px;
+	float: left;
+}
+.comaddress img{
+	width: 16px;
+	float: right;
+	margin-top: 20px;
+}
+.pic_piclogo{
+	width: calc(100% - 16px);
+	padding-left: 8px;
+	padding-right: 8px;
+	height: 136px;
+	padding-top: 10px;
+	background: #FFFFFF;
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+.pic_piclogo img {
+	width: 136px;
+	height: 136px;
+	margin-right: 16px;
+	border-radius: 8px;
+}
+.see{
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	background: #FFFFFF;
+}
+.see .allpingjia{
+	height: 48px;
+	line-height: 48px;
+}
+.see img{
+	width: 16px;
+	margin: 16px 0 0 0;
+	float: right;
+}
+/*4.0版本*/
+.homeimg{
+	width: 100%;
+	height: 164px;
+}
+.personhead{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	margin-left: 16px;
+	margin-top: -30px;
+}
+.personhead img{
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+}
+.companycon{
+	width: calc(100% - 16px);
+	padding-left: 16px;
+	height: 114px;
+	background: #FFFFFF;
+}
+.companycon .companytext{
+	width: calc(100% - 16px);
+	color: #424242;
+	font-size: 19px;
+	padding-top: 44px;
+}
+.companycon .companyscar{
+	width: 100%;
+	font-size: 13px;
+	color: #888888;
+	margin-top: 8px;
+}
+.nicestatus{
+	float: right; 
+	color: #888888;
+	font-size: 13px;
+	margin-right: 16px;
+}
+.scarcont{
+	width: 100%;
+	height: 110px;
+	margin-top: 12px;
+	background: #FFFFFF;
+}
+.scarcont .companyfen{
+	width: 25%;
+	border-right: 1px solid #DDDDDD;
+	height: calc(110px - 32px);
+	margin-top: 16px;
+	float: left;
+	padding-left: 4%;
+}
+.scarcont .companyfen .fenshu{
+	font-size: 44px;
+	color: #888888;
+}
+.scarcont .companyfen .zonghe{
+	font-size: 15px;
+	color: #424242;	
+	margin-left: 2px;
+}
+.scarcont .companyright{
+	width: 70%;
+	height: 110px;
+	float: left;
+}
+.scarcont .companyright .allfenshu{
+	margin-left: 10%;
+	margin-top: 8px;
+}
+.scarcont .companyright .allfenshu .gongzuo{
+	font-size: 13px;
+	color: #888888;
+}
+.scarcont .companyright .allfenshu .stars{
+	position: absolute;
+	margin: 0 0 0 3%;
+	z-index: 3;
+	vertical-align: middle;
+	font-size: 13px;
+	color: #888888;
+}
+.scarcont .companyright .allfenshu .stars img{
+	width: 14px;
+	height: 14px;
+	margin-right: 5px;
+}
+.evaluation{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 15px;
+	background: #FFFFFF;
+}
+.evaluation ul{
+	width: 100%;
+}
+.evaluation ul li {
+	width: calc(100% - 32px);
+	background: #FFFFFF;
+	border-bottom: 1px solid #DDDDDD;
+	padding: 0 16px 0 16px;
+}
+.evaluation ul li .evaluatitle{
+	width: 100%;
+	height: 24px;
+	padding:16px 0 13px 0;
+	line-height: 24px;
+}
+
+.evaluation ul li .evaluatitle img{
+	vertical-align: middle;
+	width: 24px;
+	border-radius: 50%;
+	float: left;
+}
+.evaluation ul li .evaluatitle .names{
+	margin-left: 12px;
+}
+.evaluation ul li .evaluatitle .time{
+	font-size: 15px;
+	color: #888888;
+	margin-left: 12px;
+}
+.evaluation ul li .wei{
+	position: relative;
+	width: 100%;
+	font-size: 15px;
+	color: #424242;
+	padding-bottom: 16px;
+	word-break: break-all;
+	overflow: hidden;
+}
+.evaluation ul li .readmore{
+	text-align: right;
+	color: #666666;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+.evaluation ul li .evaluaimg{
+	width: 100%;
+	margin-bottom: 16px;
+}
+.evaluation ul li .evaluaimg img{
+	width: 80px;
+	height: 80px;
+	border-radius: 8px;
+	margin-right: 8px;
+}
+.evaluation ul li .dianzan{
+	width: 100%;
+	height: 20px;
+	vertical-align: middle;
+	margin-bottom: 16px;
+}
+.evaluation ul li .dianzan .zanyige img{
+	width: 22px;
+	vertical-align: middle;
+}
+.evaluation ul li .dianzan .zanyige{
+	float: right;
+}

@@ -1,0 +1,132 @@
+.zui-slider-header.mui-table {
+    background-color: #FFF
+}
+
+.zui-slider-header.mui-table>.zui-header-item {
+    width: 50px;
+    vertical-align: middle;
+}
+
+.zui-query.mui-table {
+    height: 50px;
+    background-color: #FFF;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #C5C5C5;
+}
+
+.zui-query.mui-table>.mui-table-cell {
+    vertical-align: middle;
+}
+
+.zui-query.mui-table>.zui-query-label.mui-table-cell {
+    width: 110px;
+    padding-left: 15px;
+}
+
+.zui-query.mui-table>.zui-query-datetime.mui-table-cell {}
+
+.zui-query.mui-table>.zui-query-datetime.mui-table-cell>a {
+    display: block;
+    color: #000;
+}
+
+.zui-query.mui-table>.zui-query-datetime.mui-table-cell>a:after {
+    content: '\e581';
+    position: absolute;
+    right: 0px;
+    font-family: Muiicons;
+    color: #CACACA;
+}
+
+.zui-query.mui-table>.zui-query-button.mui-table-cell {
+    width: 55px;
+    padding-right: 15px;
+}
+
+.zui-query.mui-table>.zui-query-button.mui-table-cell>a {
+    display: block;
+    color: #000;
+}
+
+.zui-contact-cell.mui-table .mui-table-cell {
+    padding: 11px 0;
+    vertical-align: middle;
+}
+
+.zui-contact-cell {
+    position: relative;
+    margin: -11px 0;
+}
+
+.zui-contact-avatar {
+    width: 75px;
+}
+
+.zui-contact-avatar img {
+    border-radius: 50%;
+    height: 65px;
+    width: 65px !important;
+}
+
+.zui-contact-content {
+    width: 60%;
+}
+
+.zui-contact-button {
+    width: 40%;
+}
+
+.zui-contact-button .zui-contact-name {
+    margin-right: 20px;
+}
+
+.zui-contact-content.mui-table-cell>.mark {
+    color: #EF8284
+}
+
+.zui-contact-button.mui-table-cell .zui-icon-video {
+    font-size: 35px;
+    vertical-align: middle;
+    color: #F38524
+}
+
+.zui-contact-button.mui-table-cell .zui-separate {
+    border-style: ridge;
+    height: 70px;
+    display: inline-block;
+    vertical-align: middle;
+    border-width: 1px;
+}
+
+.zui-contact-button.mui-table-cell .zui-contact-link {
+    font-size: 20px;
+    vertical-align: middle;
+    color: #F38524
+}
+.zui-icon {
+    font-size: 25px;
+    color: #F38524;
+}
+.zui-sliderHeader-item {
+    vertical-align: middle;
+}
+.zui-sliderHeader-left {
+    width: 50px;
+    padding-left: 15px;
+}
+.zui-sliderHeader-right{
+    width: 50px;
+    padding-right: 15px;
+}
+.mui-bar-tab .mui-tab-item.mui-active {
+    color: #F38524;
+}
+.mui-segmented-control.mui-segmented-control-inverted .zui-item.mui-control-item.mui-active{
+    color: #F38524;
+}
+.mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-progress-bar {
+    background-color: #F38524;
+}

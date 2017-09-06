@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>请您选对学校</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://api.map.baidu.com/api?v=2.0&amp;ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG"></script>
+    <!--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=2eb75c537be2afc0ac47f37f4f62d4f6&plugin=AMap.CitySearch"></script>-->
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.min.js"></script>
+     <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <script src="../source/js/mui.indexedlist.js"></script>
+    <script src="../source/js/public.js"></script>
+
+    <link href="../source/mui/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link href="../source/css/mui.indexedlist.css" rel="stylesheet" />
+    <link href="../source/css/searchcity.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .mui-bar {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" data-href="indexPage_searchcitylist.html"></a>
+        <h1 class="mui-title">请您选对学校</h1>
+    </header>
+    <div class="mui-content">
+     
+        <div id="list" class="mui-indexed-list" style="background-color: #fff;">
+            <div style="padding: 10px 15px;background-color: #fff;">
+                <div class="mui-indexed-list-search mui-input-row mui-search" style="border-bottom: none;">
+                    <input id="searchCityInput" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索学校" />
+                </div>
+            </div>
+            <div class="jiucuo-btn" id="jiucuo-btn">未找到您的学校？点此添加</div>
+            <div id="indexed_list_bar" class="mui-indexed-list-bar">
+            </div>
+            <div class="mui-indexed-list-alert"></div>
+            <div class="mui-indexed-list-inner">
+                <!--<h5 style="margin-bottom:8px;">定位学校</h5>
+                <div class="user-city-list">
+                    <div class="user-city-row">
+                        <div id="currentCity" class="user-city-item active">
+                            定位中
+                        </div>
+                    </div>
+                </div>-->
+                <h5 style="margin-bottom:8px;">点选学校（请认真选择，此项不可修改）</h5>
+                <div class="user-city-list">
+                    <div id="user_city_row" class="user-city-row">
+                    </div>
+                </div>
+                <div class="mui-indexed-list-empty-alert">
+                    没有数据
+                </div>
+                <!--<ul class="mui-table-view" id="ul"></ul>-->
+                <ul id="normalCityList" class="mui-table-view"></ul>
+            </div>
+           
+        </div>
+    </div>
+   
+
+    <script type="text/javascript" charset="utf-8">
+        document.getElementById("jiucuo-btn").addEventListener('tap', function (e) {
+            e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+            var btnArray = ['取消', '确定'];
+            var title1 = '感谢同学输入学校';
+            var title2 = '输入学校，以便更好的为您服务：';
+            var sum1 = '例：浙江大学、北京大学、清华大学';
+            mui.prompt(title2, sum1, title1, btnArray, function (e) {
+                try {
+                    if (e.index == 1) {
+                        var answer1 = (e.value);//parseInt
+                        //alert('填写名称：' + e.value);
+                        //var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                        //params22.answer1 = answer1;
+                        //localStorage.setItem("department_name", answer1);
+                        var data1 = {
+                            "school_name": answer1 || '',
+                            "user_id": localUserInfo.user_id || '',
+                            "city_id": localCityInfo.city_id || '',
+                            "city_name": localCityInfo.city_name || ''
+                        }
+                        //alert(transJsonToQuery(data1));
+                        $.when(postSchool(data1)).done(function (json) {
+                            try {
+                                if (json && json.code == 200) {
+                                    mui.toast("提交成功！谢谢你");
+                                }
+                                else
+                                    mui.toast(json.errMsg);
+                            } catch (e) {
+                                mui.toast(e);
+                                console.error('101-' + e); //mui.toast('85-' + e);
+                            }
+                        });
+                        window.location.href = window.location.href;
+                    } else {
+                    }
+                } catch (e) {
+                    console.error(e);//mui.toast('85-' + e);
+                }
+            })
+        });
+        mui.init();
+        mui.ready(function () {
+            mui.toast('请您正确选择您所在的学校和分院，匹配正确题库与服务');
+            $.when(getCurrentCityCache("#currentCity")).done(function (data) {
+                var city_name = data.city_name;
+                if (city_name) {
+                    $.when(searchSchool(city_name)).done(function (schoolData) {
+                        if (typeof schoolData == "string") {
+                            cityData = JSON.parse(cityData);
+                        }
+                        console.log(schoolData);
+                        if (schoolData.code == 200) {
+                            var _cityId, _cityName;
+
+                            if (schoolData.data && schoolData.data.schools && schoolData.data.schools.length > 0) {
+
+                                $("#normalCityList").append(getCityBlock(schoolData.data.schools));
+
+
+                                var header = document.querySelector('header.mui-bar');
+                                var list = document.getElementById('list');
+                                //calc hieght
+                                list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+                                //create
+                                window.indexedList = new mui.IndexedList(list);
+
+                                mui(".mui-table-view").on('tap', '.mui-table-view-cell', function () {
+                                    //获取id
+                                    //var id = this.getAttribute("data-id");
+                                    var city_id = $(this).attr("data-id");
+                                    var sc_id = $(this).attr("sc-id");
+                                    var city_name = $(this).text();
+                                    //alert(sc_id);
+                                    localStorage.setItem("sc_id", sc_id);
+                                    localStorage.setItem("school_id", city_id);
+                                    localStorage.setItem("school_name", city_name);
+                                    if (city_id)
+                                        params.school_id = city_id;
+                                    if (sc_id) {
+                                        localUserInfo.sc = params.sc = sc_id;
+                                        localStorage.setItem("sc", sc_id);
+                                    }
+                                    //打开下一页
+                                    mui.openWindow({
+                                        url: 'indexPage_selectDepartment.html'
+                                    });
+                                })
+                            } else {
+
+                            }
+                        }
+                    });
+                } else {
+                    //mui.toast("无定位权限 获取城市异常");
+                }
+            });
+            
+            function getCityBlock(cityList) {
+                var li2 = "";
+                for (var c = 0, cl = cityList.length; c < cl; c++) {
+                    var _city = cityList[c];
+                    if (!_city.sc_id) _city.sc_id = '';
+                    li2 += '<li data-id="' + _city.id + '" sc-id="' + _city.sc_id + '" class="mui-table-view-cell mui-indexed-list-item">' + _city.name + '</li>'
+                }
+                return li2;
+            }
+        });
+
+    </script>
+
+</body>
+</html>

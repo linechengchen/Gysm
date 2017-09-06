@@ -1,0 +1,41 @@
+﻿
+{
+    "code": "200",
+    "msg": "成功",
+    "data": {
+        "sc_name": "123",
+        "scInfo": {
+            "sc_name": "123"
+        },
+        "kemuInfo": {
+            "total": "",
+            "pageIndex": "",
+            "list": [
+                {
+                    "Id": "439",
+                    "KemuId": "100001",
+                    "KemuName": "思修题库",
+                    "PId": "0",
+                    "ZsId": "100001",
+                    "IsShowIndex": "True",
+                    "Icon": "aui-iconfont aui-icon-pay  aui-text-info"
+                }
+            ]
+        },
+        "ZsInfo": {
+            "total": "",
+            "pageIndex": "",
+            "list": [
+                {
+                    "Id": "3",
+                    "ZsId": "192",
+                    "ZsName": "一级建造师",
+                    "ZsTypeName": "建工学院",
+                    "ZsTypeId": "1",
+                    "IsShowIndex": "True",
+                    "Icon": "aui-iconfont aui-icon-favorfill aui-text-danger"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui/mui.min.js",
+      "js/mui.picker.min.js",
+      "css/iconfont.css",
+      "source/js/author.js",
+      "js/mui.js",
+      "css/mui.css",
+      "css/icons-extra.css",
+      "js/shuati/localstorage.js",
+      "css/zui.css"
+    ],
+    "refer": []
+  },
+  "pages/indexPage1_shuati.html": {
+    "resources": [
+      "source/mui/fonts/mui.ttf",
+      "source/js/vue-tap.js",
+      "source/css/public.css",
+      "source/js/lazyload.min.js",
+      "source/mui/css/mui.min.css",
+      "source/images/accountant.png",
+      "source/js/jquery-1.11.1.min.js",
+      "source/js/vue.min.js",
+      "source/js/public.js",
+      "source/mui/fonts/font_shuati/iconfont.css",
+      "source/images/myConpus.png",
+      "source/webslice/1.0_home/home_bottom_yunshu.png",
+      "source/js/common.js",
+      "source/js/ajax_xs.js",
+      "source/css/index.css",
+      "source/mui/fonts/font_shuati/iconfont.woff",
+      "source/mui/js/mui.min.js",
+      "source/js/bang.js",
+      "source/css/mui_overwrite.css",
+      "source/js/author.js"
+    ],
+    "refer": []
+  }
+}

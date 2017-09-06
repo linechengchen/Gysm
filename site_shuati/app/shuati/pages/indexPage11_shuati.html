@@ -1,0 +1,526 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>刷题宝典（2017新）</title>
+    <link href="../source/mui/fonts/font_shuati/iconfont.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link rel="stylesheet" href="../source/css/public.css">
+    <link rel="stylesheet" href="../source/css/index.css?20160904">
+    <script>
+        //app不同的定制代码
+        var app_path1 = 'shuati';
+        localStorage.setItem("app_path1", app_path1);
+
+    </script>
+
+</head>
+<body>
+    <header id="header" class="mui-bar mui-bar-transparent top">
+        <!--mui-bar-transparent-->
+        <a id="currentCityNameBox" style="font-size: 14px;top: -2px;" data-href="./indexPage_searchcitylist.html" class="mui-btn mui-btn-link">
+            <span id="currentCityName"></span>
+            <span style="font-size:14px;top:-2px;" class="mui-icon mui-icon-arrowdown"></span>
+        </a>
+        <a id="currentSchoolNameBox" data-href="indexPage_searchcitylist.html" class="mui-btn mui-btn-link">
+            <span id="currentSchoolName" style="font-size:14px;">选择学校</span>
+            <span style="font-size:14px;top:-2px;" class="mui-icon mui-icon-arrowdown"></span>
+        </a>
+        <h1 class="mui-title" style="left:88px;">
+            <div class="mui-search-right">
+                <!--<input id="searchBookInput" type="search" placeholder="搜索" style="margin: 5px 0;" @click="tosearch">-->
+                <span style="font-size: 22px; line-height: 26px; color: #6d6969; margin: 3px 11px 0px 10px; color: #6d6969; " id="mui-icon-search" @click="tosearch" class="mui-icon mui-icon-search"></span>
+            </div>
+        </h1>
+    </header>
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item mui-active">
+            <span class="mui-icon">
+                <span class="icon iconfont icon-rili1"></span>
+            </span>
+            <span class="mui-tab-label">刷题</span>
+        </a>
+        <a id="mine" class="mui-tab-item" data-href="../pagesCommon/my.html">
+            <span class="mui-icon">
+                <span class="icon iconfont icon-wode2 "></span>
+            </span>
+            <span class="mui-tab-label">我的</span>
+        </a>
+    </nav>
+    <div class="mui-content">
+        <div class="index-bg-header">
+            <div id="slider" class="mui-slider">
+                <!--滑动图-->
+                <div class="mui-slider-group mui-slider-loop">
+                </div>
+                <div id="mui-slider-indicator" class="mui-slider-indicator">
+                </div>
+            </div>
+        </div>
+        <div id="menu_head" style="margin-top:20px; margin-bottom: 0px; background-color: #fff; padding-bottom: 0px; ">
+            <nav class="mui-bar-tab user-bar-tab">
+                <a class="shuati">
+                    <span class="icon iconfont danger icon-zidian4 iconheader">
+                    </span>
+                    <div class="mui-media-body">刷题宝典</div>
+                </a>
+                <a class="zuoye" data-href="../../zuoye/pages/indexPage1_zuoye.html">
+                    <span class="icon iconfont info icon-task iconheader">
+                    </span>
+                    <div class="mui-media-body">作业云搜</div>
+                </a>
+                <a class="xianshu" data-href="../../xianshu/pages/indexPage1_xianshu.html">
+                    <span class="icon iconfont primary icon-shu iconheader">
+                    </span>
+                    <div class="mui-media-body">闲书</div>
+                </a>
+
+                <a class="xueba" data-href="../../xueba/pages/indexPage1_xueba.html">
+                    <span class="icon iconfont pink icon-xue1 iconheader">
+                    </span>
+                    <div class="mui-media-body">学霸家教</div>
+                </a>
+                <a class="jianzhi" data-href="../../jianzhi/pages/indexPage1_jianzhi.html">
+                    <span class="icon iconfont danger icon-jianzhi01 iconheader">
+                    </span>
+                    <div class="mui-media-body">爱帮兼职</div>
+                </a>
+            </nav>
+            <nav class="mui-bar-tab user-bar-tab">
+                <a class="daina" data-href="../../xueche/pages/indexPage1_daina.html">
+                    <span class="icon iconfont danger icon-dai iconheader">
+                    </span>
+                    <div class="mui-media-body">代拿代办</div>
+                </a>
+
+                <a class="pinche" data-href="../../pinche/pages/indexPage1_pinche.html">
+                    <span class="icon iconfont primary icon-pin iconheader">
+                    </span>
+                    <div class="mui-media-body">校友拼车</div>
+                </a>
+                <a class="jiangtang" data-href="../../xueche/pages/indexPage1_jiangtang.html">
+                    <span class="icon iconfont info icon-zaixianketang1 iconheader">
+                    </span>
+                    <div class="mui-media-body">校园讲堂</div>
+                </a>
+                <a class="xueche" data-href="../../xueche/pages/indexPage1_xueche.html">
+                    <span class="icon iconfont danger icon-btn_che iconheader">
+                    </span>
+                    <div class="mui-media-body">IU学车</div>
+                </a>
+                <a class="ziyuan">
+                    <span class="icon iconfont ziluolan icon-yan iconheader">
+                    </span>
+                    <div class="mui-media-body">资源分享</div>
+                </a>
+            </nav>
+        </div>
+        <div style="margin-bottom:0px;padding-bottom:0px;" v-if="last_kemu1 && last_kemu1.KemuName">
+            <div class="fenge"></div>
+            <nav class="mui-bar-tab user-bar-tab">
+                <h5 style="margin-left:10px"><img src="../image/竖条.png" /> 最近</h5>
+                <ul class='mui-table-view mui-grid-view mui-grid-9' style="background-color: #fff;">
+                    <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3' v-if="last_kemu1 && last_kemu1.KemuName">
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&trans={{trans}}&openid={{openid}}&kemuId={{last_kemu1.KemuId}}&kemuName={{last_kemu1.KemuName}}&sc_sum={{last_kemu1.Sc_sum}}&sc={{last_kemu3.Sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                            <span v-bind:class="getIcon(0, 1)"></span>
+                            <div class='mui-media-body' v-text="last_kemu1.KemuName">
+                            </div>
+                            <!--<span style="color:grey; font-size:12px;">{{(item.Question_sum>-1)?'('+item.Question_sum+')':''}}</span>-->
+                        </a>
+                    </li>
+                    <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3' v-if="last_kemu2 && last_kemu2.KemuName">
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&trans={{trans}}&openid={{openid}}&kemuId={{last_kemu2.KemuId}}&kemuName={{last_kemu2.KemuName}}&sc_sum={{last_kemu2.Sc_sum}}&sc={{last_kemu3.Sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                            <span v-bind:class="getIcon(1, 1)"></span>
+                            <div class='mui-media-body' v-text="last_kemu2.KemuName">
+                            </div>
+                            <!--<span style="color:grey; font-size:12px;">{{(item.Question_sum>-1)?'('+item.Question_sum+')':''}}</span>-->
+                        </a>
+                    </li>
+                    <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3' v-if="last_kemu3 && last_kemu3.KemuName">
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&trans={{trans}}&openid={{openid}}&kemuId={{last_kemu3.KemuId}}&kemuName={{last_kemu3.KemuName}}&sc_sum={{last_kemu3.Sc}}&sc={{last_kemu3.Sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                            <span v-bind:class="getIcon(2, 1)"></span>
+                            <div class='mui-media-body' v-text="last_kemu3.KemuName">
+                            </div>
+                            <!--<span style="color:grey; font-size:12px;">{{(item.Question_sum>-1)?'('+item.Question_sum+')':''}}</span>-->
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="fenge"></div>
+        <div style="margin-bottom:0px;padding-bottom:0px;">
+            <nav class="mui-bar-tab user-bar-tab">
+                <h5 style="margin-left:10px"><img src="../image/竖条.png" /> 大学题库</h5>
+                <ul class='mui-table-view mui-grid-view mui-grid-9' style="background-color: #fff;">
+                    <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3'>
+                        <a data-href='../../shuati/pages/kemu_category.html?app_path1=shuati&openid={{openid}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                            <span class='icon iconfont icon-zidian4 info'></span>
+                            <div class='mui-media-body'>更多题库</div>
+                        </a>
+                    </li>
+                    <li id="kemu1" v-if="!St_kemuInfo.list" class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3'>
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&kemuId=100001&kemuName=思修题库&sc=999&sc_sum=999&source1=4&r=121'>
+                            <span class='icon iconfont icon-book primary'></span>
+                            <div class='mui-media-body'>思修题库</div>
+                        </a>
+                    </li>
+                    <li id="kemu2" v-if="!St_kemuInfo.list" class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3'>
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&kemuId=100002&kemuName=马克思原理&sc=999&sc_sum=999&source1=4&r=121'>
+                            <span class='icon iconfont icon-book warn'><!--<span class='mui-badge mui-badge-red'>5</span>--></span>
+                            <div class='mui-media-body'>马克思原理</div>
+                        </a>
+                    </li>
+                    <li id="kemu4" v-if="!St_kemuInfo.list" class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3'>
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&kemuId=100004&kemuName=毛泽东概论&sc=999&sc_sum=999&source1=4&r=121'>
+                            <span class='icon iconfont icon-book danger '></span>
+                            <div class='mui-media-body'>毛泽东概论</div>
+                        </a>
+                    </li>
+                    <!--遍历循环-->
+                    <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3' v-if="St_kemuInfo && item.IsShowIndex" v-for="(index, item) in St_kemuInfo.list">
+                        <a data-href='../../shuati/views/kemuDetailList.html?app_path1=shuati&trans={{trans}}&openid={{openid}}&kemuId={{item.KemuId}}&kemuName={{item.KemuName}}&sc_sum={{item.Sc}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                            <span v-bind:class="getIcon(index+3, 1)"></span>
+                            <div class='mui-media-body' v-text="item.KemuName">
+                            </div>
+                            <!--<span style="color:grey; font-size:12px;">{{(item.Question_sum>-1)?'('+item.Question_sum+')':''}}</span>-->
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div v-if="St_TzsInfo && St_TzsInfo.list && item.IsShowIndex" v-for="(index, item) in St_TzsInfo.list">
+            <div class="fenge"></div>
+            <div style="margin-bottom:0px;padding-bottom:0px;">
+                <nav class="mui-bar-tab user-bar-tab">
+                    <h5 style="margin-left:10px"><img src="../image/竖条.png" /> 考证题库</h5>
+                    <ul class='mui-table-view mui-grid-view mui-grid-9' style="background-color: #fff;">
+                        <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3'>
+                            <a data-href='../pages/kemu_category.html?zsId={{item.ZsId}}&zsTypeId={{item.ZsTypeId}}&ZsTypeName={{item.ZsTypeName}}&zsName={{item.ZsName}}&sc={{sc}}&openid={{openid}}&source1={{source1}}&neice={{neice}}&r=121'>
+                                <!--<span class="icon iconfont icon-zidian4 info"></span>-->
+                                <img src="../image/分类.png" />
+                                <div class='mui-media-body' v-text="item.ZsName"></div>
+                            </a>
+                        </li>
+                        <!--遍历循环   && item1.IsShowIndex-->
+                        <li class='mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3' v-if="item" v-for="(index, item1) in item.list">
+                            <a data-href='../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&zsId=1&kemuId={{item1.KemuId}}&kemuName={{item1.KemuName}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'>
+                                <span v-bind:class="getIcon(index+3, 1)"></span>
+                                <div class='mui-media-body' v-text="item1.KemuName"></div>
+                                <!--<span style="color:grey; font-size:12px;">{{(item1.Question_sum>-1)?'('+item1.Question_sum+')':''}}</span>-->
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="fenge"></div>
+
+        <div style="padding: 13px 0 15px; text-align:center">
+            <div><br><br><font style="font-size:01px; color: grey">爱帮先生，<span class="sclinkUrl">因您需要而在</span></font></div>
+        </div>
+    </div>
+
+    <div class="popBox" style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:1000;display:none;">
+    </div>
+    <!--https://api.map.baidu.com/api?v=2.0&ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG-->
+    <script src="https://api.map.baidu.com/getscript?v=2.0&ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG&services=&t=20170608143204"></script>
+
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.min.js"></script>
+    <!--//BANGJS 刷题页面跳转-->
+    <script src="../source/js/author.js?r=111"></script>
+    <script src="../../common/source/js/authorCommon.js?r=1511"></script>
+
+    <script src="../source/js/vue.min.js"></script>
+    <script src="../source/js/vue-tap.js"></script>
+    <script src="../source/js/common.js"></script>
+    <script>
+        $(function () {
+            ////开始
+            if (localSchoolInfo && localSchoolInfo.school_id) {
+                $("#currentSchoolNameBox").show();
+                $("#currentSchoolNameBox span:first").text(localSchoolInfo.school_name);
+                $("#currentCityNameBox").show();
+            } else
+                $("#currentSchoolNameBox").show();
+
+            var index1 = (localStorage.getItem("app_path1")) ? localStorage.getItem("app_path1") : '';
+            var city_id = currentCityId || 1;
+            var vm = new Vue({
+                el: "body",
+                data: {
+                    data: {},
+                    imgs: [],
+                    txts: [],
+                    nowCity: '',
+                    St_kemuInfo: [],
+                    St_TzsInfo: [],
+                    trans: '',
+                    type1: '',
+                    source1: '',
+                    neice: '',
+                    openid: '',
+                    r: '',
+                    school_name: '',
+                    school_id: '',
+                    sc: '',
+                    sc_name: '',
+                    last_kemu1: getLocal("last_kemu1") || {},
+                    last_kemu2: getLocal("last_kemu2") || {},
+                    last_kemu3: getLocal("last_kemu3") || {}
+                },
+                destory: function () {
+                    vm = null;
+                },
+                methods: {
+                    getIcon: function (i, kind) {
+                        var j = i + parseInt(i / 4); //console.log("j" + j);
+                        if (j % 4 == 1)
+                            icon1 = 'icon iconfont primary';
+                        else if (j % 4 == 2)
+                            icon1 = 'icon iconfont warn';
+                        else if (j % 4 == 3)
+                            icon1 = 'icon iconfont info';
+                        else if (j % 4 == 0)
+                            icon1 = 'icon iconfont danger';
+
+                        if (kind == 1)
+                            icon1 = icon1 + ' icon-book';
+                        else if (kind == 2)
+                            icon1 = icon1 + ' icon-book';
+                        return icon1;
+                    },//每行宽度
+                    tosearch: function () {
+                        myhref.href = "indexPage2_searchKemu_result.html?app_path1=" + index1;//搜索页链接
+                    },
+                    toSearchPage: function (keyword) {
+                        keyword = $.trim(keyword);
+                        if (keyword) {
+                            myhref.href = "indexPage2_searchBook_result.html?app_path1=" + index1 + "&keyword=" + keyword;
+                        }
+                        else {
+                            mui.toast("请输入搜索词");
+                        }
+                    },
+                    tobookdetail: function (bookid) {
+                        myhref.href = "indexPage_textbook.html?bookId=" + bookid + "&index=" + index1;
+                    },
+                    tobooklist: function (rid) {
+                        myhref.href = "indexPage_textbookList.html?recommendId=" + rid + "&type=" + 1 + "&index=" + index1;
+                    },
+                    toimgurl: function (urlid) {
+                        myhref.href = "indexPage_themeInfo.html?themeId=" + urlid + "&index=" + index1;
+                    }
+                },
+                created: function () {
+                    var pageURL1 = {
+                        'city_id': city_id,
+                        'list_id': ''
+                    }
+                    var pageURL2 = {
+                        'city_id': city_id,
+                        'list_id': ''
+                    }
+                    var pageURL3 = {
+                        'city_id': city_id,
+                        'list_id': ''
+                    }
+                    var self = this;
+
+                    if (params.show1) {
+                        $('#menu_head').show();
+                    }
+
+                    //zlg代码迁移
+                    params.openid = params.openid || getLocal('shuati_openid');// || 'oKuzrwCN_pZ9d_ZDYyFYq8Ca-RnI'; || 'oKuzrwDHM7Rxo1EDeXSSfVpiIOII'; //zlg
+                    if (isNull(params.openid)) params.openid = '';
+                    //获取本地的openid
+                    if (isNotNull(params.openid)) {
+                        setLocal('shuati_openid', params.openid);
+                    }
+                    GetUpdateMsgTimer(params);
+                    //console.log(params);
+                    checkInZF();
+
+                    if (isNull(params.sc) || params.sc == "999") {
+                        if (localSchoolInfo.school_id) {
+                            params.school_id = localSchoolInfo.school_id;
+                        }
+                    }
+                    fetchKemuListPage(params, function (json) {
+                        try {
+                            if (json && json.code == '200') {
+                                self.St_kemuInfo = json.data.St_kemuInfo || [];
+                                self.St_TzsInfo = json.data.St_TzsInfo || [];
+                                console.log("成功");
+                                console.log(json.data.sc_name);
+
+                                self.sc = params.sc || '';
+                                if (json.data.school_id) {
+                                    self.sc = json.data.sc_id || params.sc || '';
+                                    self.sc_name = json.data.sc_name || '';
+                                    self.school_id = json.data.school_id || '';
+                                    self.school_name = json.data.school_name || '';
+                                    if (!localSchoolInfo.sc_id)
+                                        localSchoolInfo.sc_id = self.sc;
+                                    if (json.data.school_id != localSchoolInfo.school_id) {
+                                        localSchoolInfo.school_name = self.school_name;
+                                        localSchoolInfo.school_id = self.school_id;
+                                        $("#currentSchoolNameBox span:first").text(localSchoolInfo.school_name);
+                                    }
+                                    if (params.sclinkUrl) {
+                                        $("#currentCityNameBox").hide();
+                                        $("#currentSchoolNameBox span:first").text(localSchoolInfo.sc_name);
+                                    }
+                                    //alert(self.sc);
+                                    //alert(saveLocalSchoolInfo)
+                                    saveLocalSchoolInfo();
+                                }
+                                self.trans = 3;
+                                self.openid = json.data.openid || params.openid || '';
+                                params.openid = params.openid || json.data.openid || '';
+
+                                console.log('params.data.openid' + (params.openid))
+                                self.type1 = params.type1 || '';
+                                self.source1 = params.source1 || '';
+                                self.neice = params.neice || '';
+                                self.trans = params.trans || '';
+                                self.r = params.r || '';
+                            }
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    });
+                    $.when(getBannersByCityId(city_id, app_path1)).done(function (res) {
+                        if (res.code == 200) {
+                            var data = res.data;
+                            // 轮播图
+                            var banners = data.banners;
+                            var bannersHTML = firstImage = lastImage = "";
+                            for (var i = 0, length = banners.length; i < length; i++) {
+                                var _banner = banners[i];
+
+                                bannersHTML += '<div class="mui-slider-item"><a data-href="' + _banner.url + '"><img src="' + _banner.path + '"></a></div>';// onerror="javascript:this.src=\'http://www.jb51.net/logos.gif\'"
+                                // 第一个元素
+                                if (i == 0) {
+                                    firstImage = '<div class="mui-slider-item mui-slider-item-duplicate"><a data-href="' + _banner.url + '"><img src="' + _banner.path + '"></a></div>';
+                                    $("#mui-slider-indicator").append('<div class="mui-indicator mui-active"></div>');
+                                }
+                                else {
+                                    $("#mui-slider-indicator").append('<div class="mui-indicator"></div>');
+                                }
+                                // 最后一个元素
+                                if (i == length - 1) {
+                                    lastImage = '<div class="mui-slider-item mui-slider-item-duplicate"><a data-href="' + _banner.url + '"><img src="' + _banner.path + '"></a></div>';
+                                }
+                            }
+                            $("#slider>.mui-slider-group").append(lastImage + bannersHTML + firstImage);
+                            mui.init();
+                            mui("#slider").slider({
+                                interval: 5000
+                            });
+                        }
+                    });
+                }
+            });
+
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            width = width.toString();
+            var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            height = height.toString();
+            var pattern_phone = new RegExp("iPhone", "i");
+            var pattern_android = new RegExp("android", "i");
+            var os = '';
+            var userAgent = navigator.userAgent.toLowerCase();
+            var isAndroid = pattern_android.test(userAgent);
+            var isIphone = pattern_phone.test(userAgent);
+            var phoneType = "phoneType";
+            if (isAndroid) {
+                os = 'android';
+                var zh_cnIndex = userAgent.indexOf("-");
+                var spaceIndex = userAgent.indexOf("build", zh_cnIndex + 4);
+                var fullResult = userAgent.substring(zh_cnIndex, spaceIndex);
+                //andorid版本号
+                phoneType = fullResult.split(";")[1];
+            } else if (isIphone) {
+                os = 'iphone';
+                //iphone版本号
+                phoneType = userAgent.split(" ")[5];
+            } else {
+                phoneType = "";
+            }
+
+            var province = '';
+            var city = '';
+            var cookieObj = getCookieObj();
+
+            //zlg add
+            //已经选中学校和院系的，则提示不能选。
+            if ((localCityInfo && localCityInfo.city_id && localSchoolInfo && localSchoolInfo.school_id && localSchoolInfo.school_name)
+                || isNotNull(params.sc)) {
+                if ($("#currentSchoolNameBox")) {
+                    $("#currentSchoolNameBox").attr("data-href", "");
+                    $('#currentSchoolNameBox').off('click');
+                    $('#currentSchoolNameBox').on('click', function () {
+                        myhref.href = "indexPage_searchcitylist.html";//?msg=chooseSchool
+                        //mui.toast("您已选择学校，请联系爱帮女生修订信息");
+                        //document.getElementById("cover2").style.display = 'block';
+                    });
+                }
+                if ($("#userid_div")) {
+                    if (cookieObj.phone_number)
+                        $("#userid_div").text(localUserInfo.phone_number);
+                    else if (cookieObj.user_id)
+                        $("#userid_div").text(localUserInfo.user_id);
+                }
+                if (localSchoolInfo.sc_id) {
+                    document.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + localSchoolInfo.sc_id + '.jpg';
+                }
+                else if (params.sc) {
+                    document.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+                }
+            }
+
+            try {
+                if (localCityInfo && localCityInfo.city_id && localCityInfo.city_name) {
+                    $("#currentCityNameBox span:first").text(localCityInfo.city_name);
+                } else {
+                    $.when(getCurrentCityCache('#currentCityNameBox span:first')).done(function (data) {
+                        //if (data && data.city_name) {
+                        //    $("#currentCityNameBox span:first").text(data.city_name);
+                        //} else {
+                        //    mui.toast("无定位权限 获取城市异常");
+                        //}
+                    });
+                }
+            } catch (e) { mui.toast(e.message); }
+        });
+        $('body').on('tap', '.sclinkUrl', function () {
+            location.href = location.href + "&sclinkUrl=1";
+        });
+    </script>
+
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/shuati/kemu_list.js?r=1119"></script>
+
+
+    <div id="cover2" onclick="document.getElementById('cover2').style.display='none';">
+        <!--<img class="fxImg1" src="../image/shareWX.png">-->
+        <br>
+        <br>
+        <br>
+        <br><br><br><br><br><font style="color:white;font-size:23px;font-weight:bolder">
+            加爱帮女生，告知可换学校
+            <br /><div style="float:left"></div><br /><div id="userid_div"></div> <br><br>
+        </font>
+        <img id="img2wei" src="http://stbd.aibangxs.com/site_shuati/app_image/image/分享/完整版本_num/999.jpg">
+        <br><br><font class="fonttixing">爱帮先生，因您需要而在</font>
+    </div>
+
+</body>
+</html>
+

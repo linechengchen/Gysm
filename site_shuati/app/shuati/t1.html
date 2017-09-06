@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>分享测试</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img src="" alt="">
+
+
+    <script>
+        //var imgUrl=encodeURI("https://images.51vv.com/upload/sod/artist/mobile/W/五月天/五月天2.jpg");//分享的图片
+        var imgUrl = encodeURI("https://images.51vv.com/upload/sod/artist/photos/14/08/1408343949131.jpg");
+
+        var lineLink = document.URL;
+        var descContent = '分享概况';
+        var shareTitle = '分享标题';
+        var appid = '';
+
+        var share = {
+            shareFriend: function () {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "appid": appid,
+                    "img_url": imgUrl,
+                    "img_width": "200",
+                    "img_height": "200",
+                    "link": lineLink,
+                    "desc": descContent,
+                    "title": shareTitle
+                }, function (res) {
+                    //_report('send_msg', res.err_msg);
+                })
+            },
+            //分享到朋友圈
+            shareTimeline: function () {
+                alert(imgUrl);
+                WeixinJSBridge.invoke('shareTimeline', {//
+                    "img_url": "https://images.51vv.com/upload/sod/artist/photos/14/08/1408343949131.jpg",
+                    "img_width": "200",
+                    "img_height": "200",
+                    "link": lineLink,
+                    "desc": descContent,
+                    "title": shareTitle
+                }, function (res) {
+                    //_report('timeline', res.err_msg);
+                });
+            }
+        }
+
+
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {//
+
+            //发送给好友
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                share.shareFriend();
+            });
+            //分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                share.shareTimeline();
+            });
+
+        }, false);
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

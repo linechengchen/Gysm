@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>选择科目（2017）</title>
+    <link href="../css/mui/mui.min.css" rel="stylesheet" />
+    <link href="../css/app.css?1" rel="stylesheet" />
+    <script src="../js/shuati/Dictionary.js?r=111"></script>
+    <script src="../js/shuati/localoper.js?r=1111"></script>
+    <script src="../js/shuati/localstorage.js?r=112111"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <link href="../source/css/searchcity.css" rel="stylesheet">
+
+    <style>
+        .mui-search .mui-placeholder {
+            padding-right: 50px;
+        }
+
+        .mui-indexed-list {
+            background-color: transparent;
+        }
+
+        .color0 {
+        }
+
+        .color1 {
+        }
+
+        .color2 {
+            background-color: lightyellow;
+        }
+
+        .color3 {
+            background-color: lightblue;
+        }
+
+        .color4 {
+            background-color: lightcyan;
+        }
+
+        .mask; {
+            position: absolute;
+            background: #000;
+            width: 80%;
+            bottom: 5px;
+            text-align: center;
+            color: #fff;
+            opacity: .5;
+        }
+    </style>
+    <script src="../js/mui/mui.min.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/swiper/swiper.min.js"></script>
+
+    <script src="../source/js/author.js?r=1"></script>
+    <script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <script src="../js/shuati/kemu_list.js?r=212"></script>
+
+    <script type="text/javascript" charset="utf-8">
+
+        (function ($, doc) {
+            GetUpdateMsgTimer(params);
+            var allJson;
+            var kemuData;
+            $.init({
+                statusBarBackground: '#000000',
+                styles: {
+                    top: 0,
+                    bottom: 0,
+                }
+            });
+            //var params = {};
+            var params = getParseQuery();
+
+            $.ready(function () {
+                document.getElementById('back1').href = "../pages/indexPage.html?openid=" + (params.openid || '') + "&sc=" + (params.sc || '') + "&source1=" + (params.source1 || '') + "&type1=" + (params.type1 || '') + "&neice=" + (params.neice || '') + "&r=" + (params.r || '');
+
+                if (localUserInfo.user_id)
+                    params.user_id = localUserInfo.user_id;
+                if (localUserInfo.openid)
+                    params.openid = localUserInfo.openid;
+
+                fetchZs(params, function (json) {
+                    if (json.code == '200') {
+                        allJson = json;
+                        kemuData = allJson.data;
+                    }
+                    var data = kemuData;
+                    data.school_name = localSchoolInfo.school_name;
+                    var html = template('category-tpl', data);
+
+                    doc.getElementById('category-content').innerHTML = html;
+
+                    console.log(params.zsTypeId);
+                    if (params.zsTypeId) {
+                        var obj1 = document.getElementById("zs" + params.zsTypeId);
+                        if (isNotNull(obj1)) {
+                            cataDir(obj1);
+                            window.setTimeout(function () {
+                                //cataDir(obj1);
+                            }, 10);
+                        }
+                    }
+                });
+                //父级
+                $('#category-content').on('tap', '.pr-title', function () {
+                    cataDir(this);
+                });
+                function cataDir(this1) {
+                    console.log("cataDir");
+                    console.log(this1.parentElement);
+                    var itemDom = this1.parentElement;
+                    var cldBoxDom = jQuery(itemDom).find('.cld-box')[0];
+                    var sHeight = Math.ceil(jQuery(cldBoxDom).attr('data-count') / 2) * 0.41 + 'rem';
+
+                    if (itemDom.classList.contains('show')) {
+                        itemDom.classList.remove('show');
+                        jQuery(cldBoxDom).css('height', 0);
+                    } else {
+                        itemDom.classList.add('show');
+                        jQuery(cldBoxDom).css('height', sHeight);
+                    }
+                }
+                //子级
+                $('#category-content').on('tap', '.cld-item', function () {
+                    var id = jQuery(this).attr('data-id');
+                    var item = findKmById(id);
+                    var self = this;
+                    //console.log(item);
+
+                    var params2 = JSON.parse(JSON.stringify(params)); //克隆json
+                    params2.user_id = localUserInfo.user_id;
+                    console.log(params2.user_id);
+                    params2.openid = localUserInfo.openid;
+                    console.log(params2.openid);
+
+                    if (!localUserInfo.openid && params2.openid)
+                        localUserInfo.openid = params2.openid;
+
+                    //alert(localUserInfo.user_id)
+                    //alert(localUserInfo.openid)
+
+                    if (!localUserInfo.user_id && !localUserInfo.openid) {
+                        alert("未获得微信标志，无法保存数据，请您先注册");
+                        window.location.href = "../pagesCommon/registerNew.html?sc=" + params.sc;
+                        return;
+                    }
+
+                    if (this.classList.contains('selected')) {
+                        item.IsShowIndex = false;
+                        if (IsLater(500)) {
+                            getJsonKemuIndex();
+                            params2.kemuIndexJson1 = jsonKemuIndex1;
+                            params2.kemuIndexJson2 = jsonKemuIndex2;
+                            params2.jsonZsIndex1 = jsonZsIndex1;
+                            params2.jsonZsIndex2 = jsonZsIndex2;
+                            postTUserZsInfo(params2, function (json) {
+                                if (json.code == '200') {
+                                    self.classList.remove('selected');
+                                    mui.toast('保存成功');
+                                } else {
+                                    if (json.code == '-1') {
+                                        mui.toast("未登陆:" + json.errMsg);
+                                    } else {
+                                        mui.toast("未保存成功:" + json.errMsg);
+                                        if (json.num == -1) {
+                                            //跳转关注页
+                                        }
+                                    }
+                                }
+                            });
+                        } else {
+                            mui.toast("请稍后");
+                        }
+                    } else {
+                        item.IsShowIndex = true;
+                        if (IsLater(500)) {
+                            getJsonKemuIndex();
+                            params2.kemuIndexJson1 = jsonKemuIndex1;
+                            params2.kemuIndexJson2 = jsonKemuIndex2;
+                            params2.jsonZsIndex1 = jsonZsIndex1;
+                            params2.jsonZsIndex2 = jsonZsIndex2;
+                            postTUserZsInfo(params2, function (json) {
+                                if (json.code == '200') {
+                                    self.classList.add('selected');
+                                    mui.toast('保存成功');
+                                } else {
+                                    if (json.code == '-1') {
+                                        mui.toast("未登陆:" + json.errMsg);
+                                    } else {
+                                        mui.toast("保存未成功:" + json.errMsg);
+                                        if (json.num == -1) {
+                                            //跳转关注页
+                                        }
+                                    }
+                                }
+                            });
+                        } else {
+                            mui.toast("请稍后");
+                        }
+                    }
+                    //params2.allJson = JSON.stringify(allJson);//errQuestionsDic3.valuesJson();
+                    //console.log("参数allJson===" + params2.allJson.length);
+                    //console.log("参数kemuIndexJson1===" + params2.kemuIndexJson1.length);
+                    //console.log("参数kemuIndexJson2===" + params2.kemuIndexJson2.length);
+                    //console.log("参数jsonZsIndex1===" + params2.jsonZsIndex1.length);
+                    //console.log("参数jsonZsIndex2===" + params2.jsonZsIndex2.length);
+                    //console.log(params2.kemuIndexJson);
+                });
+                
+                var jsonKemuIndex1 = "";
+                var jsonKemuIndex2 = "";
+                var jsonZsIndex1 = "";
+                var jsonZsIndex2 = "";
+
+                function getJsonKemuIndex() {
+                    console.log("科目数据-kemuData");
+                    console.log(kemuData);
+                    jsonKemuIndex1 = "";
+                    jsonKemuIndex2 = "";
+                    jsonZsIndex1 = "";
+                    jsonZsIndex2 = "";
+                    var TkemuInfoList = kemuData.St_kemuInfo.list;
+                    var TzsTypeInfoList = kemuData.St_TzsTypeInfo.list;
+                    for (var i = 0; i < TkemuInfoList.length; i++) {
+                        if (TkemuInfoList[i].IsShowIndex == true) {
+                            jsonKemuIndex1 += TkemuInfoList[i].KemuId + ",";//JSON.stringify(TkemuInfoList[i]) + "|";
+                        }
+                        else {
+                            jsonKemuIndex2 += TkemuInfoList[i].KemuId + ",";//JSON.stringify(TkemuInfoList[i]) + "|";
+                        }
+                    }
+                    for (var j = 0; j < TzsTypeInfoList.length; j++) {
+                        var list = TzsTypeInfoList[j].list;
+                        for (var k = 0; k < list.length; k++) {
+                            if (list[k].IsShowIndex == true) {
+                                jsonZsIndex1 += list[k].ZsId + ",";//JSON.stringify(list[k]) + "|";
+                            }
+                            else {
+                                jsonZsIndex2 += list[k].ZsId + ",";//JSON.stringify(TkemuInfoList[i]) + "|";
+                            }
+                        }
+                    }
+                    return jsonKemuIndex1;
+                }
+
+                function findKmById(id) {
+                    var TkemuInfoList = kemuData.St_kemuInfo.list;
+                    var TzsTypeInfoList = kemuData.St_TzsTypeInfo.list;
+                    for (var i = 0; i < TkemuInfoList.length; i++) {
+                        if (TkemuInfoList[i].KemuId == id) {
+                            return TkemuInfoList[i]
+                        }
+                    }
+                    for (var j = 0; j < TzsTypeInfoList.length; j++) {
+                        var list = TzsTypeInfoList[j].list;
+                        for (var k = 0; k < list.length; k++) {
+                            if (list[k].ZsId == id) {
+                                return list[k]
+                            }
+                        }
+                    }
+                }
+            });
+        }(mui, document));
+    </script>
+</head>
+
+<body>
+    <header id="header" class="mui-bar mui-bar-nav navbar">
+        <a class=" mui-icon mui-icon-left-nav mui-pull-left" id="back1"></a>
+        <h1 class="mui-title" id="title">请勾选首页默认显示的科目</h1>
+        <span class="mui-icon mui-icon-trash mui-pull-right" id="qingkong1"><font style="font-size:.1rem">清空</font></span>
+    </header>
+
+    <div class="mui-content st-content" id="content">
+        <div class="category-box" id="category-content">
+
+        </div>
+    </div>
+    <script id="category-tpl" type="text/html">
+        <div class="category-pr-item">
+            <div id="a123" class="mui-indexed-list-search mui-input-row mui-search ys-mui-search mui-search-withButton " style="border-bottom:none">
+                <input onkeyup="sousuo()" style="width:80%;margin:10px 10px" id="searchCityInput" type="search" placeholder="快速搜索科目名称" value="">
+                <div style="float:right;margin-top:18px" id="btnsearch" onclick="sousuo()">搜索</div>
+            </div>
+
+        </div>
+        <div id="searchResult" class="category-pr-item show ">
+
+        </div>
+
+        <div class="category-pr-item">
+            <div class="pr-title" id="zs99999">
+                <span class="pr-title-left"><span class="mui-icon mui-icon-compose"></span><img src="../image/竖条.png" /> {{school_name}} 大学课程</span>
+                <span class="pr-title-right"><span class="mui-icon mui-icon-arrowdown"></span><span class="mui-icon mui-icon-arrowup"></span></span>
+            </div>
+            <div class="cld-box" data-count="{{St_kemuInfo.list.length}}">
+                {{each St_kemuInfo.list as cldItem j}}
+                <span id="{{cldItem.KemuId}}" data-id="{{cldItem.KemuId}}" class="cld-item color{{parseInt(cldItem.KemuId/100000)}} {{(cldItem.IsShowIndex == false)? '':'selected'}}">
+                    <!--<a id="up1" data-id="?act=up1&kemuId={{cldItem.KemuId}}">↑</a>--> <!--<a data-href="?act=up1&kemuId={{cldItem.KemuId}}">↓</a>-->
+                    {{cldItem.KemuName}}
+                    <span style="color:grey; font-size:12px;">{{(cldItem.Question_sum>-1)?'('+cldItem.Question_sum+')':''}}</span>
+                    <span class="mui-icon mui-icon-checkmarkempty"></span>
+                </span>
+                {{/each}}
+            </div>
+        </div>
+        {{each St_TzsTypeInfo.list as prItem i}}
+        <div class="category-pr-item">
+            <div class="pr-title" id="zs{{prItem.TypeId}}">
+                <span class=" pr-title-left">
+                    <span class=" mui-icon mui-icon-compose"></span>
+                    <span style="color:grey;"><img src="../image/竖条.png" /> 证书类：</span>{{prItem.TypeName}}
+                </span>
+                <span class="pr-title-right"><span class="mui-icon mui-icon-arrowdown"></span><span class="mui-icon mui-icon-arrowup"></span></span>
+            </div>
+            <div class="cld-box" data-count="{{prItem.list.length}}">
+                {{each prItem.list as cldItem j}}
+                <span id="{{cldItem.ZsId}}" data-id="{{cldItem.ZsId}}" class="cld-item {{(cldItem.IsShowIndex == false)? '': 'selected'}}">
+                    {{cldItem.ZsName}}
+                    <span style="color:grey; font-size:12px;">{{(cldItem.Question_sum>-1)?'('+cldItem.Question_sum+')':''}}</span><span class="mui-icon mui-icon-checkmarkempty"></span>
+                </span>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script type="text/javascript">
+        //清空错题;
+        document.getElementById("qingkong1").addEventListener('tap', function (e) {
+            e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+            var btnArray = ['取消', '确定'];
+            var title1 = '温馨提醒：清空科目设置';
+            var title2 = '确定要清空您的科目设置吗？';
+            mui.confirm(title2, title1, btnArray, function (e) {
+                try {
+                    if (localUserInfo.user_id)
+                        params.user_id = localUserInfo.user_id;
+                    if (localUserInfo.openid)
+                        params.openid = localUserInfo.openid;
+                    postAjaxMUI(baseUrlJson + '/PostTUserZsInfo.aspx?act=del', params, 'post', function (json) {
+                        if (json.code == '200') {
+                            mui.toast("操作成功" + json.errMsg);
+                        } else {
+                            mui.toast("未操作成功:" + json.errMsg);
+                        }
+                    });
+                } catch (e) {
+                }
+            });
+        });
+
+        //cqn
+        var lastId;
+        var spans = $("span");//.find('.cld-item');//document.getElementsByTagName("span");//cld-item
+        function sousuo() {
+            spans = document.getElementsByClassName("cld-item");
+
+            //alert(document.body.innerHTML);
+            //spans = jQuery("span").find('.cld-item');//document.getElementsByTagName("span");//cld-item
+            //console.log("下面span");
+            //console.log(spans);
+            var searchTxt = document.getElementById("searchCityInput").value;//搜索值
+            console.log(searchTxt);
+            //if (searchTxt == '') return;
+            var flag;
+            var text1;
+            var innerhtml;
+            var innerhtmlList;
+            var count = 0;
+            var ys = " class=\"cld-box\"  id=\"jieguo\" style=\"background: #efeff4;width:100%;color: #999;font-size:12px;\"";
+            var ys2 = " class=\"cld-box\"  id=\"jieguo\" style=\"background: #efeff4;width:100%;color: blue;font-size:15px;\"";
+            innerhtml = "";
+            innerhtmlList = "";
+
+            if (lastId) {
+                for (var i = 0; i < spans.length; i++) {
+                    spans[i].style.background = "";//
+                }
+            }
+            document.getElementById("searchResult").innerHTML = "";
+            //document.getElementById("searchResult").innerHTML = "<div" + ys + ">&nbsp;&nbsp;存在" + 0 + "条记录</div> ";
+            if (searchTxt.length > 0) {
+                for (var i = 0; i < spans.length; i++) {
+                    flag = false;
+                    if (searchTxt == " " || searchTxt == "") {
+                        //alert("请输入搜索内容");
+                        document.getElementById("searchResult").innerHTML = "<div " + ys + ">&nbsp;&nbsp;存在" + count + "条记录</div> ";
+                        break;
+                    }
+
+                    for (var n = 0; n < 30; n++) {
+
+                        text1 = ""; innerhtml = "";
+                        for (var j = n; j < searchTxt.length + n; j++) {
+                            text1 += spans[i].innerHTML[j];
+                        }
+
+                        //alert(document.getElementById("searchResult").innerHTML);
+                        if (searchTxt == text1) {
+                            flag = true;
+                            innerhtml = spans[i].innerHTML;
+                            lastId = spans[i].id;
+                            count++;
+                            innerhtmlList += "<span data-id=\"" + lastId + "\"" + " class=\"cld-item selected\">" + innerhtml + "</span>";
+                            break;
+                        }
+                        if (flag)
+                            break;
+                    }
+                    if (flag) {
+                        //  document.getElementById(lastId).style.background = "#E9967A";
+                        spans[i].style.background = "rgba(130, 246, 241, 0.48)";
+                    }
+                }
+                if (searchTxt != "")
+                    //if (!count)
+                    //    alert("没有相关课程");
+                    if (searchTxt != "") {
+
+                        document.getElementById("searchResult").innerHTML = "<div" + ys2 + "></div> ";
+                        //node = document.getElementById("567").lastChild;
+                        //document.getElementById("searchResult").appendChild(node);
+                        document.getElementById("jieguo").innerHTML = "<span " + ys + ">&nbsp;&nbsp;存在" + count + "条记录 </span> " + "<span float=\" right\" ></span>" + innerhtmlList;
+                    }
+            }
+            else
+
+                document.getElementById("searchResult").innerHTML = "<div></div> ";
+        }
+
+        //$(document).ready(function () {
+        //    $("#title").click(function () {
+        //        //alert(lastId);
+        //        $('html, body').animate({
+        //            scrollTop: $("#"+lastId).offset().top-100
+        //        }, 1000);
+        //    });
+        //});
+
+
+    </script>
+
+</body>
+
+</html>

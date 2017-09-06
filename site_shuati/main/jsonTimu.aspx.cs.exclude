@@ -1,0 +1,186 @@
+﻿using AgileFrame.Core;
+using AgileFrame.Orm.PersistenceLayer.BLL.Base;
+using AgileFrame.Orm.PersistenceLayer.Model;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class wap_main_query : BasePageShuati
+{
+    protected string sc = "";
+    protected string sc2 = "";
+    public string title1 = "未加载";
+    public string kemuId = "mks";
+    public string kemuName = "mks";
+    public string readType = "1";
+    public int top = 50;
+    public string leimu = "";
+    private void setTitle()
+    {
+        //if (!AgileFrame.Core.ConsoleService.IsNeedWebConsole)
+        //{
+        //    AgileFrame.Core.ConsoleService.IsNeedWebConsole = true;
+        //    AgileFrame.Core.ConsoleService.Fatal("bs控制台启动");
+        //}
+        if (!string.IsNullOrEmpty(Request["leimu"]))
+        {
+            leimu = Convert.ToString(Request["leimu"]);
+        }
+        if (!string.IsNullOrEmpty(Request["sc"]))
+        {
+            sc = ScHelper.getSc(this);
+        }
+        if (!string.IsNullOrEmpty(Request["kemuName"]))
+        {
+            kemuName = Request["kemuName"].ToString();
+        }
+        title1 = BLL3.getClassZhongWen(Request["kemuName"].ToString());
+    }
+    string num = "1";
+    public string type = "sequence";//顺序出题
+    public string seq = "1";
+    public List<TiMuXuanZe> timu1List = null;
+    protected string jump_num = "";
+    public string LastSeq = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(Request["LastSeq"]))
+        {
+            LastSeq = Request["LastSeq"].ToString();
+        }
+        //Response.Write("{\"id\":\"1\",\"type\":\"0\",\"question\":\"马克思主义是一个博大精深的科学理论体系,其理论基础是(   )\r\n\",\"optionstr\":\"A.剩余价值学说|B.马克思主义政治经济学\r\n|C.马克思主义哲学|D.科学社会主义\r\n\",\"answer\":\"3\",\"favor\":\"0\"}");
+        //Response.End(); 
+        //return;
+        List<string> ids = new List<string>();
+        if (Session["query"] != null && Session["query"].ToString() != "")
+        {
+            ids = (List<string>)Session["query"];
+        }
+        string id1 = "1";
+        if (Session["query1"] != null && Session["query1"].ToString() != "")
+        {
+            id1 = (string)Session["query1"];
+        }
+        string id2 = "1";
+        if (Session["query2"] != null && Session["query2"].ToString() != "")
+        {
+            id2 = (string)Session["query2"];
+        }
+        if (!string.IsNullOrEmpty(Request["type"]))
+        {
+            type = Request["type"].ToString();
+        }
+        if (!string.IsNullOrEmpty(Request["id"]))
+        {
+            seq = Request["id"].ToString();
+        }
+        if (!string.IsNullOrEmpty(Request["num"]))
+        {
+            num = Request["num"].ToString();
+        }
+        if (!string.IsNullOrEmpty(Request["leimu"]))
+        {
+            leimu = Convert.ToString(Request["leimu"]);
+        }
+        if (!string.IsNullOrEmpty(Request["sc"]))
+        {
+            sc = ScHelper.getSc(this);
+        }
+        if (!string.IsNullOrEmpty(Request["kemuName"]))
+        {
+            kemuName = Request["kemuName"].ToString();
+        }
+        if (!string.IsNullOrEmpty(Request["readType"]))
+        {
+            readType = Request["readType"].ToString();
+        }
+        if (!string.IsNullOrEmpty(Request["top"]))
+        {
+            top = Convert.ToInt32(Request["top"].ToString());
+        }
+        if (!string.IsNullOrEmpty(Request["jump_num"]) && Request["jump_num"] != "undefined")
+        {
+            jump_num = Convert.ToString(Request["jump_num"]);
+        }
+        if (!string.IsNullOrEmpty(Request["kemuId"]))
+        {
+            kemuId = Convert.ToString(Request["kemuId"]);
+        }
+        
+        sc2 = sc;
+
+        if (type == "sequence")
+        {
+
+        }
+        else if (type == "random")
+        {
+            //num = dic1.Count.ToString();
+
+            //if (ids.Count == dic1.Count)
+            //{
+            //    ids = new List<string>();
+            //}
+
+            //Random rd = new Random();
+            //while (ids.Contains(seq))
+            //{
+            //    seq = rd.Next(1, Convert.ToInt32(dic1.Count)).ToString();
+            //}
+            //ids.Add(seq);
+            //Session["query"] = ids;
+        }
+        else if (type == "cuoti")
+        {
+
+        }
+        if (!string.IsNullOrEmpty(jump_num))
+        {
+            seq = jump_num;
+        }
+        AFDictionary<string, int> dic1 = new AFDictionary<string, int>();
+        List<St_TTimuDaXue> timu1List = BLL1.getList(sc, kemuId, leimu, seq, readType, top, ref dic1);
+
+        //else if (!string.IsNullOrEmpty(leimu) && dicLeimu1.Count > 0)//选择了类目的情况下
+        //{
+        //    //if (dic1.ContainsKey(seq))
+        //    //{
+        //    //    timu1 = dic1[seq];
+        //    //}
+        //    //else
+        //    {
+        //        int idd = Convert.ToInt32(id2);
+        //        List<TiMuXuanZe> list1 = new List<TiMuXuanZe>(dicLeimu1.Values);
+        //    }
+        //}
+        //else
+        //{
+        //    timu1List = BLL1.GetListBySeq(sc2, kemuName, seq, type, leimu, readType, top);
+        //}
+        if (timu1List != null)
+        {
+            //Response.Write(timu1.toJson());
+        }
+        else
+        {
+            timu1List = new List<St_TTimuDaXue>();
+        }
+        //JsonSerializerSettings settings = new JsonSerializerSettings();
+        //settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        //string result = JsonConvert.SerializeObject(timu1List, Formatting.Indented, settings);//需要注意的是，如果返回的是一个集合，那么还要在它的上面再封装一个类。否则客户端收到会出错的。
+
+        string json1 = JsonServiceBase.ToJson(timu1List);
+        //string json1 = RootObject.getJsonRoot(timu1List);
+
+        Response.Write(json1);
+
+        Response.End();
+        return;
+    }
+}

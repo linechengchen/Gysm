@@ -1,0 +1,201 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="list2.aspx.cs" Inherits="wap_main_type" %>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+        <div id="shareImage" style="display: none;">
+             <img src="../image/hdt2.jpg" />
+        </div>
+		<title><%=name1 %><%=title1%>题库</title>
+		<link rel="stylesheet" href="../css\index.css">    
+		<script type="text/javascript" src="../js/list.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../css/aui.css">-->
+        <link rel="stylesheet" type="text/css" href="../css/aui.min.css">
+		<link rel="stylesheet" href="../css\swiper.min.css">
+	<style type="text/css">
+            /*.aui-bar {
+    background: url('../image/bar1.png') no-repeat #e74c3c;
+    background-size: 100% auto;
+    background-position: 0 bottom;
+            }*/
+		.headerclass {
+            min-width: 200px;
+			min-height: 210px;
+			background: url('../image/hdt2.jpg') no-repeat;/*1122.jpg*/
+			position: relative;
+			background-origin: content;
+			background-position: center center;
+			background-size: cover;
+		}
+			#cover2 {
+				position: fixed;
+				margin:0px auto;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.7) ;
+				text-align:center ;
+			}
+			#cover2 img {
+				 margin:0px auto;				 
+				 /*height:100%;*/
+                 height:30%;
+			}
+	</style>
+	</head>
+	<body><form id="form1" runat="server">
+        </form>
+
+		<header class="aui-bar aui-bar-nav aui-bar-danger" id="aui-header">
+			<a href="<%=(subKcName=="")?"../ab.aspx?":"listkj.aspx?kemuName="+subKcName+"&" %>sc=<%=sc%>&type1=<%=type1 %>" class="aui-btn aui-btn-danger aui-pull-left" id="back"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title" id="title">
+				<%=name1 %> <%=title1%>题库（2016新）	</div>
+		</header>
+		
+		<div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+            <br /><br /><br /><br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >爱帮先生，因您需要而在</font><br />
+            <img src="../image/分享/完整版本_num/<%=tu2wei %>" />
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >长按扫码，分享您的需要</font>
+		</div>
+
+		<%--<div class="aui-content headerclass"></div>--%>
+        
+
+		<!-- Swiper例子代码 -->
+		<div class="swiper-container" style="height:200px">
+			<div class="swiper-wrapper">
+                <%--<div class="swiper-slide">
+                    <img src="../image\滑动图61.jpg">
+                </div>
+                    <div class="swiper-slide">
+                    <img src="../image\81.jpg">
+                </div>
+                    --%>
+                
+                <%--<div class="swiper-slide">
+                    <img src="../image\82.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\83.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\84.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\85.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\73.jpg">
+                </div>--%>
+                <%--<div class="swiper-slide">
+                    <img src="../image\72.jpg">
+                </div>--%>
+                <%--<div class="swiper-slide">
+                    <img src="../image\huadongtu1.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\hdt2.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../image\huadongtu3.jpg">
+                </div>  --%>              
+                <div class="swiper-slide">
+                    <img src="..\image\hdt-xin1.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="..\image\hdt-xin2.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="..\image\hdt-xin3.jpg">
+                </div>             
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+
+		<div class="aui-content-padded aui-card">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell aui-indexed-list-view-group" data-win="cuoti">
+                    <a class="aui-arrow-right" href="edit2.aspx?kemuName=<%=kemuName%>&type=cuoti&sc=<%=sc%>"><i class="aui-iconfont aui-icon-edit aui-text-danger" style=""></i><span class="aui-iconfont aui-icon-favorfill aui-text-danger" data-value="*"></span>我的错题<span class="aui-badge aui-badge-danger" id="a_num">0</span> </a>
+				</li>
+				<li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right" href="<%=(num=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num%>&sc=<%=sc%>"><i class="aui-iconfont aui-icon-edit aui-text-info"></i> 顺序刷题<span class="aui-badge aui-badge-info" id="order"><%=num%></span></a>
+				</li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right" href="<%=(num1=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num1%>&sc=<%=sc%>&leimu=1">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i> 多选题（含辨析题）<span class="aui-badge aui-badge-info"><%=num1%></span></a><%--success--%>
+				</li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right" href="<%=(num0=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num0%>&sc=<%=sc%>&leimu=0">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i> 单选题<span class="aui-badge aui-badge-info"><%=num0%></span></a><%--warning--%>
+				</li>
+				<li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right" href="<%=(num2=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num2%>&sc=<%=sc%>&leimu=2">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i> 判断题 <span class="aui-badge aui-badge-info"><%=num2%></span></a>
+				</li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right" href="<%=(num3=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num3%>&sc=<%=sc%>&leimu=3">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i> 简答题（含论述题）<span class="aui-badge aui-badge-info"><%=num3%></span></a>
+				</li>
+				
+				<li class="aui-list-view-cell" data-win="random">
+                    <a class="aui-arrow-right" href="<%=(num=="0")?"#":"" %>edit2.aspx?kemuName=<%=kemuName%>&subKcName=<%=subKcName %>&type=random&num=<%=num%>&sc=<%=sc%>"><i class="aui-iconfont aui-icon-edit aui-text-pink"></i> 随机刷题<span class="aui-badge aui-badge-info " id="random"><%=num%></span> </a>
+				</li>
+				<%--<li class="aui-list-view-cell" data-win="test">
+					<a class="aui-arrow-right" onclick="alert('功能开发中，请与帮先生留言，直接二维码私聊，帮助完善');">模拟考试 <span class="aui-badge aui-badge-success" id="test"><%=num%><span class="aui-badge aui-badge-danger">0</span></span> </a> 
+				</li>--%>
+			</ul>
+		</div>
+        <p class="aui-text-center">若未能满足需要，请向我们反馈信息</p>
+		<footer class="aui-nav aui-text-center" id="aui-footer">
+			<span class="" style="font-size:14px;">因您需要而在 -> <a onclick="document.getElementById('cover2').style.display='block';">爱帮先生</a> </span>
+		</footer>
+		 <%--<img src="https://c.cnzz.com/wapstat.php?siteid=1256953625&r=&rnd=751371736" width="0" height="0">--%>
+        <div style="display:none"><script language="javascript" type="text/javascript" src="https://js.users.51.la/18900802.js"></script>
+<noscript><a href="https://www.51.la/?18900802" target="_blank">width="0" height="0"/></a></noscript></div>
+
+	</body>
+	<script src="../js/swiper.min.js"></script>
+	<script type="text/javascript">
+
+	    var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 3000,
+	        autoplayDisableOnInteraction: false,
+	        loop: true,
+
+	        effect: 'coverflow',
+	        //grabCursor: true,
+	        centeredSlides: true,
+	        slidesPerView: 'auto',
+	        coverflow: {
+	            rotate: 100,
+	            stretch: 0,
+	            depth: 300,
+	            modifier: 1,
+	            slideShadows: true
+	        }
+	    });        
+	</script>
+	<script type="text/javascript">
+	    window.onload = function () {
+	        myload();
+	    };
+	    var myload = function () {
+	        str = getLocal("err_list" + '<%=kemuName%>');
+	        if (str != undefined) {
+	            arr = JSON.parse(str);
+	        } else {
+	            arr = new Array()
+	        }
+	        mytext(getbyId("a_num"), arr.length);
+
+	        if (parseInt('<%=num%>') == 0) {
+	            alert("因为该考题题库未上传。可私聊帮先生获取题库");
+	            document.getElementById('cover2').style.display = 'block';
+	            return;
+	        }
+	    }
+	</script>
+</html>

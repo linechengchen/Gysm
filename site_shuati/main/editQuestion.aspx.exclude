@@ -1,0 +1,164 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="editQuestion.aspx.cs" Inherits="wap_main_do" %>
+<%@ Import Namespace="AgileFrame.Orm.PersistenceLayer.Model" %>
+
+<!DOCTYPE HTML><html><head><meta charset="utf-8">
+    <!--使用aui-->
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+        <div id="shareImage" style="display: none;">
+             <img src="../image/hdt2.jpg" />
+        </div>
+		<title><%=name1 %><%=title1%>题库</title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.min.css?11" />
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/edit.css"/>
+		<script src="../js/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/list.js"></script>
+		<script type="text/javascript" src="../js/spin.min.js"></script>
+		<style>
+            /*.aui-bar {
+                background: url('../image/bar1.png') no-repeat #e74c3c;
+                background-size: 100% auto;
+                background-position: 0 bottom;
+            }*/
+            <% if(!sc.StartsWith("94")) { %>
+			#last, #next {
+				height: 100%;
+				background-image: url(../image/loading.gif);
+				background-repeat: no-repeat;
+				background-position: center center;               
+			}
+            <% }  %>
+
+                  .aui-btn-danger1{font-style:normal;color:#fff;background-color:#ff3925;border:1px solid #e74c3c}
+                  .aui-btn-info1{color:#fff;background-color:#00ff90;border:1px solid #3498db}
+		</style>
+	</head>
+	
+	<body>
+    <form id="form2" runat="server">
+        </form>
+        <% if(sc.StartsWith("4")) { %>
+        		<header class="aui-bar aui-bar-nav aui-bar-danger" id="aui-header">
+			<a href="listQuestionType.aspx?sc=<%=sc %>&kemuName=<%=kemuName %>&kemuId=<%=kemuId %>&subKcName=<%=subKcName %>" class="aui-btn aui-btn-danger aui-pull-left" id="back"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title" id="title">
+				<%=name1 %> <%=title1 %>题库</div>
+			<a href="javascript:void(0)" onclick="jump()" class="aui-pull-right">
+        		<span class="aui-iconfont aui-icon-forwardfill" style="font-size:small">选题</span>
+    		</a>
+		</header>
+            <% }else{  %>
+		<header class="aui-bar aui-bar-nav aui-bar-info" id="aui-header">
+			<a href="listQuestionType.aspx?sc=<%=sc %>&kemuName=<%=kemuName %>&kemuId=<%=kemuId %>" class="aui-btn aui-btn-info aui-pull-left" id="back"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title" id="title">
+				<%=name1 %> <%=title1 %>题库</div>
+			<a href="javascript:void(0)" onclick="jump()" class="aui-pull-right">                
+        		<span class="aui-iconfont aui-icon-forwardfill" style="font-size:small">选题</span>
+    		</a>
+		</header>
+		<%} %>
+		<div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+            <br /><br /><br /><br /><br /><br />
+            <img src="../image/分享/完整版本_num/<%=tu2wei %>" />
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >长按扫码，分享您的需要</font>
+		</div>
+		<div class="swiper-container" id="swiper1">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" id="last"> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若您不幸停留在此画面，向左滑动即可恢复</p>          
+				</div>
+				<div class="swiper-slide" >
+					<div class="aui-form" >
+						<div class="aui-content aui-text-center" id="que">
+							<span id="span1"></span>
+                            <% if(neice!=""){%>
+							<span id="neice" style="height:30px"></span>
+                            <%} %>
+							<span id="question" style="height:300px">考题玩命加载中(...)</span>
+                            
+						</div>
+                        <ul><li>
+							<div class="aui-col-xs-7">
+								<p id="shuoming">（题型:单选）-（总共:100）</p>
+							</div>
+							<div class="aui-col-xs-4">
+								<span  id="err0" class="aui-text-danger" data-value=""><%--错项--%></span><span id="err1" class="aui-iconfont aui-icon-favor aui-text-danger" data-value="*"></span><%--<i id="favor" class="aui-text-warning aui-iconfont aui-icon-favor" onclick=""></i>--%>
+							</div>
+						</li></ul>
+						<ul class="aui-list-view " id="answerid"><!--swiper-no-swiping-->                  
+                            <li class="aui-list-view-cell" data-win="list_arrow"><a class="aui-text-left aui-ellipsis-1  aui-btn " id="btn0">A.剩余价值学说</a></li><li class="aui-list-view-cell" data-win="list_arrow"><a class="aui-text-left aui-ellipsis-1  aui-btn " id="btn1">B.马克思主义政治经济学
+                            </a></li><li class="aui-list-view-cell" data-win="list_arrow"><a class="aui-text-left aui-ellipsis-1  aui-btn " id="btn2">C.马克思主义哲学</a></li><li class="aui-list-view-cell" data-win="list_arrow"><a class="aui-text-left aui-ellipsis-1  aui-btn " id="btn3">D.科学社会主义
+                            </a></li>
+						</ul>
+                        <ul><li>
+							<div class="aui-col-xs-11">
+                                <p id="jiexi" style="color:blue;"></p><br />
+							</div>
+                        </li></ul>
+                        <ul><li>
+							<div class="aui-col-xs-9">
+								<p id="num1">选题点右上，左滑下一题</p>
+							</div>
+							<div class="aui-col-xs-2">
+								<a href="javascript:void(0)" onclick="jump1()" class="aui-pull-right">首题</a>
+							</div>
+                        </li></ul>
+                        <%--<ul><li>
+							<div class="aui-col-xs-10">
+                                <a id="jumpEnd1" href="javascript:void(0)" onclick="jumpEnd()" class="aui-pull-left">切换为手动刷题模式</a>                                
+							</div>
+							<div class="aui-col-xs-1">
+							</div>
+                        </li></ul>--%>
+                        <ul><li></li></ul>
+					</div>
+				</div>
+				<div class="swiper-slide" id="next" onclick="">
+					<input type="button" id="callback" ></input><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若您不幸停留在此画面，向右滑动即可恢复</p>             
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>            
+		</div>
+		<footer class="aui-nav aui-text-center" id="aui-footer">
+			<span class>因您需要而在 -> <a onclick="document.getElementById('cover2').style.display='block';">帮先生</a> ->
+            <a id="jumpEnd1" href="javascript:void(0)" onclick="jumpEnd()" class="aui-pull-right">手动模式</a></span>
+		</footer>
+		<div id="over" class="over"></div>
+		<div id="layout" class="layout"><img src="../image/loading3.gif" />
+		</div>
+       <%--<img src="https://c.cnzz.com/wapstat.php?siteid=1256953625&r=&rnd=409764631" width="0" height="0"/> --%>
+        <%--<div style="display:none"><script language="javascript" type="text/javascript" src="https://js.users.51.la/18900802.js"></script>
+            <noscript><a href="https://www.51.la/?18900802" target="_blank">width="0" height="0"/></a></noscript></div>--%>
+
+	</body>
+	
+	<script type="text/javascript">
+	    window.onload = function () {
+	        window.kemuId = "<%=kemuId%>";//mks  mg
+	        window.kemuName = "<%=kemuName%>";//mks  mg
+	        window.cutiType = "<%=type%>";//sequence mandom
+	        window.question_sum = "<%=num%>";
+	        window.leimu = "<%=leimu%>";
+            window.sc = "<%=sc2%>";
+            //window.NowSeq = "<%=jump_num%>";
+            window.neice = "<%=neice%>";
+	        if (window.cutiType == "cuoti") {
+	            var arr = get_err_list();
+	            if (arr[0] == undefined) {
+	                alert('没有错题')
+	                window.history.go(-1);
+	            }
+	            setLocal(window.kemuName + window.cutiType, window.NowSeq = arr[0])
+	        }
+	        //alert('loadStorage1')
+	        loadStorage('<%=jump_num%>');
+	        //alert('loadStorage2')
+	    };
+	    var txt = "";
+	</script>
+		<script type="text/javascript" src="../js/edit..js?1"></script>
+</html>
+
+
+

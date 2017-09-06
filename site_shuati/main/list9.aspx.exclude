@@ -1,0 +1,99 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="list9.aspx.cs" Inherits="wap_main_type" %>
+<%@ Import Namespace="AgileFrame.Orm.PersistenceLayer.Model" %>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+        <div id="shareImage" style="display: none;">
+             <img src="../image/hdt2.jpg" />
+        </div>
+		<title><%=name1 %><%=title1%>题库</title>
+		<link rel="stylesheet" href="../css\index.css">    
+		<script type="text/javascript" src="../js/list.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../css/aui.css">-->
+        <link rel="stylesheet" type="text/css" href="../css/aui.min.css">
+		<link rel="stylesheet" href="../css\swiper.min.css">
+	<style type="text/css">
+            .aui-bar {
+    background: url('../image/bar1.png') no-repeat #e74c3c;
+    background-size: 100% auto;
+    background-position: 0 bottom;
+            }
+		.headerclass {
+            min-width: 200px;
+			min-height: 210px;
+			background: url('../image/hdt2.jpg') no-repeat;/*1122.jpg*/
+			position: relative;
+			background-origin: content;
+			background-position: center center;
+			background-size: cover;
+		}
+			#cover2 {
+				position: fixed;
+				margin:0px auto;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.7) ;
+				text-align:center ;
+			}
+			#cover2 img {
+				 margin:0px auto;				 
+				 /*height:100%;*/
+                 height:30%;
+			}
+	</style>
+	</head>
+	<body><form id="form1" runat="server">
+        </form>
+
+		<header class="aui-bar aui-bar-nav aui-bar-danger" id="aui-header">
+			<a href="../ab.aspx?sc=<%=sc%>" class="aui-btn aui-btn-danger aui-pull-left" id="back"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title" id="title">
+				<%=name1 %> <%=title1%>题库（2016新）	</div>
+		</header>
+		
+		<div id="cover2" onclick="getbyId('cover2').style.display='';">
+            <br /><br /><br /><br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >帮先生，因您需要而在</font><br />
+            <img src="../image/提交错题/完整版本_num/<%=BLL1.getFile(sc) %>" />
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >长按扫码，分享您的需要</font>
+		</div>
+
+		<%--<div class="aui-content headerclass"></div>--%>
+        
+		<div class="aui-content-padded aui-card">
+			<ul class="aui-list-view">
+				
+				<li class="aui-list-view-cell" data-win="sequence">
+                    <i class="aui-iconfont aui-icon-edit aui-text-info"></i> 顺序检查题库<span class="aui-badge aui-badge-info" id="order"><%=num%></span>
+				</li>
+                <%
+                    foreach(St_TTimuDaXue t1 in dic.Values){                      
+                       %>
+                <a class="aui-arrow-right" href="edit2.aspx?jump_num=<%=t1.QuestionId %>&neice=1&kemuName=<%=kemuName%>&kemuId=<%=kemuId%>&subKcName=<%=subKcName %>&type=sequence&num=<%=num%>&sc=<%=sc%>">
+                <li class="aui-list-view-cell" data-win="sequence" style="font-size:small">
+                     <i class="aui-iconfont aui-icon-edit aui-text-success"></i>                     
+                    <%=getTingXingName(t1) %>-<%=t1.AutoId %>-<%=t1.Sourceid %><%=t1.Question %>
+                    <font color="red">答案<%=t1.Answer %></font>
+                    <font color="blue"><%=t1.OptionStr %></font><font color="green"><%=t1.SourceFile %></font>
+                        
+				</li></a>
+                <%
+                  } %>
+			</ul>
+		</div>
+        <p class="aui-text-center">若未能满足需要，请向我们反馈信息</p>
+		<footer class="aui-nav aui-text-center" id="aui-footer">
+			<span class="" style="font-size:14px;">因您需要而在 -> <a onclick="getbyId('cover2').style.display='block';">爱帮先生</a> </span>
+		</footer>
+		 <%--<img src="https://c.cnzz.com/wapstat.php?siteid=1256953625&r=&rnd=751371736" width="0" height="0">--%>
+        <div style="display:none"><script language="javascript" type="text/javascript" src="https://js.users.51.la/18900802.js"></script>
+<noscript><a href="https://www.51.la/?18900802" target="_blank">width="0" height="0"/></a></noscript></div>
+
+	</body>
+</html>

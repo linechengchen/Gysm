@@ -1,0 +1,594 @@
+body {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0 0 0 0;
+	padding: 0;
+	background: #F2F2F2;
+	color: #333;
+}
+
+.titles{
+	margin: 0;
+	width: 100%;
+	height: 130px;
+	/*background-image: linear-gradient(0deg, #30D88F 0%, #29D494 52%);*/
+    background-image: linear-gradient(0deg, #ff8200 0%, #ff8200 52%);
+	position: relative;
+	overflow: hidden;
+}
+
+.cover{
+	margin: 0;
+	width: 100%;
+	height: 130px;
+	/*background-image: linear-gradient(0deg, #30D88F 0%, #29D494 52%);*/
+    background-image:url(https://localhost:62259/app/shuati/image/hdt-shuati2.jpg);
+	position: relative;
+	overflow: hidden;
+}
+
+.cover img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	box-shadow: 0 0 10px #DDDDDD;
+	margin: 44px 0 25px 16px;
+	float: left;
+}
+.cover .touhead{
+	width: 100%;
+	height: 130px;
+	position: absolute;
+	top: 0;
+}
+.cover .headpic{
+	width: 90px;
+	height: 130px;
+	float: left;
+}
+.cover .headimg{
+	width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 60px;
+    box-shadow: 0 0 10px #DDDDDD;
+    background: #FFFFFF;
+    color: #ff8200;/*color: #1AD46E;*/
+    font-size: 30px;
+    margin: 38px auto;
+    text-align: center;
+}
+#up_img {
+	width: 65px;
+    height: 65px;
+    opacity: 0;
+    margin-top: 38px;
+    margin-left: -80px;
+    position: absolute;
+}
+
+.imgload {
+	margin: 49px 0 0 0;
+	width: 79px;
+	height: 75px;
+	line-height: 20px;
+	cursor: pointer;
+	color: #888;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	z-index: 9999;
+}
+
+.cover .username{
+	width: 70%;
+	color: #FFFFFF;
+	font-size: 15px;
+	float: left;
+	margin-top: 52px;
+}
+.cover .userschool{
+	width: 70%;
+	color: #FFFFFF;
+	margin-top: 10px;
+	font-size: 12px;
+	float: left;
+}
+
+.title_logo {
+	width: 100%;
+	height: 220px;
+	background: #FFFFFF url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixin6.png) no-repeat center;
+	background-size: 100% 220px;
+	text-align: center;
+	margin-top: 0px;
+	border-bottom: 1px solid #E4E4E4;
+	overflow: hidden;
+}
+.title_logo img {
+	width: 6em;
+	height: 6em;
+	border-radius: 6em;
+	border: 2px solid #FFFFFF;
+	margin-top: 40px;
+}
+.title_logo h3 {
+	font-size: 17px;
+}
+.title_logo p {
+	font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.titles img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	box-shadow: 0 0 10px #DDDDDD;
+	margin: 44px 0 25px 16px;
+	float: left;
+}
+.titles .touhead{
+	width: 100%;
+	height: 130px;
+	position: absolute;
+	top: 0;
+}
+.titles .headpic{
+	width: 90px;
+	height: 130px;
+	float: left;
+}
+.titles .headimg{
+	width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 60px;
+    box-shadow: 0 0 10px #DDDDDD;
+    background: #FFFFFF;
+    color: #ff8200;/*color: #1AD46E;*/
+    font-size: 30px;
+    margin: 38px auto;
+    text-align: center;
+}
+#up_img {
+	width: 65px;
+    height: 65px;
+    opacity: 0;
+    margin-top: 38px;
+    margin-left: -80px;
+    position: absolute;
+}
+
+.imgload {
+	margin: 49px 0 0 0;
+	width: 79px;
+	height: 75px;
+	line-height: 20px;
+	cursor: pointer;
+	color: #888;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	z-index: 9999;
+}
+
+.titles .username{
+	width: 70%;
+	color: #FFFFFF;
+	font-size: 15px;
+	float: left;
+	margin-top: 52px;
+}
+.titles .userschool{
+	width: 70%;
+	color: #FFFFFF;
+	margin-top: 10px;
+	font-size: 12px;
+	float: left;
+}
+
+.title_logo {
+	width: 100%;
+	height: 220px;
+	background: #FFFFFF url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixin6.png) no-repeat center;
+	background-size: 100% 220px;
+	text-align: center;
+	margin-top: 0px;
+	border-bottom: 1px solid #E4E4E4;
+	overflow: hidden;
+}
+.title_logo img {
+	width: 6em;
+	height: 6em;
+	border-radius: 6em;
+	border: 2px solid #FFFFFF;
+	margin-top: 40px;
+}
+.title_logo h3 {
+	font-size: 17px;
+}
+.title_logo p {
+	font-size: 15px;
+}
+.collection {
+	width: 100%;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.collection ul {
+	width: 100%;
+	height: 67px;
+	background: #FFFFFF;
+}
+
+.list_my ul li
+{
+   width:10%;
+}
+.collection ul li {
+	width: 50%;
+	height: 43px;
+	text-align: center;
+	background: #FFFFFF;
+	border-right: 1px solid #E4E4E4;
+	float: left;
+	margin: 12px 0 12px 0;
+}
+.collection ul li .bangfenbiico{
+	width: 30%;
+	text-align: right;
+	float: left;
+}
+.collection ul li .bangfenbiico img{
+	width: 33px;
+	margin-top: 4px;
+}
+.collection ul li .qtbcon{
+	width: calc(70% - 24px);
+	padding-left: 12px;
+	float: left;
+	text-align: left;
+}
+.collection ul li .qtbcon .bangfenbi{
+	width: 100%;
+	height: 25px;
+	font-size: 15px;
+	color: #424242;
+}
+
+.collection ul li .qtbcon .moneys{
+	font-size: 14px;
+	color: #FD5A5A;
+}
+.collection ul li .qtbcon .perfect{
+	font-size: 12px;
+	color: #888888;
+}
+
+.list_branch {
+	overflow: hidden;
+	margin-top: 10px;
+	width: 100%;
+}
+.list_branch ul {
+	width: 100%;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E4E4E4;
+	border-top: 1px solid #E4E4E4;
+}
+.list_branch ul li {
+	overflow: hidden;
+	height: 56px;
+	margin-left: 46px;
+	border-bottom: 1px solid #E4E4E4;
+	background: #FFFFFF url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixininto@3x.png) no-repeat 95% 22px;
+	background-size: 8px 16px;
+}
+.list_branch ul li.last{
+	border-bottom: none;
+	padding-bottom: 10px;
+}
+.list_branch ul li img {
+	position: absolute;
+	width: 20px;
+	margin: 20px 0 0 -30px;
+}
+.list_branch ul li .namesa {
+	margin: 20px 0 0 0;
+	font-size: 15px;
+	color: #424242;
+}
+.list_branch ul li .money{
+	float: right;
+	margin: -22px 35px 0 0;
+	color: #999999;
+	font-size: 14px;
+    margin: -21px 35px 0 0;
+    color: #999999;
+    font-size: 14px;
+}
+.interests{
+	width: 100%;
+	background: #FFFFFF;
+	margin-bottom: 10px;
+}
+.interests p{
+	padding: 10px 0 0 10px; 
+}
+.interests ul{
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	border-top: 1px solid #E4E4E4;
+	height: 90px;
+}
+.interests ul li{
+	width: 49%;
+	height: 70px;
+	float: left;
+	margin-top: 10px;
+	border-right: 1px solid #E4E4E4;
+}
+.interests ul li.last{
+	border-right: none;
+}
+.interests ul li img{
+	width: 35px;
+	margin: 15px 0 0 10%;
+}
+.interests ul li .contentsa{
+	margin: -70px 0 0 35%;
+}
+.interests ul li .contentsa p.one{
+	font-size: 14px;
+	color: #333333;
+}
+.interests ul li .contentsa p.two{
+	margin-top: -20px;
+	font-size: 10px;
+	color: #F38E8E;
+}
+.interests ul li .contentsa p.three{
+	font-size: 10px;
+	margin-top: -15px;
+	color: #999999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.demo {
+	width: 100%;
+	margin-top: 10px;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+.demo span {
+	font-size: 15px;
+	line-height: 50px;
+	margin-left: 3%;
+}
+.demo span.modifys {
+	float: right;
+	margin-right: 3%;
+}
+table {
+	margin-top: 0px;
+	border-collapse: collapse;
+	background: #FFFFFF;
+	width: 100%;
+	height: 200px;
+	margin-left: 0px;
+}
+td,
+th {
+	text-align: center;
+	width: 12.5%;
+	height: 30px;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	background-color: #FFFFFF;
+}
+.uploads {
+	width: 100%;
+	/*height: 200px;*/
+	margin-top: 10px;
+	overflow: hidden;
+	background: #FFFFFF;
+}
+.uploads .pics {
+	width: 100%;
+	background: #FFFFFF;
+}
+.uploads .pics img {
+	width: 20%;
+	height: 60px;
+	background: #FFFFFF;
+	padding: 5px 0 0 3.5%;
+}
+.uploads .title_shang {
+	width: 100%;
+	height: 35px;
+	margin-left: 3%;
+	padding-top: 15px;
+	font-size: 15px;
+}
+.uploads .title_shang span {
+	font-size: 13px;
+	color: #8F8F94;
+}
+.a-upload {
+	margin: 5px 0 0 2.5%;
+	width: 20%;
+	height: 60px;
+	line-height: 20px;
+	position: relative;
+	cursor: pointer;
+	color: #888;
+	background: #FFFFFF url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinimg/add@3x.png) no-repeat;
+	background-size: 100% 60px;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+.a-upload input {
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer
+}
+.ghdlzh {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	text-align: center;
+}
+.ghdlzh .bg_back {
+	position: absolute;
+	width: 100%;
+	z-index: 555;
+}
+.ghdlzh .tishi {
+	position: fixed;
+	width: 80%;
+	margin: 10%;
+	bottom: 90px;
+	border-radius: 5px;
+	height: 50px;
+	line-height: 15px;
+	background: #ebebeb;
+	z-index: 666;
+}
+.ghdlzh .tishi img {
+	position: relative;
+	float: left;
+	margin: 15px 0 0 20%;
+	width: 20px;
+}
+.ghdlzh .tishi p {
+	font-size: 16px;
+	color: rgba(3, 3, 3, 1);
+}
+/*背景变暗*/
+
+.del {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	height: 100%;
+	display: none;
+}
+.del .bg_del {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #393939;
+	opacity: 0.3;
+	z-index: 200;
+}
+.del ul {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: #FFFFFF;
+	z-index: 999;
+}
+.del ul li {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	font-size: 15px;
+	border-bottom: 1px solid #E4E4E4;
+}
+.tabBox .hd {
+	/*height: 40px;*/
+	line-height: 40px;
+	padding: 0 10px;
+	font-size: 20px;
+	background: #f4f4f4;
+	border-bottom: 1px solid #F5AB38;
+	position: relative;
+}
+.tabBox .hd ul {
+	position: absolute;
+	height: 41px;
+	top: 0;
+	overflow: hidden;
+}
+.tabBox .hd ul li {
+	float: left;
+	padding: 0 10px;
+	color: #666;
+}
+.tabBox .hd ul .on {
+	border: 2px solid #F5AB38;
+	border-bottom-color: #fff;
+	background: #fff;
+	color: #CF7F21;
+}
+.tabBox .hd ul .on a {
+	display: block;
+	/* 修复Android 4.0.x 默认浏览器当前样色无效果bug */
+}
+.tabBox .bd{
+	height: 200px;
+}
+.tabBox .bd ul {
+	/*position: absolute;*/
+	width: 100%;
+	height: 90px;
+	background: #FFFFFF;
+	/*padding: 10px 0 10px 10px;*/
+}
+.tabBox .bd ul li{
+	width: 100%;
+}
+.tabBox .bd ul li img{
+	max-width: 100%;
+}
+/*.tabBox .bd li {
+	height: 33px;
+	line-height: 33px;
+}*/
+.tabBox .bd li a {
+	color: #666;
+}

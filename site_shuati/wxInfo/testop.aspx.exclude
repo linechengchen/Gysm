@@ -1,0 +1,21 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="testop.aspx.cs" Inherits="testop" %>
+
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="刷题神器" />
+    <meta name="applicable-device" content="mobile" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>测试获取用户信息</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Image ID="imgHead" runat="server"  Width="40px" Height="40px" /><asp:Label ID="lblWxName" runat="server" ForeColor="Blue"></asp:Label>
+    </div>
+    </form>
+</body>
+</html>

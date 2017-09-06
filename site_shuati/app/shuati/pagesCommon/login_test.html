@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>用户登录</title>
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.js"></script>
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=11"></script>
+    <style>
+        .mui-btn {
+            color: #ccc;
+            border-radius: 5px !important;
+            width: 80%;
+        }
+
+        .disabledColor {
+            color: #4D99F5;
+        }
+
+        .link-area {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #reg {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        #forgetPassword {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        .abled {
+            color: #ffffff;
+            border-color: #F38524;
+            background-color: #f38524;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+    </style>
+    <script>        
+        $(function () {
+            if (isWeixin) {     //&& localStorage.getItem("logout")
+                var href1 = '';
+                try {
+                    localStorage.removeItem("logout");
+                    sessionStorage.setItem('flagUrl', true);
+                    href1 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId +
+                    "&redirect_uri=" +
+                    //授权跳转的链接
+                    baseUrlCommon + "/wechat/wxlogin.aspx?redirectUrl=";
+                    //如果没有选择学校，则应该进入选择学校
+                    if (isNull(localSchoolInfo) || isNull(localSchoolInfo.school_id))
+                        href1 += baseUrlHtmlLong + "/pagesCommon/indexPage_searchcitylist.html";// + "&user_id=" + data1.user_id;
+                    else
+                        href1 += baseUrlHtmlLong + "/pages/indexPage1_" + app_path1 + ".html";// + "&user_id=" + data1.user_id;
+                    //下面这种做法因为包含问号和参数出错
+                    //baseUrlHtml + "/pages/" + url1 + "&user_id=" + data1.user_id +
+
+                    href1 += "&response_type=code&scope=snsapi_userinfo&state=stdb#wechat_redirect";
+                    alert(href1)
+                    window.location.href = href1;
+                } catch (e) { console.error(e); alert(e.message); }
+            } else {
+                window.location.href = "login2.html";
+            }
+        });
+    </script>
+</head>
+</html>

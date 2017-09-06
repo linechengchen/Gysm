@@ -1,0 +1,2 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Xt_note_json.aspx.cs" Inherits="app_jianzhi_user_user_auto_Xt_note" %>
+{"info":"\u6dfb\u52a0\u6210\u529f\uff01","status":1,"url":"\/Classes/index.aspx?classes_id=a9bc5f59-c929-41a7-9d2d-4b04f8f049a6"}

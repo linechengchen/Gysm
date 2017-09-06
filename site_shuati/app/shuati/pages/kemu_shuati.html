@@ -1,0 +1,1413 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>题库（2017新）</title>
+
+    <link href="../css/mui/mui.min.css" rel="stylesheet" />
+    <link href="../css/swiper/swiper.min.css" rel="stylesheet" />
+    <link href="../css/app.css?r=2119191" rel="stylesheet" />
+    <style>
+        .question-text {
+            line-height: 30px;
+        }
+    </style>
+
+    <style>
+        #cover2 {
+            text-align: center;
+            margin: 0px auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 20000;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .fxImg1 {
+            float: right;
+        }
+    </style>
+</head>
+
+<body class="qes-detail-page show-next">
+
+    <header id="header" class="mui-bar mui-bar-nav navbar">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title" id="title">题库</h1>
+        <span class="mui-icon mui-icon-paperplane mui-pull-right" style="display: none; font-size:.2rem" id="jump1"><font style="font-size:.1rem">选题</font><!--font-size:large;选题--></span>
+        <span class="mui-icon mui-icon-trash mui-pull-right" style="display:none;" id="qingkong1"></span>
+    </header>
+
+    <div class="mui-content st-content">
+        <div class=" st-slider swiper-container" id="slider">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-btn-box" class="chat-btn-box" style="display:none;">
+        <div class="bg"></div>
+        <div class="chat-btn-ct">
+            <span class="mui-icon mui-icon-mic"></span><span class="label">点击进入文字留言</span>
+        </div>
+        <div class="chat-near-msg">
+            xxx：最近留言
+        </div>
+    </div>
+    <div id="chat-box" class="chat-box">
+        <div class="bg"></div>
+        <div class="chat-ct">
+            <header class="chat-bar">
+                <h1 class="chat-title">爱帮刷题讨论区</h1>
+                <span class="chat-close">关闭</span>
+            </header>
+            <div class="chat-inner-box">
+                <div class="chat-inner-ct" id="chat-inner-ct">
+                    <div class="chat-comment-item">
+                        <div class="comment-ti">
+                            zcx 19:20:11
+                        </div>
+                        <div class="comment-ct">
+                            asdad123asdasdasadas
+                        </div>
+                    </div>
+                    <div class="chat-comment-item">
+                        <div class="comment-ti">
+                            zcx 19:20:11
+                        </div>
+                        <div class="comment-ct">
+                            asdad123asdasdasadas
+                        </div>
+                    </div>
+                </div>
+                <!--<span class="chat-close">关闭</span>-->
+            </div>
+            <div class="chat-say-box">
+                <div class="say-wrapper">
+                    <input class="input" type="text" />
+                </div>
+                <div class="send-btn">发送</div>
+            </div>
+        </div>
+    </div>
+    <div class="refresh-btn" id="refresh-btn">刷新</div>
+    <div class="jiucuo-btn" id="jiucuo-btn">纠错</div>
+    <!--OptionType == '2' ||-->
+    <div class="nav" id="nav">
+        <div class="question-user-action" id="action3_" style="display:none">
+            <div class="user-action-item user-action-right" id="action1_">答对</div>
+            <div class="user-action-item user-action-error" id="action2_">答错</div>
+        </div>
+        <div class="nav-mode" id="navMode">
+            <span class="mui-icon mui-icon-plus" id="nanti"></span>
+            <div class="mode-btn mode-dati selected">错题停留</div>
+            <div class="mode-btn mode-moni">模拟考试</div>
+            <div class="mode-btn mode-beiti">背题模式</div>
+            <div class="mui-icon mui-icon-gear" id="set1" onclick="document.getElementById('cover2').style.display = 'block';"></div>
+        </div>
+        <!--提示用覆盖层-->
+
+        <div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+            <img class="fxImg1" src="../image/shareWX.png" style="height:90px" />
+            <br />
+            <br />
+            <font style="color:white;font-size:15px;font-weight:bolder">
+                温馨提醒：
+                <br /><br />
+                1、错题停留：答错题目需要手动滑题
+                <br /><br />
+                2、答题模式：答错题仍然会自动滑题
+                <br />&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                默认复习的时间为 3 秒
+                <br /><br />
+                3、背题模式：直接显示答案，学习用
+            </font>
+            <br />
+            <br /><br /><br /><br /><br /><font style="color:white;font-size:23px;font-weight:bolder">长按扫码，分享您的需要<br /><br /></font>
+            <img id="img2wei" src="" style="height:90px" />
+            <br /><br /><font class="fonttixing">爱帮先生，因您需要而在</font>
+
+        </div>
+
+        <script id="question-detail-tpl" type="text/html">
+            <div class="swiper-slide question-detail" title="{{QuestionId}}">
+                <div class="question-title" title="{{QuestionId}}" style="{{titleStyle(Question, QuestionId)}}">
+                    <div>
+                        <span class="question-type">
+                            {{getQuestionTypeName(OptionType)}}
+                        </span>
+                        <span class="question-text">
+                            {{QuestionId}}、{{getNoQuestionId(Question, SourceFile)}}
+                        </span>
+                    </div>
+                </div>
+                <div class="question-extra">
+                    <!--<span>（题型多选）</span>--->（第{{QuestionIndex}}/ {{question_sum()}} 题{{questionid_min}}-{{questionid_max}}）<span class="question-err-ans">
+                        <!--选错--><span class="mui-icon  mui-icon-star"></span><!--B-->
+                    </span><span style="color: lightgrey; float: right;">{{AutoId+1000}}</span>
+                </div>
+                <div class="question-answer">
+                    {{each optionArr as answer i}}
+                    <div class="answer-item {{getAnswerResult(i,Answer,OptionType)}}">
+                        <span class="circle-box">{{answer.selection}}<i class="mui-icon mui-icon-closeempty"></i><i class="mui-icon mui-icon-checkmarkempty"></i></span>
+                        <span class="answer-text">{{answer.text}}</span>
+                    </div>
+                    {{/each}}
+                    {{if OptionType==1 }}<span class="next_ti" style="float:right; background: #1badf6; color: #fff; margin-right:45px">&nbsp;下一题&nbsp;</span>{{/if}}
+
+                    <!--<span class="next_ti" id="cuoti" style="float:right; background: #1badf6; color: #fff; margin-right:45px; display:none">
+                        &nbsp;删除错题&nbsp;
+                    </span>-->
+                </div>
+                <div class="question-answered-wrapper">
+                    <div class="question-analyze" style="margin-bottom:15px;font-size:small">
+                        爱帮先生--为您带来试题解析
+                    </div>
+                    <div class="question-point">
+                        <div class="question-as-hd" style="margin-bottom:15px;">
+                            <span style="color:blue">答案:</span> {{transAnswerToABC(Answer, OptionType)}}
+                            {{if Answer_yiwen != "" || AnswerABC != ""}}
+                            <br /><span style="color:green">答案存疑:{{AnswerABC}}  {{Answer_yiwen}}</span>
+                            {{/if}}
+                            <br /><span style="color:grey; float:right; margin-right:6px;">[左滑进下题] </span>
+                        </div>
+                        <div class="question-as-hd" style="display:none">
+                            <span style="color: #999;">选题点右上，左滑下一题</span>
+                            <span style="float: right; margin-right: 20px; color: blue;">首题</span>
+                        </div>
+                        <div class="question-as-hd" style="margin-bottom:15px;">
+                            考点: <span class="item-tag">常识题</span>
+                        </div>
+                        <div class="question-as-detail" style="margin-bottom:15px;">
+                            {{getSourceFile(SourceFile, Sourceid)}}
+                            <br />解析:{{Explain}}<span style="color: lightgrey; margin-left: 6px;">{{AutoId+1000}}题</span>
+                            <br />
+                        </div>
+                    </div>
+                    <!--<div class="question-count">
+                       <div class="question-as-hd">
+                           统计:
+                       </div>
+                       <div class="question-as-detail">
+                           <div class="my-faults">
+                               <p class="count-label">
+                                   我的错误率
+                               </p>
+                               <p class="count-value">共做过111次， 做错111次，做对{{TrueCount}}次</p>
+                           </div>
+                           <div class="friend-faults">
+                               <p class="count-label">
+                                   朋友错误率
+                               </p>
+                               <p class="count-value">据统计{{WrongRate}}%的人做错过</p>
+                           </div>
+                       </div>
+                    </div>-->
+                </div>
+                <div class="question-count" id="questionCount">
+                    <!--第{{QuestionIndex + 1}}/ {{question_sum()}} 题-->
+                </div>
+                <div class="question-point">
+                </div>
+                <br />
+                <div style="display:none">
+                    <script language="javascript" type="text/javascript" src="https://js.users.51.la/18900802.js"></script>
+                    <noscript><a href="https://www.51.la/?18900802" target="_blank" width="0" height="0" /></a></noscript>
+                </div>
+            </div>
+        </script>
+
+        <script id="comment-detail-tpl" type="text/html" style="display:none;">
+            {{each St_TArticleComments .list as comment i}}
+            <div class="chat-comment-item">
+
+                <div class="comment-ti">
+                    <img src="{{comment.Images}}" class="comment-ti-img" />
+                    <span class="comment-date">{{comment.CreateDate}}</span>
+
+                </div>
+                <div class="comment-ct">
+                    {{comment.Content}}
+                </div>
+
+            </div>
+            {{/each}}
+        </script>
+    </div>
+
+
+
+    <script src="../js/shuati/Dictionary.js?r=1191"></script>
+    <script src="../js/shuati/localoper.js?r=1111"></script>
+    <script src="../js/shuati/localstorage.js?r=112111"></script>
+    <!--<script src="../js/jquery-2.1.1.min.js"></script>-->
+
+    <script src="../js/mui/mui.min.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <!--<script src="../js/lib/aes.js"></script>
+    <script src="../js/lib/aes-ctr.js"></script>-->
+    <script src="../js/swiper/swiper.min.js"></script>
+
+    <script src="../source/js/author.js?r=1"></script>
+    <script src="../../common/source/js/authorCommon.js?r=115"></script>
+    <script src="../js/shuati/shuati_common.js?r=1111112"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        var lastCacheQuestionJson = {
+            QuestionId: null
+        };
+        var mode1 = 'mode-dati';//默认为自动滑题
+
+        (function ($, doc) {
+            if (!getLocal("tixing11")) {
+                //e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+                var btnArray = ['下次再提醒朕', '朕已了解'];
+                var title1 = '温馨提示：错题停留为 答错时，停留三秒供复习，自动滑入下一题；背题模式为看到答案直接复习用';
+                var title2 = '您是否已了解';
+                mui.confirm(title2, title1, btnArray, function (e) {
+                    try {
+                        setLocal("tixing11", "1");
+                        if (e.index == 1) {
+                            //location.href = "kemuDetailList.html?tmp_sc_sum=999&" + transJsonToQuery(params);
+                        }
+                    } catch (e) {
+
+                    }
+                });
+            }
+            //window.localStorage.clear();
+            var questionsData = [];
+            var QuestionIndex = 0; //在本页内的顺序题号
+
+            var questionId = 0;
+
+            var sliderIndex = 0;
+            var pageIndex = 1; //页码
+            var top = 5; //每页size
+            //var questionIndex2 = (pageIndex - 1) * top; //全局的顺序题号
+            var win_height = window.innerHeight;
+            var navct_height = (win_height - 100) / 100 + 'rem';
+            var slideMoveCount = 0; // 控制滑动后是否进行动作，如果是2的倍数，滑动后触发后续操作，不是则return
+
+            if (!params)
+                params = getParseQuery();
+            var kemuId = params.kemuId;
+
+            var QuestionIndexKey = 'QuestionIndex_' + params.kemuId;
+            QuestionIndex = getLocal(QuestionIndexKey);
+
+            //var questionid_max = 0; //parseInt(params.questionid_max);//本试卷的最大题号，第一次会从服务器取到最大max，方便客户端判断是否还有题目，第二次带着到服务器，服务器就不再进行数据库操作。
+            //var questionid_min = 9999; //parseInt(params.questionid_min);//本试卷的最小题号，第一次会从服务器取到最大max，方便客户端判断是否还有题目，第二次带着到服务器，服务器就不再进行数据库操作。
+            //if(params.questionid_max > 0) questionid_max = params.questionid_max;
+            //if(params.questionid_min < 9999) questionid_min = params.questionid_min;
+
+            //出题类型sequence   random
+            //var cutiType1 = params.cutiType;
+            //未复制为所有题型，0单选，1多选，2判断，3简答，4论述题
+            //var optionType1 = params.optionType;
+
+            //最近打开一题的缓存
+            var lastQuestionsDic = new Dictionary();
+            var lastQuestionsDicKey = "qq_" + params.kemuId + '|' + params.cutiType + '|' + params.optionType + '|last';
+
+            //题目数据结构，目前不缓存
+            var questionsDic = new Dictionary();
+            //var questionsDicKey = "qq_" + params.kemuId + '|' + params.cutiType + '|' + params.optionType;
+
+            //错题缓存
+            var errQuestionsDic = new Dictionary();
+            var errQuestionsDicKey = "qq_" + params.kemuId + '_err';
+
+            var debugClearCache = false;
+
+            //如果是第二次打开，一般是上次打开的题目记录，这个值不改变
+            var sliderQuestionIdArray = new Array(); //是所有我此次浏览过的选项卡的题目号
+
+            //var lastCacheQuestionId = -1;
+
+            $.ready(function () {
+                $('body').on('tap', '.next_ti', function (event) {
+                    try {
+                        var q1 = lastCacheQuestionJson.QuestionId;
+                        slideNext(q1);
+                    } catch (e) {
+                        console.log('85-' + e.message); mui.toast('85-' + e.message);
+                    }
+                });
+
+                GetUpdateMsgTimer(params);
+                if (new Date().getHours() < 6)
+                    mui.toast('小伙伴们熬夜辛苦了，祝考试顺利，遇到问题可以联系爱帮女生');
+                template.config("escape", false);//输出html
+
+                $.init({
+                    statusBarBackground: '#000000',
+                    styles: {
+                        top: 0,
+                        bottom: 0,
+                    }
+                });
+
+                lastQuestionsDic.getLocal1(lastQuestionsDicKey);
+                errQuestionsDic.getLocal1(errQuestionsDicKey);
+                //questionsDic.getLocal1(questionsDicKey);
+
+                console.log('lastQuestionsDic:' + lastQuestionsDic.length());
+                console.log('errQuestionsDic:' + errQuestionsDic.length());
+                console.log('questionsDic:' + questionsDic.length());
+
+                //console.log(lastQuestionsDic.elements);
+                //console.log(errQuestionsDic.elements);
+
+                //console.log(lastQuestionsDic);
+                //if (questionArray1.this1);
+                //lastQuestionsDic.reSetLocal(lastQuestionsDicKey, lastCacheQuestionJson.QuestionId, lastCacheQuestionJson);
+                //console.log(lastQuestionsDic.getLocal1(lastQuestionsDicKey));
+
+                //获取本地的openid
+                params.openid = params.openid || getLocal('shuati_openid') || '';
+                if (isNotNull(params.openid)) {
+                    setLocal('shuati_openid', params.openid);
+                    //if (params.test1)
+                    //    mui.toast(params.openid);
+                }
+
+                var lastErrNum = 0;
+                var timebegin1onSaveErr = new Date('2015-10-10');
+                function isLater2(miniSeconds) {
+                    //var diff = new Date().valueOf() - timebegin1onSaveErr.valueOf();
+                    var diff_s = parseInt(Math.abs((new Date() - timebegin1onSaveErr)));// / (900) * 60 * 60 * 24
+                    if (diff_s > miniSeconds) {
+                        timebegin1onSaveErr = new Date();
+                        return true;
+                    } else {
+
+                    }
+                    return false;
+                }
+
+                function onSaveErr(errQuestionsDic2) {
+                    try {
+                        var errQuestionsDic3;
+                        if (isNotNull(errQuestionsDic2)) {
+                            errQuestionsDic3 = errQuestionsDic2;
+                        } else {
+                            errQuestionsDic3 = errQuestionsDic;
+                        }
+                        if (isNotNull(errQuestionsDic3))
+                            console.log('1111111错题数' + errQuestionsDic3.length());
+                        //console.log("保错题云服务" + errQuestionsDic.length() + " > lastErrNum=" + lastErrNum);
+                        if (errQuestionsDic3 && isLater2(20000) && (errQuestionsDic3.length() >= 0
+                            || lastErrNum != errQuestionsDic3.length())) {//题目数有变化 都要保存到服务器
+                            if (isDebug)
+                                params.openid = 'os7wpwrdLOgx3fXiNiRQGAF19bI8';
+                            if (isDebug)
+                                mui.toast('保存云服务' + params.test1 + '=' + params.openid);
+                            if (isNotNull(params.openid)) {
+                                var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                                if (isNull(errQuestionsDic2))
+                                    params22.clearAll = '1';
+                                params22.errorSum = errQuestionsDic3.length();
+                                console.log('errorSum=' + errQuestionsDic3.length());
+                                params22.errJson = JSON.stringify(errQuestionsDic3);//errQuestionsDic3.valuesJson();
+                                postErrTimu(params22, function (json) {
+                                    try {
+                                        //questionsData = json.data;
+                                        //alert(json.data.St_TTimuDaXue.list[0].OptionStr);
+                                        if (json && json.code == '200') {
+                                            console.log(json.num);
+                                            //if (params.test1) {
+                                            if (isNotNull(json.num) && json.num == '1')
+                                                mui.toast("错题库云存储成功！" + lastErrNum + "->" + errQuestionsDic3.length());
+                                            else
+                                                mui.toast("错题库云存储暂未启用" + json.num);
+                                            //} else
+                                            //   mui.toast("错题库云存储成功！" + lastErrNum);
+                                            lastErrNum = errQuestionsDic3.length();
+                                        }
+                                    } catch (e) {
+                                        console.log('85-' + e.message); mui.toast('85-' + e.message);
+                                    }
+                                });
+                            } else {//open为空的时候，8次之后，需要关注
+                                alert('小伙伴温馨提示：因未获得微信openid授权，无法为您存储云错题库，将跳转关注');
+                                //if (isShowGuanZhu(params.sc))
+                                {
+                                    //mui.toast('微信关注');
+                                    //if (!params.openid || window.location.href.indexOf("openid") == -1) {
+                                    var href1 = "http://stbd.aibangxs.com/site_shuati/wxInfo/showGuanZhu.aspx?app_path1=" + app_path1 + "&urlname=" + escape(window.location.href);
+                                    //mui.toast(href1);
+                                    myhref.href = href1;
+                                    //}
+                                    //else
+                                    {
+                                        //console.log(params.openid + ':' + params.nickname + ':' + params.head_img_url);
+                                    }
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        console.log('86' + e); mui.toast('86-' + e);
+                    }
+                };
+                //离开本页面的时候调用
+                //window.onbeforeunload = onSaveErr;
+
+                if (cishu() > 11110)
+                    document.getElementById('jump1').innerText = '';
+
+                doc.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+                if (params.cutiType == 'sequence') {
+                    document.getElementById('jump1').style.display = '';
+                }
+                if (params.cutiType == 'cuoti') {
+                    document.getElementById('qingkong1').style.display = '';
+                }
+                //swiper初始化
+                //window.stSwiper = new window.Swiper('.swiper-container', {});
+                window.stSwiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    direction: 'horizontal',
+                    followFinger: true, //	如设置为false，拖动slide时它不会动，当你释放时slide才会切换。
+                    longSwipesMs: 300, //定义longSwipes的时间（单位ms），超过则属于longSwipes。
+                    longSwipes: false, //设置为false时，进行长时间长距离的拖动无法触发Swiper。
+                    longSwipesRatio: 0.3, //进行longSwipes时触发swiper所需要的最小拖动距离比例，值越大触发Swiper所需距离越大。最大值0.5。
+                    touchRatio: 1,
+
+                    //下面的参数要注释掉，不然页面会从第二个slider开始
+                    //                      observer:true,//修改swiper自己或子元素时，自动初始化swiper
+                    //                      observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                });
+
+                //从本地缓存获取上一次app打开时，缓存的题号
+                if (lastQuestionsDic && lastQuestionsDic.length() > 0) {
+                    lastCacheQuestionJson = lastQuestionsDic.getIndex(0).QuestionJson;
+                    //lastCacheQuestionId = lastQuestionsDic.getIndex(0).QuestionId;
+                    log(lastCacheQuestionJson, '上次打开');
+                }
+
+                //如果上次保存的题号存在，则赋值给 QuestionIndex
+                if (lastCacheQuestionJson && lastCacheQuestionJson.QuestionId) {
+                    questionId = lastCacheQuestionJson.QuestionId;
+                }
+                console.log("上次题号" + lastCacheQuestionJson.QuestionId);
+
+                //如果是错题，则从服务器读取错题。
+                if (params.cutiType == "cuoti") {
+                    //测试用 errQuestionsDic.removeAll();
+                    fetchErrQuestions(params, function (json) {
+                        console.log('请求fetchErrQuestions' + json);
+                        if (json && json.code == '200')//未登录
+                        {
+                            if (errQuestionsDic.length() == 0) {
+                                try {
+                                    if (!json.data.St_TTimuDaXueErrorInfo || !json.data.St_TTimuDaXueErrorInfo.list || json.data.St_TTimuDaXueErrorInfo.list.length == 0) {
+
+                                    } else {
+                                        var length2 = parseInt(json.data.St_TTimuDaXueErrorInfo.list[0].ErrorSum);
+                                        var length1 = parseInt(errQuestionsDic.length());
+                                        if (length2 > length1) {
+                                            var errQuestionsDic2 = new Dictionary();
+                                            //console.log(json.data.St_TTimuDaXueErrorInfo.list[0].ErrJson)
+                                            errQuestionsDic2.parseJsonObj(JSON.parse(json.data.St_TTimuDaXueErrorInfo.list[0].ErrJson));
+                                            console.log(errQuestionsDic2.length());
+                                            if (errQuestionsDic && errQuestionsDic2
+                                                && errQuestionsDic2.length() > errQuestionsDic.length()) {
+                                                //console.log("设置错题库成功");
+                                                errQuestionsDic = new Dictionary();
+                                                errQuestionsDic.parseJsonObj(errQuestionsDic2);
+                                                mui.toast('已找回云端错题数合并到本地：' + errQuestionsDic2.length() + '');
+                                                if (errQuestionsDic.length() > 0) {
+                                                    errQuestionsDic.setLocal1(errQuestionsDicKey);
+                                                }
+                                            } else {
+                                                mui.toast('错题数:' + errQuestionsDic2.length());
+                                            }
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.log('87-' + e.message); mui.toast('87-' + e.message);
+                                }
+                            }
+                        }
+                        //if (errQuestionsDic2.length() == 0)
+                        //    mui.toast('错题数' + errQuestionsDic2.length());
+                        try {
+                            if (errQuestionsDic.length() > 0) {
+                                errQuestionsDic.sort('cuoti');
+                                //错误：
+                                //questionsDic = JSON.parse(JSON.stringify(errQuestionsDic));
+                                //questionsDic = deepCopy(errQuestionsDic);
+                                questionsDic = errQuestionsDic;
+
+                                //如果网络存在异常，则从本地缓存中获取数据
+                                //console.log(lastCacheQuestionJson)
+                                //if (!lastCacheQuestionJson || !lastCacheQuestionJson.QuestionId)
+                                lastCacheQuestionJson = JSON.parse(JSON.stringify(errQuestionsDic.getIndex(0).QuestionJson));
+                                console.log(lastCacheQuestionJson);
+                                parseQuestionArray();
+                            }
+                        } catch (e) {
+                            console.log('88-' + e.message);
+                            mui.toast('88-' + e.message);
+                        }
+                    });
+                    doc.getElementById('title').innerHTML = "我的错题库";
+                } else {
+                    if (params.sc == '791' && params.kemuId == '100004' && isNull(params.optionType)) {
+                        mui.toast('第五章从176题后开始，已启动自动跳题功能');
+                        var q11 = '176'; var int1 = 0;
+                        if (lastCacheQuestionJson && lastCacheQuestionJson.QuestionId) {
+                            int1 = parseInt(lastCacheQuestionJson.QuestionId);
+                        }
+                        console.log("2222222222222222" + int1);
+                        if (int1 < parseInt(q11)) {
+                            questionId = q11;
+                        }
+                    }
+                    firstLoad(questionId);
+                }
+                var msg1 = '';
+                for (var i = 0; i < window.stSwiper.slides.length; i++) {
+                    msg1 += i + ':sslider:' + window.stSwiper.slides[i].title + ' | ';
+                    console.log(i + ':sslider:' + window.stSwiper.slides[i].title + ' real:' + window.stSwiper.realIndex);
+                }
+                //mui.toast(msg1);
+                //将获取的题库，解析到slider中。//题库从服务器或本地缓存中获取
+                function parseQuestionArray() {
+                    try {
+                        //alert('parseQuestionArray' + JSON.stringify(lastCacheQuestionJson))
+                        //同时获取本题、下一题、上一题 的题目对象
+                        var questionArray1 = questionsDic.getItemList(lastCacheQuestionJson);
+                        console.log(99999);
+                        //console.log(questionArray1)
+                        if (questionArray1) {
+                            if (questionArray1.this1) {
+                                sliderQuestionIdArray.push(questionArray1.this1.QuestionId); //记录第一次打开的题号
+                                addQuestionToDomBefore(questionArray1.this1);
+                            }
+                            if (questionArray1.prev)
+                                addQuestionToDomBefore(questionArray1.prev);
+                            if (questionArray1.prevprev)
+                                addQuestionToDomBefore(questionArray1.prevprev);
+                            if (questionArray1.next)
+                                addQuestionToDomAfter(questionArray1.next);
+                            if (questionArray1.nextnext)
+                                addQuestionToDomAfter(questionArray1.nextnext);
+                        }
+                    } catch (e) {
+                        console.log('parseQuestionArray函数错误-' + e.message);
+                    }
+                }
+                function firstLoad(questionId1) {
+                    //第一次打开的时候，都去服务器取一下
+                    if (questionId1 && questionId1 > 0) {
+                        params.questionId = questionId1;
+                        questionId = questionId1;
+                    }
+                    fetchQuestions(params, function (json) {
+                        try {
+                            //questionsData = json.data;
+                            //alert(json.data.St_TTimuDaXue.list[0].OptionStr);
+                            if (json && json.code == '200') {
+                                params.openid = params.openid || json.data.openid;
+
+                                console.log('fetchQuestions111');
+                                //设置标题
+                                doc.getElementById('title').innerHTML = json.data.kemuName;
+                                doc.getElementsByTagName('title')[0].innerHTML = json.data.kemuName + ' ' + getQuestionTypeName1(params.optionType);
+
+                                ////服务端控制是否清理缓存，下次生效
+                                //if (json.removeCache == 'err')// || debugClearCache
+                                //    errQuestionsDic.removeLocal(errQuestionsDicKey);
+                                //    //else if (json.removeCache == 'all' || debugClearCache)
+                                //    //    questionsDic.removeLocal(questionsDicKey);
+                                //else if (json.removeCache == 'last' || debugClearCache)
+                                //    lastQuestionsDic.removeLocal(lastQuestionsDicKey);
+
+                                if (!json.data.St_TTimuDaXue || !json.data.St_TTimuDaXue.list || json.data.St_TTimuDaXue.list.length == 0) {
+
+                                    mui.toast('此序号的题号' + params.questionId + '不存在，请点击刷新再加载一次，感谢您帮忙补充题库～');
+                                    //如果是错题的题目序号，则重新恢复上一次打开的题目序号
+                                    if (lastCacheQuestionJson.QuestionId == params.questionId) {
+                                        lastQuestionsDic.removeLocal(lastQuestionsDicKey);
+                                    }
+                                    params.questionId = '';
+                                    return;
+                                }
+
+                                if (params.question_sum && doc.getElementById('question_sum'))
+                                    doc.getElementById('question_sum').innerText = params.question_sum;
+
+                                lastCacheQuestionJson.QuestionId = params.questionId;
+
+                                window.stSwiper.removeAllSlides();
+
+                                questionsData = json.data.St_TTimuDaXue.list;
+
+                                if (json.data.questionid_min)
+                                    params.questionid_min = json.data.questionid_min;
+                                if (json.data.questionid_max)
+                                    params.questionid_max = json.data.questionid_max;
+
+                                initAnswerResult(questionsDic, questionsData, QuestionIndex);
+
+                            } else {
+                                console.log('fetchQuestions999');
+                                //如果网络存在异常，则从本地缓存中获取数据
+                                mui.toast('网络访问失败，将使用本地缓存，请帮忙反馈客服同学哦～');
+                                if (!questionsDic || !questionsDic.elements || questionsDic.elements.length == 0) {
+                                    questionsDic.getLocal1(questionsDicKey);
+                                }
+                                if (!questionsDic) {
+                                    mui.toast('网络存在异常，请反馈客服同学哦～');
+                                }
+                            }
+
+                            console.log(questionsDic);
+
+                            if (questionsDic.length() > 0) {
+                                questionsDic.sort(params.cutiType, params.order);
+                            }
+                            //如果questionId为空，则从页面去
+                            if (questionId == 0 && questionsDic.length() > 0) {
+                                questionId = questionsDic.elements[0].QuestionJson.QuestionId;
+                            }
+                            console.log(5555);
+                            console.log(lastCacheQuestionJson);
+                            console.log(questionId);
+
+                            //缓存本页面
+                            if (questionsDic && questionsDic.elements && questionsDic.elements.length > 0) {
+                                if (!lastCacheQuestionJson || !lastCacheQuestionJson.QuestionId) {
+                                    var json1 = questionsDic.getItem(questionId) ? questionsDic.getItem(questionId).QuestionJson : questionsDic.getItemByIndex(0).QuestionJson;
+                                    lastCacheQuestionJson = JSON.parse(JSON.stringify(json1));
+                                }
+                                //缓存空间有限，不进行缓存
+                                //questionsDic.setLocal1(questionsDicKey);
+                                //console.log('获取当前题号'+lastCacheQuestionJson.QuestionId)
+                                parseQuestionArray();
+                            }
+                        } catch (e) {
+                            console.log(e);
+                            mui.toast('89-' + e.message);
+                        }
+                    });
+                }
+
+                //同时获取本题、下一题、下下一题、上一题、上上一题 的五个题目对象
+                function getQuestionArrayNext() {
+                    //同时获取本题、下一题、上一题 的题目对象
+                    var questionArray1;
+                    try {
+                        console.log('lastCacheQuestionJson.QuestionId=' + lastCacheQuestionJson.QuestionId);
+                        var index = questionsDic.getIndexById(lastCacheQuestionJson.QuestionId);
+                        var nextQuestionId = questionsDic.elements[index + 1] && questionsDic.elements[index + 1].QuestionJson.QuestionId;
+                        if (!nextQuestionId) {
+                            console.log('nextQuestionId下一题为空');
+                            return questionArray1;
+                        }
+                        else if (nextQuestionId == lastCacheQuestionJson.QuestionId) {
+                            console.log('题库的顺序号与下一题重复了！' + questionsDic.elements[index].QuestionJson.AutoId);
+                            nextQuestionId = questionsDic.elements[index + 2] && questionsDic.elements[index + 2].QuestionJson.QuestionId;
+                        }
+                        console.log("右滑，从" + lastCacheQuestionJson.QuestionId + "到" + nextQuestionId);
+                        lastCacheQuestionJson.QuestionId = nextQuestionId;
+
+                        //alert('getQuestionArrayNext' + JSON.stringify(lastCacheQuestionJson))
+                        questionArray1 = questionsDic.getItemList(lastCacheQuestionJson);
+                        console.log('中间的id');
+                        console.log(questionArray1.this1.QuestionId)
+                        console.log("缓存：" + questionArray1.this1);
+                        if (questionArray1.this1) { //本页面的题目json
+                            sliderQuestionIdArray.push(questionArray1.this1.QuestionId);
+                            lastCacheQuestionJson = JSON.parse(JSON.stringify(questionArray1.this1));
+                            lastQuestionsDic.reSetLocal(lastQuestionsDicKey, lastCacheQuestionJson.QuestionId, lastCacheQuestionJson);
+                        }
+                    } catch (e) {
+                        mui.toast('getQuestionArrayNext函数错误  ' + e.message);
+                    }
+                    return questionArray1;
+                }
+
+                function getQuestionArrayPrev() {
+                    //同时获取本题、下一题、上一题 的题目对象
+                    var questionArray1;
+                    try {
+                        console.log('lastCacheQuestionJson.QuestionId=' + lastCacheQuestionJson.QuestionId);
+                        var index = questionsDic.getIndexById(lastCacheQuestionJson.QuestionId);
+                        var prevQuestionId = questionsDic.elements[index - 1] && questionsDic.elements[index - 1].QuestionJson.QuestionId;
+                        if (!prevQuestionId) {
+                            console.log('prevQuestionId上一题为空');
+                            return questionArray1;
+                        }
+                        else if (prevQuestionId == lastCacheQuestionJson.QuestionId) {
+                            console.log('题库的顺序号与上一题重复了！' + questionsDic.elements[index].QuestionJson.AutoId);
+                            prevQuestionId = questionsDic.elements[index - 2] && questionsDic.elements[index - 2].QuestionJson.QuestionId;
+                        }
+                        console.log("左滑，从" + lastCacheQuestionJson.QuestionId + "到" + prevQuestionId);
+                        lastCacheQuestionJson.QuestionId = prevQuestionId;
+
+                        //alert('getQuestionArrayPrev' + JSON.stringify(lastCacheQuestionJson))
+
+                        questionArray1 = questionsDic.getItemList(lastCacheQuestionJson);
+                        console.log('中间的id: ' + questionArray1.this1.QuestionId);
+                        if (questionArray1 && questionArray1.this) { //本页面的题目json
+                            sliderQuestionIdArray.push(questionArray1.this.QuestionId);
+                            lastCacheQuestionJson = JSON.parse(JSON.stringify(questionArray1.this));
+                            lastQuestionsDic.reSetLocal(lastQuestionsDicKey, lastCacheQuestionJson.QuestionId, lastCacheQuestionJson);
+                        }
+                    } catch (e) {
+                        alert(e)
+                        mui.toast('getQuestionArrayPrev函数错误  ' + e.message);
+                    }
+                    return questionArray1;
+                }
+
+                var getPreving = false;//防止重复加载
+                function goPrevQuestion() {
+                    try {
+                        ////同时获取本题、下一题、下下一题、上一题、上上一题 的五个题目对象
+                        var questionArray1 = getQuestionArrayPrev(questionsDic, lastCacheQuestionJson);
+
+                        //if (questionArray1.prev)//因为是五段式，前一页已经在slider中，所以不用加载。
+                        //    addQuestionToDomBefore(questionArray1.prev);
+                        if (!questionArray1) {
+                            console.log('questionArray1为空，内容' + lastCacheQuestionJson.QuestionId);
+                            console.log(lastCacheQuestionJson);
+                        }
+                        //lastCacheQuestionJson.QuestionId <= params.questionid_min ||
+                        if (lastCacheQuestionJson.QuestionId == 1) {
+                            mui.toast('这是第一题，前面没有了！请往后做题哦～');// + params.questionid_min
+                        } else if (questionArray1 && questionArray1.prevprev)
+                            addQuestionToDomBefore(questionArray1.prevprev);
+                        else {
+                            //到这里有异常！！
+                            mui.toast('已经是最前面两题~');//题目加载中，请稍等
+                        }
+                        var qid1 = parseInt(questionsDic.minId);
+                        var isprev = (lastCacheQuestionJson.QuestionId <= questionsDic.minId + 3);
+                        if (params.order && params.order == "1") {
+                            qid1 = parseInt(questionsDic.getMaxId());
+                            isprev = (lastCacheQuestionJson.QuestionId >= qid1 - 3);
+                        }
+                        if (isprev) {
+                            // 当前题目是本地数据里的最后三题，加载后面的数据
+                            var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                            params22.questionid_small = qid1;
+
+                            if (params.cutiType == 'cuoti') {
+
+                            } else {
+                                if (getPreving)
+                                    return;
+                                getPreving = true;
+                                fetchQuestions(params22, function (json) {
+                                    getPreving = false;
+                                    console.log('上一题');
+                                    if (!json.data.St_TTimuDaXue || !json.data.St_TTimuDaXue.list || json.data.St_TTimuDaXue.list.length == 0) {
+                                        //mui.toast('题库已经没有更前面的题目了！请往后做题～');
+                                        return;
+                                    }
+                                    if (!json.data.openid)
+                                        params.openid = json.data.openid;
+
+                                    questionsData = json.data.St_TTimuDaXue.list;
+                                    initAnswerResult(questionsDic, questionsData, 0 - QuestionIndex);
+                                    questionsDic.sort(params.cutiType, params.order);
+                                    //console.log(questionsDic)
+                                    ////缓存本页面
+                                    //if (questionsDic && questionsDic.elements && questionsDic.elements.length > 0)
+                                    //    questionsDic.setLocal1(questionsDicKey);
+                                });
+                            }
+                        }
+                    } catch (e) {
+                        mui.toast('goPrevQuestion函数错误  ' + e.message);
+                    }
+                }
+                var getNexting = false;//防止重复加载
+                function goNextQuestion() {
+                    var next1;
+                    try {
+                        //console.log(54555554);
+                        //console.log(lastCacheQuestionJson)
+                        //console.log(questionsDic);
+
+                        ////同时获取本题、下一题、下下一题、上一题、上上一题 的五个题目对象
+                        var questionArray1 = getQuestionArrayNext(questionsDic, lastCacheQuestionJson);
+
+                        console.log(6666)
+                        console.log(lastCacheQuestionJson);
+                        log(lastCacheQuestionJson, '右滑');
+                        //if (questionArray1.next)//因为是五段式，后一页已经在slider中，所以不用加载。
+                        //    addQuestionToDomAfter(questionArray1.next);
+                        if (!questionArray1) {
+                            mui.toast('取下页题目未能加载');
+                            console.log('questionArray1为空，内容' + lastCacheQuestionJson.QuestionId);
+                            console.log(lastCacheQuestionJson);
+                        }
+                        //if(lastCacheQuestionJson.QuestionId >= params.questionid_max) {
+                        //    //这里是否考虑做一个等待加载页
+                        //    console.log(9999);
+                        //    mui.toast('这是最后一题目了，恭喜你！～');
+                        //}else
+                        if (questionArray1 && questionArray1.nextnext) {
+                            addQuestionToDomAfter(questionArray1.nextnext);
+                            next1 = questionArray1.nextnext;
+                        }
+                        else {
+                            mui.toast('已经是最后两题');//题目加载中，请稍等，加载存在异常
+                        }
+                        setLocal(QuestionIndexKey, QuestionIndex);
+                    } catch (e) {
+                        mui.toast('goNextQuestion函数1错误  ' + e.message);
+                    }
+
+                    try {
+                        // 当前题目是本地数据里的最后三题，加载后面的数据
+                        var qid1 = parseInt(questionsDic.getMaxId());
+                        var isnext = (lastCacheQuestionJson.QuestionId >= qid1 - 3);
+                        if (params.order && params.order == "1") {
+                            qid1 = parseInt(questionsDic.getMinId());
+                            isnext = (lastCacheQuestionJson.QuestionId <= qid1 + 3);
+                        }
+                        if (isnext) {
+                            var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                            //if (params.order && params.order == "1")
+                            params22.questionid_big = qid1;
+
+                            if (params.cutiType == 'cuoti') {
+
+                            } else {
+                                if (getNexting)
+                                    return;
+                                getNexting = true;
+                                fetchQuestions(params22, function (json) {
+                                    getNexting = false;
+                                    console.log('下一题');
+                                    if (!json.data.St_TTimuDaXue || !json.data.St_TTimuDaXue.list || json.data.St_TTimuDaXue.list.length == 0) {
+                                        //mui.toast('题目即将做完，加油～');
+                                        return;
+                                    }
+                                    questionsData = json.data.St_TTimuDaXue.list;
+                                    initAnswerResult(questionsDic, questionsData, QuestionIndex);
+                                    questionsDic.sort(params.cutiType, params.order);
+                                    //console.log(questionsDic)
+                                    ////缓存本页面
+                                    //if (questionsDic && questionsDic.elements && questionsDic.elements.length > 0)
+                                    //    questionsDic.setLocal1(questionsDicKey);
+                                });
+                            }
+                        }
+                    } catch (e) {
+                        mui.toast('goNextQuestion函数2错误  ' + e.message);
+                    }
+                    return next1;
+                }
+
+                //右滑
+                stSwiper.on('slideNextEnd', function () {
+                    console.log('slideNextEnd')
+                    setTimeout(function () {
+                        stSwiper.enableTouchControl();
+                    }, 100);
+                    slideMoveCount++;
+                    if (slideMoveCount % 2 != 0) {
+                        slideMoveCount = 0;
+                        return;
+                    }
+                    slideMoveCount = 0;
+                    try {
+                        var next1 = goNextQuestion();
+                    } catch (e) {
+                        console.log(e);
+                    }
+                    try {
+                        //判断移除最前面的slide
+                        if (window.stSwiper.realIndex > 2 && window.stSwiper.slides.length > 3) {
+                            window.stSwiper.removeSlide(0);
+                        }
+                        var msg1 = '';
+                        for (var i = 0; i < window.stSwiper.slides.length; i++) {
+                            msg1 += i + ':s_slider:' + window.stSwiper.slides[i].title + ' | ';
+                            console.log(i + ':s_slider:' + window.stSwiper.slides[i].title + ' real:' + window.stSwiper.realIndex);
+                        }
+                        //if (window.stSwiper.slides[window.stSwiper.realIndex].title != lastCacheQuestionJson.QuestionId) {
+
+                        //}
+                        //if (next1)
+                        //    mui.toast(window.stSwiper.realIndex + 'realIndex>>' + msg1 + '<<next ' + next1.QuestionId);
+                        //else
+                        //    mui.toast(window.stSwiper.realIndex + 'realIndex>>' + msg1 + '<<');
+                    } catch (e) {
+                        console.log('9999' + e); mui.toast('81' + e);
+                    }
+                });
+
+                stSwiper.on('slideNextStart', function (ev) {
+                    stSwiper.disableTouchControl();
+                    console.log('slideNextStart')
+                    slideMoveCount++;
+                });
+
+                //左滑
+                stSwiper.on('slidePrevEnd', function () {
+                    console.log('slidePrevEnd')
+                    setTimeout(function () {
+                        stSwiper.enableTouchControl();
+                    }, 100);
+                    slideMoveCount++;
+                    if (slideMoveCount % 2 != 0) {
+                        slideMoveCount = 0;
+                        return;
+                    }
+                    slideMoveCount = 0;
+                    try {
+                        goPrevQuestion();
+                    } catch (e) {
+                        console.log('goPrevQuestion错误' + e.message);
+                    }
+                    try {
+                        //判断移除最后面的slide
+                        if (window.stSwiper.slides.length > window.stSwiper.realIndex + 2 && window.stSwiper.slides.length > 3) { //三段式改成五段式，2改成3?
+                            window.stSwiper.removeSlide(window.stSwiper.slides.length - 1);
+                        }
+                        var msg1 = '';
+                        for (var i = 0; i < window.stSwiper.slides.length; i++) {
+                            msg1 += i + ':sslider:' + window.stSwiper.slides[i].title + ' | ';
+                            console.log(i + ':sslider:' + window.stSwiper.slides[i].title + ' real:' + window.stSwiper.realIndex);
+                        }
+                        //mui.toast(msg1);
+                    } catch (e) {
+                        console.log('9999' + e); mui.toast('82-' + e);
+                    }
+                });
+
+                stSwiper.on('slidePrevStart', function (ev) {
+                    console.log('slidePrevStart');
+                    stSwiper.disableTouchControl();
+                    slideMoveCount++;
+                });
+                //刷新
+                function GetDateDiff(startDate, endDate) {
+                    var startTime = startDate.getTime();
+                    var endTime = endDate.getTime();
+                    var dates = Math.abs((startTime - endTime));// / (1000 * 60 * 60 * 24);
+                    return dates;
+                }
+                var timebegin1 = new Date('2015-10-10');
+                function isLater(miniSeconds) {
+                    //var diff = new Date().valueOf() - timebegin1.valueOf();
+                    var diff_s = parseInt(Math.abs((new Date() - timebegin1)));// / (900) * 60 * 60 * 24
+                    if (diff_s > miniSeconds) {
+                        timebegin1 = new Date();
+                        return true;
+                    } else {
+                        mui.toast("您的刷新频率过快，请先喝口水再奋斗" + diff_s + ">" + miniSeconds);
+                    }
+                    return false;
+                }
+                if (params.cutiType == "cuoti") {
+                    doc.getElementById('refresh-btn').innerText = "刷新";
+                }
+                doc.getElementById('refresh-btn').addEventListener('tap', function () {
+                    try {
+                        if (isLater(5000)) {
+                            myhref.href = window.location.href;
+                            //window.stSwiper.removeAllSlides();
+                            //firstLoad(lastCacheQuestionJson.questionId);
+                        }
+                        else
+                            mui.toast('刷新过快，请稍后重试');
+                    } catch (e) {
+                        console.log('83-' + e.message); mui.toast('83-' + e.message);
+                    }
+                });
+                //加疑难题
+                document.getElementById("nanti").addEventListener('tap', function (e) {
+                    var ret1 = errQuestionsDic.add(lastCacheQuestionJson.QuestionId, questionsDic.getItem(lastCacheQuestionJson.QuestionId).QuestionJson);
+                    mui.toast("已为您加难题到错题库，可以再做一次");
+                    if (ret1) {
+                        onSaveErr();
+                        //console.log('errQuestionsDic错题数=' + errQuestionsDic.length());
+                        errQuestionsDic.sort('cuoti');
+                        errQuestionsDic.setLocal1(errQuestionsDicKey);
+                    }
+                });
+                //清空错题;
+                document.getElementById("qingkong1").addEventListener('tap', function (e) {
+                    e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+                    var btnArray = ['取消', '确定'];
+                    var title1 = '温馨提醒：云端错题将全部删去';
+                    var title2 = '确定要清空云端错题吗？';
+                    mui.confirm(title2, title1, btnArray, function (e) {
+                        try {
+                            if (e.index == 1) {
+                                errQuestionsDic.removeLocal(errQuestionsDicKey);
+                                errQuestionsDic.setLocal1(errQuestionsDicKey);
+                                onSaveErr();
+                            }
+                        } catch (e) {
+
+                        }
+                    });
+                });
+
+                //纠错
+                document.getElementById("jiucuo-btn").addEventListener('tap', function (e) {
+                    e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+                    var btnArray = ['取消', '确定'];
+                    var title1 = '谢谢学弟妹帮我们纠错';
+                    var title2 = '请输入你查验过的此题正确答案：';
+                    var sum1 = '输入123 或 ABC';
+                    mui.prompt(title2, sum1, title1, btnArray, function (e) {
+                        try {
+                            if (e.index == 1) {
+                                var answer1 = (e.value);
+                                var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                                params22.answer1 = answer1;
+
+                                if (isNotNull(lastCacheQuestionJson.QuestionId)) {
+                                    params22.question1 = lastCacheQuestionJson.QuestionId;
+                                    params22.AutoId1 = lastCacheQuestionJson.AutoId;
+                                    params22.Question = lastCacheQuestionJson.Question;
+                                    params22.AnswerABC = lastCacheQuestionJson.AnswerABC;
+                                    params22.Answer = lastCacheQuestionJson.Answer;
+                                    postJiuCuo(params22, function (json) {
+                                        try {
+                                            if (json && (json.code == 200 || json.code == '200')) {
+                                                //if (isNotNull(json.num) && json.num == '1')
+                                                mui.toast("纠错提交成功！谢谢你");
+                                            } else
+                                                mui.toast("纠错提交失败,联系爱帮女生,谢谢你");
+                                        } catch (e) {
+                                            console.log('85-' + e.message); mui.toast('85-' + e.message);
+                                        }
+                                    });
+                                }
+                            } else {
+                            }
+                        } catch (e) {
+                            console.log('84-' + e.message); mui.toast('84-' + e.message);
+                        }
+                    })
+                });
+                //选题
+                document.getElementById("jump1").addEventListener('tap', function (e) {
+                    e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+                    var btnArray = ['取消', '确定'];
+                    var title1 = '祝考试顺利';
+                    var title2 = '请输入要选择的题号.\r\输入1，将从第一题重新开始：';
+                    if (params.optionType) {
+                        title2 = '请输入要选择的题号.\r\n输入1，将从第一题重新开始：';
+                    }
+                    var sum1 = '总题数：' + params.question_sum;
+                    mui.prompt(title2, sum1, title1, btnArray, function (e) {
+                        try {
+                            mui.toast(e.index);
+                            if (e.index == 1) {
+                                var questionId1 = parseInt(e.value);
+                                if (2 <= questionId1) { //&& questionId1 <= params.question_sum
+                                    console.log('jump' + questionId1);
+                                    console.log('window.stSwiper.slides.length' + window.stSwiper.slides.length);
+
+                                    firstLoad(questionId1);
+                                } else if (1 >= questionId1) {
+                                    lastQuestionsDic.removeLocal(lastQuestionsDicKey);
+                                    myhref.href = window.location.href;
+                                }
+                            } else {
+                            }
+                        } catch (e) {
+                            console.log('84-' + e.message); mui.toast('84-' + e.message);
+                        }
+                    })
+                });
+
+                if (doc.getElementById('navContent')) {
+                    doc.getElementById('navContent').style.height = navct_height;
+                }
+
+                var mask = $.createMask(function () {
+                    navCtWrap.style.height = '0rem';
+                    navCtWrap.classList.remove('show');
+                });
+                var navCtWrap = doc.getElementById('navContentWrapper');
+                doc.getElementById('nav').addEventListener('tap', function () {
+                    console.log('模式切换');
+                    //navCtWrap.style.height = navct_height;
+                    //navCtWrap.classList.toggle('show');
+                    //if(navCtWrap.classList.contains('show')) {
+                    //	mask.show(); //显示遮罩
+                    //} else {
+                    //	console.log(mask)
+                    //	mask.close();
+                    //}
+                });
+                function isAutoToNext_Moni() {
+                    var body = document.getElementsByTagName('body')[0];
+                    if (body.classList.contains('show-next')) {//自动滑题
+                        //if (lastCacheQuestionJson.OptionType == '0' || lastCacheQuestionJson.OptionType == '2')
+                        return true;
+                    }
+                }
+                function RemoveErrDic(q1) {
+                    //zlg，请判断选题项中正确项，是否与答案一样多。
+                    if (params.cutiType == "cuoti") { //如果在错题列表，从中移出。
+                        var errQuestionsDic2 = new Dictionary();
+                        errQuestionsDic2.addClone(cloneObj(errQuestionsDic));
+                        if (errQuestionsDic2.remove(q1)) {
+                            mui.toast('恭喜，已移除该错题 题号' + q1);
+                            errQuestionsDic2.setLocal1(errQuestionsDicKey);
+                            errQuestionsDic = errQuestionsDic2;
+                            onSaveErr(errQuestionsDic2);
+                        }
+                    } else {
+                        //errQuestionsDic.remove(q1);
+                    }
+                }
+                function AddErrDic(q1) {
+                    if (params.cutiType != 'cuoti') {
+                        try {
+                            //加入错题数组
+                            var ret1 = errQuestionsDic.add(lastCacheQuestionJson.QuestionId, questionsDic.getItem(q1).QuestionJson);
+                            if (ret1) {
+                                onSaveErr();
+                                mui.toast('错题库个数：' + errQuestionsDic.length());
+                                errQuestionsDic.sort('cuoti');
+                                errQuestionsDic.setLocal1(errQuestionsDicKey);
+                            }
+                        } catch (e) {
+                            console.log(e);
+                            mui.toast(e + '889');
+                        }
+                    }
+                }
+                function get3500() {
+                    if (params.optionType == '0' || params.optionType == '2')
+                        return 3500;
+                    else
+                        return 5000;
+                    return 3500;
+                }
+                $('#action3_').on('tap', '.user-action-item', function (event) {
+                    try {
+                        var q1 = lastCacheQuestionJson.QuestionId;
+                        if (this.className.indexOf('user-action-right') > -1) { //正确项
+                            RemoveErrDic(q1);
+                            slideNext(q1);
+                        } else {
+                            AddErrDic(q1);
+                            slideNext(q1);
+                        }
+                        var action3 = document.getElementById('action3_');
+                        if (action3) action3.style.display = 'none';
+                        var action1 = document.getElementById('action1_');
+                        if (action1) action1.style.display = 'none;';
+                        var action2 = document.getElementById('action2_');
+                        if (action2) action2.style.display = 'none;';
+                    } catch (e) {
+                        console.log(e);
+                        mui.toast(e + '698');
+                    }
+                });
+                var errClickCount = 0;
+                var errmsg1 = '请复习三秒，有选错项，等待三秒自动进入下一题，或请手动滑进入下一题～';
+                var errmsg2 = '请复习三秒，有选错项，请手动滑入下一题';
+                if ('0148'.indexOf('' + params.optionType) == -1) {
+                    errmsg1 = '请对照答案，在下方选答对答错，以帮您做错题记录';
+                    errmsg2 = '请对照答案，在下方选答对答错，以帮您做错题记录';
+                }
+                //var errmsg1 = '<div style="font-color:red">选错，复习三秒，等待三秒自动右滑，请手动右滑～</div>';
+                $('#slider').on('tap', '.answer-item', function (event) {
+                    if (errClickCount == 2) {
+                        errmsg1 = "复习三秒哦"; errmsg2 = errmsg1;
+                    }
+                    try {
+                        var q1 = lastCacheQuestionJson.QuestionId;
+                        if (!q1)
+                            alert("lastCacheQuestionJson.QuestionId 为空");
+                        //zlg 如果答对的数量和答案数量一样多，则自动跳入下一题。
+                        if (this.className.indexOf('answer-did') > -1) { //正确项
+                            try {
+                                // 答题正确
+                                //$.alert('正确');
+                                console.log('1111111111-q1:' + q1);
+                                var qObj1 = questionsDic.getItem(q1);
+                                if (isNull(qObj1) || isNull(qObj1.QuestionJson)) {
+                                    lastQuestionsDic.removeLocal(lastQuestionsDicKey);
+                                    mui.toast('选题有异常，请点击刷新' + window.location.href.replace('http://stbd.aibangxs.com/site_shuati', '')
+                                        .replace('http://stbd.aibangxs.com/site_shuati', '').replace('http://localhost:62259', '')
+                                        .replace('/app/pages/kemu_shuati.html?source1=', ''));
+                                }
+                                if (qObj1.QuestionJson) {
+                                    var answerState = answered(this, 'success', qObj1.QuestionJson); //questionsData[QuestionIndex]);
+
+                                    //如果所有都答对则自动跳下一题
+                                    if (answerState > 0) {
+                                        if (answerState == 1) {//完全正确
+                                            if (lastCacheQuestionJson.optionType != '1')
+                                                setTimeout(function () { slideNext(q1); }, 600);
+                                            else {
+                                                //mui.toast("完全正确");
+                                                setTimeout(function () { slideNext(q1); }, 1500);//多选题延时久一些
+                                            }
+                                            RemoveErrDic(q1);
+                                        }
+                                        if (answerState == 2) {//答完，中间有错误
+                                            document.getElementById('jiucuo-btn').style.display = "block";
+                                            if (isAutoToNext_Moni()) {
+                                                mui.toast(errmsg1, { duration: 'long', type: 'div' }); errClickCount++;
+                                                showAnswered(this);
+                                                setTimeout(function () { slideNext(q1); }, get3500());
+                                            }
+                                            else {
+                                                //临时注释document.getElementById('chat-btn-box').style.display = "block";
+                                                mui.toast(errmsg2, { duration: 'long', type: 'div' });
+                                            }
+                                        }
+                                    }
+                                }
+                                reloadResult(questionsDic);
+                                //this.className =
+                                //if (lastCacheQuestionJson.OptionType &&
+                                //    (lastCacheQuestionJson.OptionType == '3' || lastCacheQuestionJson.OptionType == '5'))
+                                {
+                                    var action3 = document.getElementById('action3_');
+                                    if (action3) action3.style.display = 'none';
+                                }
+                            } catch (e) {
+                                console.log(e);
+                                //mui.toast(e + '759');
+                                mui.toast('选题有异常，请点击【刷新】 1' + e);
+                            }
+                        } else {
+                            try {
+                                // 答题错误
+                                //$.alert('错误')
+                                var answerState = 2;//zlg
+                                var item1 = questionsDic.getItem(q1);
+                                if (item1 && item1.QuestionJson) {
+                                    answerState = answered(this, 'error', item1.QuestionJson); //questionsData[QuestionIndex]
+                                }
+                                else
+                                    mui.toast("错题保存出现一个异常，请检查手机缓存");
+                                //更新题目记录
+                                reloadResult(questionsDic);
+                                document.getElementById('jiucuo-btn').style.display = "block";
+                                //临时注释document.getElementById('chat-btn-box').style.display = "block";
+                                // || (lastCacheQuestionJson.OptionType == '0' || lastCacheQuestionJson.OptionType == '2')
+                                //mui.toast(lastCacheQuestionJson.OptionType)
+                                //论述题
+                                if (lastCacheQuestionJson.OptionType &&
+                                    (lastCacheQuestionJson.OptionType == '3' || lastCacheQuestionJson.OptionType == '5')) {
+                                    var action1 = document.getElementById('action1_');
+                                    if (action1) action1.style.display = 'block';
+                                    var action2 = document.getElementById('action2_');
+                                    if (action2) action2.style.display = 'block';
+                                    var action3 = document.getElementById('action3_');
+                                    if (action3) action3.style.display = '-webkit-flex';
+                                    //mui.toast(errmsg2);//, { duration: 'short', type: 'div' }
+                                } else {
+                                    AddErrDic(q1);
+                                    if (answerState == 2) {
+                                        if (isAutoToNext_Moni()) {
+                                            mui.toast(errmsg1, { duration: 'long', type: 'div' }); errClickCount++;
+                                            //showAnswered(this);
+                                            setTimeout(function () {
+                                                slideNext(q1);
+                                            }, get3500());
+                                        } else {
+                                            mui.toast(errmsg2, { duration: 'long', type: 'div' });
+                                        }
+                                    }
+                                }
+                            } catch (e) {
+                                console.log(e);
+                                //mui.toast(e + '759');
+                                mui.toast('选题有异常，请点击【刷新】 2' + e);
+                            }
+                        }
+                        console.log('answerState  ' + answerState);
+                    } catch (e) {
+                        console.log(e);
+                        //mui.toast(e + '759');
+                        mui.toast('选题有异常，请点击【刷新】 3' + e);
+                    }
+                });
+                function slideNext(questionId1) {
+                    try {
+                        console.log('lastCacheQuestionJson.QuestionId--  ' + lastCacheQuestionJson.QuestionId)
+                        console.log('questionId1--  ' + questionId1)
+                        if (questionId1 == lastCacheQuestionJson.QuestionId) {
+                            window.stSwiper.slideNext();
+                        } else {
+                            //mui.toast('取消滑动：' + lastCacheQuestionJson.QuestionId);
+                        }
+                    } catch (e) {
+                        mui.toast(e + '786');
+                    }
+                    //slideBegin1 = new Date();
+                };
+                $('#nav').on('tap', '.mode-btn', function (event) {
+                    if (this.classList.contains('selected')) {
+                        return
+                    }
+                    var btns = document.getElementById('navMode').children;
+
+                    for (var i = 0; i < btns.length; i++) {
+                        if (btns[i] != this) {
+                            btns[i].classList.remove('selected');
+                        } else {
+                            btns[i].classList.add('selected');
+                        }
+                    }
+                    var body = document.getElementsByTagName('body')[0];
+                    if (this.classList.contains('mode-beiti')) {
+                        mode1 = 'mode-beiti'
+                        body.classList.remove('show-next');//自动滑题
+                        body.classList.add('show-answer');//解析
+                    } else if (this.classList.contains('mode-dati')) {
+                        mode1 = 'mode-dati'
+                        body.classList.remove('show-next');
+                        body.classList.remove('show-answer');
+                    } else {
+                        mode1 = 'mode-moni'
+                        body.classList.remove('show-answer');
+                        body.classList.add('show-next');
+                    }
+                });
+
+                fetchComment(params, function (json) {
+                    var data = json.data;
+                    var html = template('comment-detail-tpl', data);//question-detail-tpl
+
+                    doc.getElementById('chat-inner-ct').innerHTML = html;
+                });
+                var $chatBox = $('#chat-box');
+                $('#chat-btn-box').on('tap', '.chat-btn-ct', function () {
+                    $chatBox[0].classList.add('show');
+                });
+                $chatBox.on('tap', '.chat-close', function () {
+                    $chatBox[0].classList.remove('show');
+                })
+
+                $chatBox.on('tap', '.send-btn', function () {
+                    console.log('send-btn');
+                })
+            })
+        }(mui, document));
+
+    </script>
+</body>
+
+</html>

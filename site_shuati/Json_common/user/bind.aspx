@@ -1,0 +1,3 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="bind.aspx.cs" Inherits="JsonBook_user_bind" %>
+{"code":200,"message":"SUCCESS","data":null}
+<%--https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb7de6da92a016f4b&redirect_uri=http://mp.qess.me/wechat/login?redirectUrl=http://mp.qess.me/pages/indexPage.html&response_type=code&scope=snsapi_userinfo&connect_redirect=1&uin=NDU4MjI3Nzcz&key=178f58eb8ebf27e6b355bf6091b929d326daff6415f989b1c1db6d2e5d7f103a5e59fa82bbfa7ad258234a78cf9c6c7ee33d9e4abe2472b93537ab8f2d4c0897819afadd22628f869075fc194453de9e&version=6203005d&pass_ticket=5FAeJlEaCNVUlqwb%2FqEFXWF0tRz7WoqW%2FDu2ktr0XBN6nrLhmv8xLE4qKXMa3P0E&winzoom=1--%>

@@ -1,0 +1,36 @@
+.searchmap{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background: #FFFFFF;
+}
+.searchmap img{
+	float: left;
+	width: 20px;
+	margin: 15px 0 0 10px;
+	vertical-align: middle;
+}
+.searchmap .addres{
+	/*float: left;*/
+	margin: 0 95px 0 0;
+	font-size: 16px;
+	line-height: 50px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.searchmap .batton{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #ff8200;/*color: #1AD46E;*/
+	margin: 10px 10px 10px 0;
+	color: #FFFFFF;
+	font-size: 16px;
+	border-radius: 5px;
+}

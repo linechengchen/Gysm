@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script language="javascript" type="text/javascript">
+        // 以下方式直接跳转
+        console.log(window.location.href)
+        window.location.href = window.location.href.toLowerCase().replace("/kemuindex.html", "/indexPage1_shuati.html");
+        console.log(window.location.href)
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <div id="shareImage" style="display: none;">
+        <img src="image/hdt2.jpg" />
+    </div>
+    <title>刷题宝典（2017新）</title>
+    
+    <script src="../js/shuati/localstorage.js?r=11212111"></script>
+
+    <script src="../js/mui/mui.min.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <link href="../css/swiper/swiper.min.css" rel="stylesheet" />
+
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <script src="../js/shuati/aes.js"></script>
+
+    <script src="../js/shuati/kemu_list.js?r=1119"></script>
+
+    <link href="../css/mui/mui.min.css" rel="stylesheet" />
+    <link href="../css/app.css?r=219191" rel="stylesheet" />
+
+    <link type="text/css" rel="stylesheet" href="../css\aui.min.css">
+    <link rel="stylesheet" href="../css\index.css">
+    <script type="text/javascript">
+
+        // H5 plus事件处理
+        function plusReady() {
+            document.getElementById('kemuList-ul2').innerText = ("uuid: " + plus.device.uuid);
+        }
+        if (window.plus) {
+            plusReady();
+        } else {
+            document.addEventListener("plusready", plusReady, false);
+        }
+    </script>  
+
+    <style type="text/css">
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 13px;
+            /*color:black;*/
+        }
+    </style>
+
+    <script type="text/javascript" charset="utf-8">
+        //window.localStorage.clear();
+        //removeLocal('shuati_openid');        
+        var params = getParseQuery(); var sc1 = params.sc;
+        params.sc = params.sc || '999';
+        params.openid = params.openid || getLocal('shuati_openid');// || 'oKuzrwCN_pZ9d_ZDYyFYq8Ca-RnI'; || 'oKuzrwDHM7Rxo1EDeXSSfVpiIOII'; //zlg
+        if (isNull(params.openid)) params.openid = '';
+        //获取本地的openid
+        if (isNotNull(params.openid)) {
+            setLocal('shuati_openid', params.openid);
+        }
+
+        (function ($, doc) {
+            $.ready(function () {
+                GetUpdateMsgTimer(params);
+                console.log(params);
+                checkInZF();
+                
+                doc.getElementById('refresh-btn').addEventListener('click', function () {
+                    try {
+                        document.getElementById('cover2').style.display = 'block';
+                    } catch (e) {
+                        mui.toast(e);
+                    }
+                });
+
+                doc.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+                
+                //fetchmi(params, function (json) {
+                //    try {
+                //        alert("fetchmi");
+                //    }
+                //    catch (e) {
+                //    }
+                //});
+                fetchKemuListPage(params, function (json) {
+                    try {
+                        //questionsData = json.data;
+                        //alert(json.data.St_TTimuDaXue.list[0].OptionStr);                     
+                        if (json && json.code == '200') {
+                            console.log("成功");
+                            console.log(json.data.sc_name);
+
+                            if (sc1) {
+                                //设置标题
+                                var title1 = json.data.sc_name.replace("二号", "").replace("三号", "") + ' 刷题宝典（2017新）';
+                                if (params.type1 && params.type1.length > 1)
+                                    var title1 = json.data.sc_name.replace("二号", "").replace("三号", "") + ' 刷题宝典（2017新）:';
+                                doc.getElementById('title').innerHTML = doc.getElementsByTagName('title')[0].innerHTML = title1;
+                            }
+                            json.data.sc = sc1;
+                            json.data.openid = json.data.openid || params.openid || '';
+                            params.openid = params.openid || json.data.openid;
+
+                            console.log('params.data.openid' + (params.openid))
+                            json.data.type1 = params.type1;
+                            json.data.source1 = params.source1;
+                            json.data.neice = params.neice;
+                            json.data.trans = params.trans;
+                            json.data.r = params.r;
+
+                            addKemuListToDomAfter(json.data);
+
+                            var rAnswers2 = doc.getElementsByClassName('zsli');
+                            for (var i = 0; i < rAnswers2.length; i++) {
+                                rAnswers2[i].addEventListener('tap', function () {
+                                    //多项情况下还未完全作答
+                                    mui.toast("请点击右侧宝典中的各个考试图标哦");
+                                });
+                            }
+                            if (parseInt(json.data.question_sum) == 0) {
+                                alert("还未上架，在整理资料中，如果您有题库请发给爱帮先生，非常非常感谢您");
+                                document.getElementById('cover2').style.display = 'block';
+                                return;
+                            }
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
+                });
+            });
+        }(mui, document));
+    </script>
+    
+    <style type="text/css">
+        .fonttixing {
+            color: white;
+            font-size: 23px;
+            font-weight: bolder;
+        }
+        .hide1{
+            display:none;
+        }
+        #cover2 {
+            text-align: center;
+            margin: 0px auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 20000;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .fxImg1 {
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <!--<header id="header" class="mui-bar mui-bar-transparent top">
+        <a id="currentSchoolNameBox" data-href="./indexPage_searchcitylist.html" class="mui-btn mui-btn-link">
+            <span id="currentSchoolName" style="font-size:14px;">选择学校</span>
+            <span style="font-size:14px;top:-2px;" class="mui-icon mui-icon-arrowdown"></span>
+        </a>
+        <h1 class="mui-title" style="left:88px;">
+            <div class="mui-search-right">
+                <input id="searchBookInput" type="search" placeholder="搜索" style="margin: 5px 0;" @click="tosearch">
+                <span style="font-size:22px;line-height:26px;" id="mui-icon-search" class="mui-icon mui-icon-search"></span>
+            </div>
+        </h1>
+    </header>-->
+    <header class="aui-bar aui-bar-nav aui-bar-danger" id='aui-header'>
+        <div class="aui-title" style="font-family: Microsoft YaHei;" id="title">
+            刷题宝典(2017新)
+        </div>
+    </header>
+    <div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+        <img class="fxImg1" src="../image/shareWX.png" />
+        <br />
+        <br />
+        <br />
+        <br /><br /><br /><br /><br /><font style="color:white;font-size:23px;font-weight:bolder">长按扫码，分享您的需要<br /><br /></font>
+        <img id="img2wei" src="" />
+        <br /><br /><font class="fonttixing">爱帮先生，因您需要而在</font>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper-container" style="height:230px">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="../../../image/hdt-xin1.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="../../../image/hdt-xin2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="..\..\image\hdt1.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="..\..\image\hdt2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="..\..\image\hdt3.jpg">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div></div>
+    <div></div>
+    <div class="aui-content" id="kemuList-div">
+        <ul class="aui-grid-nine" id="kemuList-ul">
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px">
+                <span class="aui-iconfont aui-icon-favorfill aui-text-pink"></span>
+                <!--<span class="aui-iconfont aui-icon-favor aui-text-info"></span>-->
+                <p>
+                    <b>更多题库</b>
+                </p>
+            </li>
+            <li class="aui-col-xs-3 aui-text-center" onclick="myhref.href = '../views/kemuDetailList.html?kemuId=100001&kemuName=思修题库&sc=999&sc_sum=999&source1=4&r=121'">
+                <span class="aui-iconfont aui-icon-edit  aui-text-danger"></span>
+                <p>
+                    思修题库
+                </p>
+            </li>
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?kemuId=100002&kemuName=马克思原理&sc=999&sc_sum=999&source1=4&r=121'">
+                <span class="aui-iconfont aui-icon-edit aui-text-info"></span>
+                <p>
+                    马克思原理
+                </p>
+            </li>
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?kemuId=100003&kemuName=近代史题库&sc=999&sc_sum=999&source1=4&r=121'">
+                <span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+                <p>
+                    近代史题库
+                </p>
+            </li>
+        </ul>
+        <ul class="aui-grid-nine" id="kemuList-ul">
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?kemuId=100004&kemuName=毛泽东概论&sc=999&sc_sum=999&source1=4&r=121'">
+                <span class="aui-iconfont aui-icon-edit aui-text-primary"></span>
+                <p>
+                    毛泽东概论
+                </p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="refresh-btn" id="refresh-btn">分享</div>
+
+    <script id="kemuList-detail-tpl" type="text/html">
+        <ul class="aui-grid-nine">
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../pages/kemu_category.html?openid={{openid}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                <span class="aui-iconfont aui-icon-favorfill aui-text-pink"></span>
+                <!--<span class="aui-iconfont aui-icon-favor aui-text-info"></span>-->
+                <p>
+                    <b>更多题库</b>
+                </p>
+            </li>
+            {{each St_kemuInfo.list as item i}}
+            {{if i == 3}}
+                <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&kemuId=100035&kemuName=政治经济学&sc_sum=219&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                    <span class="aui-iconfont aui-icon-edit aui-text-info"></span>
+                    <p>
+                        政治经济学
+                    </p>
+                </li>
+                <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&kemuId=400005&kemuName=法理学&sc_sum=312&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                    <span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+                    <p>
+                        法理学
+                    </p>
+                </li>
+
+                <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&kemuId=100004&kemuName=毛概论述专题&sc_sum=999&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                    <span class="aui-iconfont aui-icon-edit aui-text-primary"></span>
+                    <p>
+                        毛概论述专题
+                    </p>
+                </li>            
+            {{else}}
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&kemuId={{item.KemuId}}&kemuName={{item.KemuName}}&sc_sum={{item.Sc}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                <span class="{{getIcon(item.Icon, i, 1)}}"></span>
+                <p>
+                    {{item.KemuName}}
+                </p>
+            </li>            
+            {{/if}}
+            {{/each}}
+
+
+            {{if sc == '312'}}
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&kemuId=100065&kemuName=大学计算机基础&sc_sum={{sc}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                <span class="aui-iconfont aui-icon-edit aui-text-info"></span>
+                <p>
+                    大计基(浙大)
+                </p>
+            </li>
+            {{/if}}
+
+            <li class="aui-col-xs-3 aui-text-center" style="height:100px" onclick="myhref.href = '../jinshuju_xintiku.html?openid={{openid}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                <span class="aui-iconfont aui-icon-write aui-text-pink"></span>
+                <!--<span class="aui-iconfont aui-icon-favor aui-text-info"></span>-->
+                <p>
+                    <b>热心大侠</b>
+                </p>
+            </li>
+        </ul>
+        <br />
+        {{each St_TzsInfo.list as item i}}
+        <ul class="aui-grid-nine">
+            <li class="{{getxs(item.list)}} zsli" style="height:105px" onclick="myhref.href = '../pages/kemu_category.html?zsId={{item.ZsId}}&zsTypeId={{item.ZsTypeId}}&ZsTypeName={{item.ZsTypeName}}&zsName={{item.ZsName}}&sc={{sc}}&openid={{openid}}&source1={{source1}}&neice={{neice}}'">
+                <!--aui-col-xs-3  aui-text-center-->
+                <!-- style="height:100px" -->
+                <span class="{{getZsIcon(item.Icon, i, 2)}}"></span>
+                <p>
+                    《{{item.ZsName}}》
+                </p>
+            </li>
+            <ul class="aui-grid-nine" id="kemuList-ul">
+                {{getZsHtml(item.list)}}
+                {{each item.list as item1 i}}
+                <li class="aui-col-xs-4 aui-text-center" style="height:105px" onclick="myhref.href = '../views/kemuDetailList.html?trans={{trans}}&openid={{openid}}&zsId=1&kemuId={{item1.KemuId}}&kemuName={{item1.KemuName}}&sc={{sc}}&type1={{type1}}&source1={{source1}}&neice={{neice}}&r=121'">
+                    <span class="{{getIcon(item1.Icon, i, 1)}}"></span>
+                    <p style="font-size:13px;">
+                        {{item1.KemuName}}
+                    </p>
+                </li>
+                {{/each}}
+            </ul>
+        </ul>
+        <br />
+        {{/each}}
+        <br />
+        <ul class="aui-grid-nine">
+            
+        </ul>
+    </script>
+        <div class="aui-content">
+            <ul class="aui-grid-nine" id="kemuList-ul2"></ul>
+        </div>
+    
+        <footer class="aui-nav aui-text-center" id="aui-footer">
+            <span class="" style="font-size:11px; color: grey"><a onclick="document.getElementById('cover2').style.display='block';">共享题库</a> <span id="a1">感谢有你</span></span>
+        </footer>
+        <!--<img src="http://c.cnzz.com/wapstat.php?siteid=1256953625&r=&rnd=940643640" width="0" height="0">-->
+        <div style="display:none">
+            <script language="javascript" type="text/javascript" src="http://js.users.51.la/18900802.js"></script>
+            <noscript><a href="http://www.51.la/?18900802" target="_blank" width="0" height="0"></a></noscript>
+        </div>
+</body>
+<script src="../js/swiper/swiper.min.js"></script>
+<script type="text/javascript">
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        loop: true,
+
+        effect: 'coverflow',
+        //grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 1,//'auto',
+        coverflow: {
+            rotate: 40,
+            stretch: 10,
+            depth: 60,
+            modifier: 2,
+            slideShadows: true
+        }
+    });
+    String.prototype.endWith = function (str) {
+        if (str == null || str == "" || this.length == 0 || str.length > this.length)
+            return false;
+        if (this.substring(this.length - str.length) == str)
+            return true;
+        else
+            return false;
+        return true;
+    }
+    var fenxiang = function () {
+        document.getElementById('cover1').style.display = 'block';
+    }
+    //如果不是微信
+    if (!isWeiXin())
+    {
+        //myhref.href = '../pagesCommon/findme.html?sc=' + params.sc;
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,246 @@
+input {
+	outline: none;
+	-webkit-appearance: none;
+}
+
+.headertit{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background: #FFFFFF;
+}	
+.headertit .headleft{
+	width: 15%;
+    height: 45px;
+    float: left;
+    padding-left: 5%;
+    padding-top: 5px;
+}
+.headertit .headleft img{
+	 width: 12px;
+	 height: 20px;
+}	
+	
+.headertit .headcenter{
+	width: 60%;
+	height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 17px;
+	color: #424242;
+}	
+.headertit .headright{
+	width: 20%;
+	height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 15px;
+	color: #424242;
+}	
+.aboutmyself{
+	width:calc(100% - 28px);
+	height: 168px;
+	background: #FFFFFF;
+	padding-left: 16px;
+	padding-right: 12px;
+	margin-top: 12px;
+}
+
+.aboutmyself .aboutitle{
+	width: 100%;
+	height: 36px;
+	font-size: 13px;
+	color: #999999;
+	line-height: 36px;
+}
+.aboutmyself textarea{
+	width: 100%;
+	height: 90px;
+	font-size: 15px;
+	color: #424242;
+	border: none;
+	resize: none;
+	outline: none;
+	font-family: "微软雅黑";
+}
+.aboutmyself .aboutip{
+	width: 100%;
+	text-align: right;
+	font-size: 15px;
+	color: #CCCCCC;
+}
+
+.mylabels{
+	width: calc(100% - 32px);
+	padding: 0 16px 0 16px;
+	background: #FFFFFF;
+	margin-top: 12px;
+}
+
+.mylabels .addlable{
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	font-size: 13px;
+	color: #999999;
+}
+.mylabels .addlable span:nth-of-type(1){
+	width:50%;
+	text-align:left;
+	float:left;
+}
+.mylabels .addlable span:nth-of-type(2){
+	width:50%;
+	text-align:right;
+	float:left;
+}
+.mylabels .mylab{
+	width: 100%;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #DDDDDD;
+	position: relative;
+    overflow: hidden;
+}
+.mylabels .mylab .personlabel{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px dashed #ff8200;/*color: #1AD46E;*/
+	border-radius: 6px;
+	margin-top: 12px;
+	background: #FFFFFF;
+	color: #ff8200;/*color: #1AD46E;*/
+	float: left;
+	font-size: 15px;
+}
+.mylabels .mylabe {
+	width: 100%;
+	padding-bottom: 12px;
+}
+.mylabels .mylabe .showlabel{
+	font-size: 15px;
+	height: 32px;
+	color: #424242;
+	margin-top: 12px;
+	background: rgba(205,213,215,0.10);
+	border: 1px solid #CDD5D7;
+	border-radius: 6px;
+}
+
+.mylabels .mylabe .showlabel.coles {
+	color: #ff8200;
+	background: rgba(25,211,109,0.05);
+	border: 1px solid rgba(25,211,109,0.40);
+}
+
+.mylabels .mylab .addlabeled .onelabel{
+	margin-top: 12px;
+	height: 32px;
+    float: left;
+}
+.mylabels .mylab .addlabeled .onelabel .selflabels {
+	font-size: 15px;
+	height: 32px;
+	color: #424242;
+	background: rgba(205,213,215,0.10);
+	border: 1px solid #CDD5D7;
+	border-radius: 6px;
+	margin-right: 16px;
+	float: left;
+}
+.mylabels .mylab .addlabeled .onelabel .selflabels.coles {
+	color: #ff8200;
+	background: rgba(25,211,109,0.05);
+	border: 1px solid rgba(25,211,109,0.40);
+}
+.mylabels .mylab .addlabeled .onelabel img {
+    width: 30px;
+    float: left;
+    margin: -12px 0 0 -32px;
+    display: none;
+}
+.modifymsg{
+	height: 32px;
+	background: #ff8200;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 20px;
+	text-align: center;
+	display: none;
+}
+
+.ghdlzh {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: none;
+}
+
+.ghdlzh .bg_back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #393939;
+	opacity: 0.3;
+	z-index: 555;
+}
+
+.ghdlzh .tishi {
+	position: absolute;
+	width: 80%;
+	height: 160px;
+	left: 50%;
+	top: 50%;
+	margin-left: -40%;
+	margin-top: -75px;
+	border-radius: 5px;
+	background: #FFFFFF;
+	z-index: 666;
+}
+
+.ghdlzh .tishi p {
+	color: rgba(3, 3, 3, 1);
+}
+
+.ghdlzh .tishi .modaltitle {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.ghdlzh .tishi .modalcontent {
+	font-size: 12px;
+	margin-top: -10px;
+}
+
+.ghdlzh .tishi input {
+	width: 65%;
+	height: 20px;
+	padding-left: 5px;
+	border: 1px solid #E4E4E4;
+}
+
+.ghdlzh .tishi ul {
+	width: 100%;
+	margin-top: 15px;
+	border-top: 1px solid #E4E4E4;
+}
+
+.ghdlzh .tishi ul li {
+	width: 49%;
+	height: 38px;
+	font-size: 16px;
+	line-height: 38px;
+	float: left;
+	color: rgba(3, 122, 255, 1);
+	border-right: 1px solid #E4E4E4;
+}
+
+.ghdlzh .tishi ul li.right {
+	border-right: none;
+	color: rgba(3, 122, 255, 1);
+}

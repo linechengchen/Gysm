@@ -1,0 +1,2 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="verifyCode.aspx.cs" Inherits="_jianzhi_user_account_fast_login_verifyCode" %>
+{"errMsg":"\u9A8C\u8BC1\u7801\u53D1\u9001\u6210\u529F\uFF01","success":true}

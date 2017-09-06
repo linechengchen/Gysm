@@ -1,0 +1,35 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+body .shop_logbox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 150px;
+  text-align: center;
+}
+body .shop_logbox img {
+  width: 81px;
+  height: 81px;
+}
+body .shop_logbox .word {
+  line-height: 60px;
+  text-align: center;
+  font-size: 16px;
+}
+body .shop_logbox .btn {
+  text-align: center;
+  line-height: 40px;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #016df1;
+  font-size: 15px;
+  color: #fff;
+}
+/*# sourceMappingURL=shoppingcar_login.css.map */

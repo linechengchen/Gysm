@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="刷题神器" />
+    <meta name="applicable-device" content="mobile" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>测试获取用户信息</title>
+    <script src="../app/js/jquery-2.1.1.min.js"></script>
+    <script>
+        $(function () {
+            (function ($) {
+                $.getUrlParam = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+            })(jQuery);
+
+            var urls = window.location.href;
+            var openid = urls.indexOf("openid");
+            if (openid == "-1") {
+                location.href = "test1.aspx?urlname=test.html";
+            }
+            else {
+                var nickname = $.getUrlParam('nickname');
+                var head_img_url = $.getUrlParam('head_img_url');
+                document.getElementById('nickname').innerHTML = nickname;
+                document.getElementById('head_img_url').src = head_img_url;
+                console.log(nickname);
+                console.log(head_img_url);
+            }
+        });
+        
+    </script>
+</head>
+<body>
+    <!--<a href="test1.aspx?urlname=test.html">点击</a>-->
+    <!--<input id="nickname" type="text" />-->
+    <div id="nickname"></div>
+    <img id="head_img_url" width="100px" height="100px"  />
+</body>
+</html>

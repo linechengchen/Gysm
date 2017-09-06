@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<!--<meta name="viewport" content="width=device-width,initial-scale=1.0" />-->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>HTML5带音乐手机摇一摇抽奖特特效代码 - 【科e互联】</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"> 
+<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <script type="text/javascript" src="js/localstorage.js?1"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/red.js?112111"></script>
+</head>
+<body>
+    <a href="#" onclick="test1()">测试</a>　　　　　　　　
+    <a href="#" onclick="test2()">清空次数</a>
+<!-- 红包音乐 -->
+<audio id="shakemusic" src="music/red-01.mp3" style="display: none;"></audio>
+<audio id="openmusic" src="music/red-02.mp3" style="display: none;"></audio>
+<!-- End 红包音乐 -->
+<!-- 红包 -->
+<div class="red_bg">
+	<div class="red-ts"></div>
+	<div class="red-ss-bg">
+		<span class="red-ss animated"></span>
+	</div>
+	<div class="red-jh">
+		您还有<span id="span1"></span>次机会
+	</div>
+    <div class="red-tc">
+        <!-- 已中奖 -->
+        <div class="red-yzj">
+           
+            <div class="red-tc-k">
+                <p>￥<span>50.00</span>元</p>
+             
+                恭喜你获得</br>IU学车代金券
+            </div>
+            <div class="red-tc-btn">
+                <button onclick="shuaxin()">查看优惠券</button>
+             
+                <button onclick="shuaxin()">关闭</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="red-tc1">
+
+ 
+        <div class="red-yzj">
+            <div class="red-tc-k">
+                <img src="img/red-bw.png">
+                哎呀！</br>您的优惠券被风刮走了啊
+        
+            </div>
+            <div class="red-tc-btn">
+                <button onclick="shuaxin()">再摇一次</button>
+                <button onclick="shuaxin()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="red-tc2">
+
+        <!-- 机会用光了 -->
+        <div class="red-yzj">
+            <div class="red-tc-k">
+                <img src="img/red-jh.png">
+                机会用光了哦！</br>明天再来吧！
+                
+            </div>
+            <div class="red-tc-btn">
+                <button onclick="shuaxin()">返回主页</button>
+            </div>
+        </div>
+        <!-- End 机会用光了 -->
+    </div>
+
+    <script type="text/javascript">
+        //var cishu1 = 0;
+        //if (getLocal("cishu") == null) {
+        //    var int1 = setLocal("cishu", 3);
+        //    if (int1 > 0)
+        //        cishu1 = 3;
+        //    document.getElementById("span1").innerText = cishu1;
+        //} else {
+        //    cishu1 = getLocal("cishu");
+        //    document.getElementById("span1").innerText = cishu1;
+        //}
+        //var dijian= function()
+        //{
+        //    cishu1 = cishu1 - 1;
+        //    setLocal("cishu",cishu1)
+        //}
+
+    </script>
+<!-- End 红包 -->
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script src="js/mui/mui.min.js"></script>
+    <link rel="stylesheet" href="css/mui.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="./css/icons-extra.css" />
+    <link rel="stylesheet" href="css/zui.css">
+
+    <script src="js/shuati/localstorage.js?r=11212111"></script>
+    <script src="source/js/author.js?r=111141112"></script>
+    <!--<script src="js/common/kemu_list.js?r=11442"></script>-->
+
+</head>
+
+<body>
+    <!-- nav statr -->
+    <nav class="mui-bar mui-bar-tab">
+        <a class="zui-item mui-tab-item mui-active" href="#home">
+            <span class="mui-icon iconfont icon-calender"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <!--<a class="zui-item mui-tab-item mui-active" href="#teacherlist">-->
+        <a class="zui-item mui-tab-item" href="#teacherlist">
+            <span class="mui-icon iconfont icon-clock"></span>
+            <span class="mui-tab-label">约课</span>
+        </a>
+        <a class="zui-item mui-tab-item" href="#video">
+            <span class="mui-icon iconfont icon-video-xl"></span>
+            <span class="mui-tab-label">学堂</span>
+        </a>
+        <a class="zui-item mui-tab-item" href="#user">
+            <span class="mui-icon iconfont icon-ui03"></span>
+            <span class="mui-tab-label">帐号</span>
+        </a>
+    </nav>
+    <!-- nav end -->
+    <!-- content start -->
+    <div class="mui-content">
+        <div id="home" class="mui-control-content mui-active" style="position:static;">
+            <!--kemuIndex.html?openid=&sc=309&source1=&type1=&neice=1&r=121-->
+            <iframe id="shuati1" src="" width="100%" frameborder="0"></iframe>
+        </div>
+        <!--<div id="teacherlist" class="mui-control-content mui-active" style="position:static;">-->
+        <div id="teacherlist" class="mui-control-content">
+            <iframe id="reservation1" src="views/teacherlist.html" width="100%" frameborder="0"></iframe>
+        </div>
+        <div id="video" class="mui-control-content">
+            <iframe id="xuetang1" src="views/teacherlist.html" width="100%" frameborder="0"></iframe>
+        </div>
+        <div id="user" class="mui-control-content">
+            <iframe id="my1" src="views/teacherlist.html" width="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+    <!-- content start -->
+
+    <script src="js/mui.js"></script>
+    <script src="js/mui.picker.min.js"></script>
+    <script>
+        //mui初始化
+        mui.init();
+
+        (function ($) {
+            var height = document.documentElement.clientHeight || document.body.clientHeight;
+            $('iframe').each(function (i, ifame) {
+                ifame.setAttribute('height', height);
+            });
+        })(mui);
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+        //window.localStorage.clear();
+        //removeLocal('shuati_openid');
+        var params = getParseQuery(); var sc1 = params.sc;
+        params.sc = params.sc || '999';
+        params.openid = params.openid || getLocal('shuati_openid');// || 'oKuzrwCN_pZ9d_ZDYyFYq8Ca-RnI'; || 'oKuzrwDHM7Rxo1EDeXSSfVpiIOII'; //zlg
+        //获取本地的openid
+        if (isNotNull(params.openid)) {
+            setLocal('shuati_openid', params.openid);
+        }
+        var paramUrl = transJsonToQuery(params, 'tmp_sc_sum');
+        console.log(paramUrl)
+        document.getElementById('shuati1').src = "kemuIndex.html?" + paramUrl;
+        document.getElementById('teacherlist').src = "views/Teacherlist.html?" + paramUrl;
+        document.getElementById('xuetang1').src = "views/xuetang1.html?" + paramUrl;
+        document.getElementById('my1').src = "views/personalCenter.html?" + paramUrl;
+        (function ($, doc) {
+            $.ready(function () {
+            });
+        }(mui, document));
+    </script>
+</body>
+
+</html>

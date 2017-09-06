@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link rel="stylesheet" href="../source/css/public.css">
+    <script src="https://api.map.baidu.com/getscript?v=2.0&ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG&services=&t=20170608143204"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.js"></script>
+    <script src="../source/js/vue.min.js"></script>
+    <script src="../source/js/vue-tap.js"></script>
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=11"></script>
+    <script src="../source/js/ajax_xs.js"></script>
+
+    <script src="../source/js/ajax_xs_my.js"></script>
+    <script src="../source/js/public.js"></script>
+    <script src="../source/js/jquery.base64.js"></script>
+
+    <style>
+        .mui-btn {
+            color: #ccc;
+            border-radius: 5px !important;
+            width: 80%;
+        }
+
+        .disabledColor {
+            color: #4D99F5;
+        }
+
+        .link-area {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #reg {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        #forgetPassword {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        .abled {
+            color: #ffffff;
+            border-color: #F38524;
+            background-color: #f38524;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+    </style>
+    <script>
+        $(function () {
+            mui.init();
+            var vm = new Vue({
+                el: "body",
+                data: {
+                    username: (sessionStorage.getItem('reg_user_name')) ? sessionStorage.getItem('reg_user_name') : ((isDebug) ? "18605887655" : ""),
+                    password: (isDebug) ? "aibang123" : "",
+                    isTrue: false
+                },
+                computed: {
+                    isTrue: function () {
+                        if (this.username.length && this.password.length >= 6 && this.password.length <= 20) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                },
+                created: function () {
+                    //如果是已经注册过，只是现在退出了，只要微信授权即可登录！
+                },
+                methods: {
+                    login: function () {
+                        try {
+                            var type = this.username.length == 11 ? 21 : 11;
+                            //this.password = $.base64.btoa(this.password);
+                            var password2 = $.base64.btoa(this.password);
+                            console.log(this.password);
+                            console.log(password2);
+
+                            sessionStorage.setItem('reg_user_name', this.username);
+
+                            var data = {};
+                            if (this.username.length == 11) {
+                                data = { "login_type": type, "phone_number": this.username, "password": password2 };
+                            } else {
+                                data = { "login_type": type, "user_name": this.username, "password": password2 };
+                            }
+                            postAjaxMUI(baseUrlCommon + "/user/login.aspx", data, "post",
+                              function (data) {
+                                  console.log("data.code=" + data.code);
+                                  if (data.code == 200) {
+                                      //保存用户登录信息！cch
+                                      console.log("-数据-:");
+                                      console.log(data.data);
+                                      //设置所有本地数据！
+                                      setLocalUserInfo(data.data.user_id, data.data.token, data.data.openid, data.data.phone_number);
+                                      var sc2 = params.sc;
+                                      if (!params.sc)
+                                          sc2 = data.data.sc_id;
+                                      setLocalSchoolInfo(sc2, data.data.school_id, data.data.school_name, data.data.department_id, data.data.department_name);
+                                      setLocalCityInfo(data.data.city_id, data.data.city, data.data.latitude, data.data.longitude);
+
+                                      var cityinfo = getLocalCityInfo();
+                                      console.log('cityinfo=' + JSON.stringify(cityinfo));
+
+                                      //if (!cityinfo || !cityinfo.city_id) {
+                                      //    cityinfo = getLocalCityInfo();
+                                      //}
+                                      if (cityinfo.city_id && cityinfo.city_name) {
+                                          setCookie("city_id", cityinfo.city_id);
+                                          setCookie("city_name", cityinfo.city_name);
+                                          ////城市编辑到cookie中。
+                                          //console.log("editCookie.aspx");
+                                          //$.ajax({
+                                          //    url: baseUrlCommon + "/wechat/editCookie.aspx?city_id=" + cityinfo.city_id,
+                                          //    //"/wechat/editCookie/"+cityinfo.city_id,
+                                          //    type: "GET",
+                                          //    beforeSend: function (request) {
+                                          //        request.setRequestHeader("token", data.data.token);
+                                          //        request.setRequestHeader("version", "2.0");
+                                          //    },
+                                          //    success: function (ret) {
+                                          //        console.log("editCookie=success");
+                                          //    }
+                                          //});
+                                      } else {
+                                          mui.toast('获取不到定位城市');
+                                      }
+                                      //document.cookie
+
+                                      var href1 = "";
+                                      localCityInfo = getLocalCityInfo();
+                                      localSchoolInfo = getLocalSchoolInfo();
+                                      if (isNull(localSchoolInfo) || isNull(localSchoolInfo.school_id))
+                                          href1 += baseUrlHtmlLong + "/pagesCommon/indexPage_searchcitylist.html";// + "&user_id=" + data1.user_id;
+                                      else
+                                          href1 += baseUrlHtmlLong + "/pages/indexPage1_" + app_path1 + ".html";// + "&user_id=" + data1.user_id;
+                                      
+                                      window.location.href = href1;
+                                      //下面这种做法因为包含问号和参数出错
+
+                                      //var url1 = localStorage.getItem("historyUrl") ? localStorage.getItem("historyUrl") : "indexPage_" + app_path1 + ".html";
+                                      //console.log("历史参数："); console.log(url1);
+                                      //alert(baseUrlHtml);
+                                      //if (data.data.user_id) document.cookie = "user_id=" + data.data.user_id;
+                                      ////下面应该是没用的。
+                                  }
+                                  else {
+                                      mui.toast(data.message);
+                                  }
+                              });
+                        } catch (e) { console.error(e); alert(e.message); }
+                    }
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div class="mui-content mui-fullscreen" style="background-color: #fff;">
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title" id="title">登录</h1>
+        </header>
+        <div class="innerCenter" v-cloak>
+            <form class="mui-input-group ys-input-group" style="margin: 60px 40px 0;">
+                <div class="mui-input-row" style="margin-bottom:15px;">
+                    <label style="width:20%;padding-right:0px;padding-left:0px;">联系人</label>
+                    <input style="width:80%;" type="text" class="mui-input-clear" placeholder="请输入用户名/手机号" v-model="username">
+                </div>
+                <div class="mui-input-row">
+                    <div class="mui-input-row" style="margin-bottom: 15px; display: inline" id="psw_invisible">
+                        <label style="width:20%;padding-right:0px;padding-left:0px;">密码</label>
+                        <!--<span style="width: 15%; float: right;margin-top:10px" onclick="showPsw()">显示</span>-->
+                        <input style="width:65%; float:left" id="input_invisible" class="mui-input-password" type="password" placeholder="请输入密码" v-model="password">
+                        <div class="mui-tip"></div>
+                    </div>
+                    <div class="mui-input-row" style="margin-bottom: 15px; display: none" id="psw_visible">
+                        <label style="width:20%;padding-right:0px;padding-left:0px;">密码</label>
+                        <!--<span style="width: 15%; float: right; margin-top: 10px" onclick="hidePsw()">隐藏</span>-->
+                        <input style="width:65%; float:left" class="mui-input-clear" id="input_visible" type="text" placeholder="请输入密码" v-model="password">
+                        <div class="mui-tip"></div>
+                    </div>
+                </div>
+                <!-- <div class="mui-input-row">
+                    <label style="width:20%;padding-right:0px;padding-left:0px;">验证码</label>
+                    <input style="width:80%;" class="mui-input-clear" type="password" placeholder="请输入验证码" v-model="password1">
+                    <div class="mui-tip"></div>
+                </div> -->
+            </form>
+            <div style="margin-top: 20px;">
+                <button disabled="disabled" v-if="!isTrue" class="mui-btn mui-btn-long">登录</button>
+                <button :class="[{'abled' : isTrue}]" v-if="isTrue" class="mui-btn mui-btn-long" @click="login">登录</button>
+                <div class="link-area">
+                    <a class="fr" id='forgetPassword' style="float:left" href="registernew.html">立即注册</a>
+                    <a class="fr" id="forgetPassword" href="../pagesCommon/findPassword.html">忘记密码</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="JavaScript">
+        var visible = document.getElementById('psw_visible');//text block
+        var invisible = document.getElementById('psw_invisible');//password block
+        var inputVisible = document.getElementById('input_visible');
+        var inputInVisible = document.getElementById('input_invisible');
+        //隐藏text block，显示password block
+        function showPsw() {
+
+
+            var val = inputInVisible.value;//将password的值传给text
+            inputVisible.value = val;
+            invisible.style.display = "none";
+            visible.style.display = "inline";
+
+        }
+        //隐藏password，显示text
+        function hidePsw() {
+            var val = inputVisible.value;
+            inputInVisible.value = val;
+            invisible.style.display = "inline";
+            visible.style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>

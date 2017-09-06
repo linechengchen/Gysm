@@ -1,0 +1,100 @@
+input {
+	-webkit-appearance: none;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #F5f5f5;
+	color: #333;
+	overflow-x: hidden;
+}
+
+.partime_all {
+	width: 100%;
+	height: calc(100% - 110px);
+	margin: 50px 0 0 0;
+	background: #FFFFFF;
+	padding-top: 10px;
+}
+
+.partime_all ul {
+	width: calc(100% - 15px);
+	height: 100%;
+	margin: 0 0 0 15px;
+}
+
+.partime_all ul li {
+	position: relative;
+	width: calc(50% - 15px);
+	height: 22%;
+	margin: 0 15px 16px 0;
+	float: left;
+}
+
+.partime_all ul li .partime_calss {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	color: #FFFFFF;
+	font-size: 17px;
+	top: 39%;
+}
+
+.partime_all ul li .classlist_img {
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+}
+
+.partime_all ul li.dibu_height {
+	width: 100%;
+	height: 50px;
+}
+
+.kongbaise {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+	z-index: 500;
+	display: none;
+}
+.famousbus{
+	width: 100%;
+	height: 100%;
+	margin: 50px 0 0 0;
+	background: #FFFFFF;
+	padding-top: 10px;
+}
+.famousbus ul {
+	width: 100%;
+	height: 100%;
+}
+
+.famousbus ul li {
+    width: calc(50% - 24px);
+    height: 24%;
+    border-radius: 8px;
+    float: left;
+    text-align: center;
+    margin: 0 0 10px 16px;
+}
+
+.famousbus ul li .famousname {
+	color: #FFFFFF;
+	font-size: 17px;
+	margin-top: 5%;
+}
+
+.famousbus ul li img {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	margin-top: 16%;
+}

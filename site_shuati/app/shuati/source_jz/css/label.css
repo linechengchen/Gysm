@@ -1,0 +1,154 @@
+input{
+	-webkit-appearance: none;
+}
+
+.list{
+	width: 100%;
+	background: #FFFFFF;
+	margin-top: 0px;
+	overflow: hidden;
+}
+.list .title_one{
+	width: 100%;
+	height: 35px;
+	margin-left: 3%;
+	padding-top: 15px;
+	font-size: 16px;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.list .list_list {
+	width: 100%;
+}
+
+.list .list_list ul {
+	width: 100%;
+	overflow-x: hidden;
+}
+.list .list_list ul li {
+	background: #ffffff;
+	margin-top: 0px;
+	width: 100%;
+	/*border-bottom: 1px solid #E4E4E4;*/
+}
+.loading{
+	width: 100%;
+	height: 35px;
+	background: #FFFFFF;
+	line-height: 35px;
+	text-align: center;
+	color: #8F8F94;
+	display: none;
+}
+.loading img{
+	margin-top: 8px;
+	width: 14px;
+}
+
+.list .list_list ul li .partjobtitle {
+	width: 100%;
+	margin-bottom: 8px;
+}
+.list .list_list ul li .partjobtitle .title_left{
+	padding: 10px 0 0 10px;
+	margin-right: 80px;
+	color: #333333;
+	font-size: 16px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.list .list_list ul li .partjobtitle .salary_right{
+	float: right;
+	margin-top: -20px;
+	padding-right: 12px;
+	color: #ff8564;
+	font-size: 16px;
+}
+.list .list_list ul li .line {
+	width: calc(100% - 10px);
+	height: 0px;
+	margin-left: 10px;
+	border-bottom: 1px solid #E4E4E4;;
+}
+.list .list_list ul li .fuli{
+	width: 100%;
+	margin-left: 10px;
+	margin-bottom: 8px;
+	overflow: hidden;
+	height: 20px;
+}
+.list .list_list ul li .fuli input{
+	float: left;
+	height: 20px;
+	line-height: 0px;
+	background: #FFFFFF;
+	border: 1px solid #f5a623;
+	color: #f5a623;
+	font-size: 11px;
+	border-radius: 10px;
+}
+
+.list .list_list ul li .partjobcontent{
+	width:calc(100% - 24px);
+	margin-left: 10px;
+	height: 40px;
+	/*background: #000;*/
+	margin-top: 5px;
+	height: 50px;
+	/*border-top: 1px dashed #999999;*/
+}
+/*.list .list_list ul li .partjobcontent img{
+	margin-top: 10px;
+	width: 48px;
+}*/
+
+.list .list_list ul li .partjobcontent .time_times {
+	width: 100%;
+	margin: 0;
+}
+.list .list_list ul li .partjobcontent .time_times .timeaddress{
+	width: 15px;
+}
+.list .list_list ul li .partjobcontent .time_times .color_font {
+	font-size: 13px;
+	color: #666666;
+	margin: -20px 0px 0 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.list .list_list ul li .partjobcontent .place_places {
+	width: 100%;
+	margin: 5px 0 0 0;
+}
+.list .list_list ul li .partjobcontent .place_places .timeaddress{
+	width: 15px;
+}
+.list .list_list ul li .partjobcontent .place_places .color_font {
+	font-size: 13px;
+	color: #666666;
+	margin: -21px 0px 0 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.list .list_list .alljob{
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	font-size: 14px;
+	border-bottom: 1px solid #E4E4E4;
+	/*display: none;*/
+}
+.list .list_list .alljob .jobmore{
+	margin-top: 5px;
+	width: 104px;
+	height: 32px;
+	color:#12CE8F;
+	line-height: 32px;
+	border: 1px solid #12CE8F;
+	border-radius: 5px;
+	margin-left: calc(50% - 52px);
+}

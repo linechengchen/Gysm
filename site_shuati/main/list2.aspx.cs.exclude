@@ -1,0 +1,186 @@
+﻿using AgileFrame.Core;
+using AgileFrame.Orm.PersistenceLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class wap_main_type : BasePageShuati
+{
+    protected string agent = "";
+    protected string sc = "194oj";
+    public string title1 = "未加载";
+    public string kemuName = "mks";
+    public string num = "0";
+    public string num0 = "0";
+    public string num1 = "0";
+    public string num2 = "0";
+    public string num3 = "0";
+    protected string name1 = "";
+    protected string type1 = "";
+    protected string tu2wei = "";
+    protected string subKcName = "";//zlg
+
+    private void setTitle()
+    {
+        if (!AgileFrame.Core.ConsoleService.IsNeedWebConsole)
+        {
+            AgileFrame.Core.ConsoleService.IsNeedWebConsole = true;
+            AgileFrame.Core.ConsoleService.Fatal("bs控制台启动");
+        }
+
+        if (!string.IsNullOrEmpty(Request["sc"]))
+        {
+            sc = StringHelper.GetNumeric(Convert.ToString(Request["sc"]));
+            if (sc == "111404oj" || sc == "111401wd" || sc == "111402wz")
+            {
+                Response.End(); return;
+            }
+        }
+        string ip1 = GetClientIp();
+        tu2wei = BLL1.getFile(sc);
+        if (!string.IsNullOrEmpty(Request["type1"]))
+        {
+            type1 = Convert.ToString(Request["type1"]);
+        }
+        if (!string.IsNullOrEmpty(Request["subKcName"]))
+        {
+            subKcName = Convert.ToString(Request["subKcName"]);
+        }
+        ////禁止转发
+        //if (string.IsNullOrEmpty(type1))
+        //{
+        //    Random r1 = new Random();
+        //    int key1 = r1.Next();
+        //    Session["type1"] = key1;
+        //    //Server.Transfer("ab.aspx?type1=" + key1 + "&sc=" + sc);
+        //    Response.Redirect("ab.aspx?type1=" + key1 + "&sc=" + sc);
+        //    Response.End();
+        //    return;
+        //    //Server.Transfer("ab.aspx?suiji=" + key1 + "&sc=" + sc);
+        //}
+
+        name1 = StringHelper.GetHanZi(BLL1.getDaxueName(sc));
+
+        if (!string.IsNullOrEmpty(Request["kemuName"]))
+        {
+            kemuName = Request["kemuName"].ToString();
+        }
+        title1 = BLL3.getClassZhongWen(Request["kemuName"].ToString());
+
+        AFDictionary<string, St_TTimuDaXue> dic = BLL1.Init(sc, kemuName);
+        num = dic.Count.ToString();
+
+        if (dic.Count == 0)
+        {
+            dic = BLL1.Init("194oj", kemuName);
+            num = dic.Count.ToString();
+        }
+        
+        num0 = BLL1.GetSum(sc, kemuName, 0).ToString();
+
+        num1 = BLL1.GetSum(sc, kemuName, 1).ToString();
+
+        num2 = BLL1.GetSum(sc, kemuName, 2).ToString();
+
+        num3 = BLL1.GetSum(sc, kemuName, 3).ToString();
+
+        string sc1 = "194oj";
+        if (num0 == "0" && sc != "194oj")
+        {
+            num0 = BLL1.GetSum(sc1, kemuName, 0).ToString();
+        }
+        if (num1 == "0" && sc != "194oj")
+        {
+            num1 = BLL1.GetSum(sc1, kemuName, 1).ToString();
+        }
+        if (num2 == "0" && sc != "194oj")
+        {
+            num2 = BLL1.GetSum(sc1, kemuName, 2).ToString();
+        }
+        if (num3 == "0" && sc != "194oj")
+        {
+            num3 = BLL1.GetSum(sc1, kemuName, 3).ToString();
+        }
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        setTitle();
+        string ip1 = GetClientIp();
+
+        #region 截取非微信访问用户
+        agent = Request.Headers["User-Agent"];
+        if ( string.IsNullOrEmpty(Request["neice"]) && !choose_net(agent) && !AgileFrame.Core.MyDebugger.IsAttached)// && !AgileFrame.Core.MyDebugger.IsAttached
+        {
+            if (!"183.245.77.242|183.245.77.245|183.245.77.248|115.159.84.169|stbd.aibangxs.com|115.159.84.169|::1|127.0.0.1|".Contains(ip1) && !ip1.StartsWith("10.30.103"))
+            {
+                ResponseWarn(tu2wei, ip1);
+                return;
+            }
+        }
+    }
+    public void ResponseWarn(string tu2wei, string ip1)
+    {
+        string s1 = ("<br><br><br><br><span style='font-size:25px'>刷题宝典 服务器升级，新地址见码：</span><br><img style='height:300px' src='image/分享/完整版本_num/" + tu2wei + "'/>：" + ip1 + "<br><br><br>");
+        BasePage b1 = new BasePage();
+        string sinfo = b1.getClientInfo(this.Request, this.Response);
+        Response.Write(s1 + sinfo);
+        Response.End();
+    }
+    //对用户访问进行判断 如果是的话返回true，否则返回false  
+    public bool choose_net(string userAgent)
+    {
+        if (userAgent.IndexOf("MicroMessenger") > -1)// Nokia phones and emulators   
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    /// <summary>  
+    /// 获取客户端Ip  
+    /// </summary>  
+    /// <returns></returns>  
+    public String GetClientIp()
+    {
+        String clientIP = "";
+        if (System.Web.HttpContext.Current != null)
+        {
+            clientIP = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(clientIP) || (clientIP.ToLower() == "unknown"))
+            {
+                clientIP = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_REAL_IP"];
+                if (string.IsNullOrEmpty(clientIP))
+                {
+                    clientIP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                }
+            }
+            else
+            {
+                clientIP = clientIP.Split(',')[0];
+            }
+        }
+        return clientIP;
+    }
+    /// <summary>  
+    /// 服务器端获取客户端请求IP和客户端机器名称  
+    /// </summary>  
+    public static string GetClientInfo()
+    {
+        OperationContext context = OperationContext.Current;
+        MessageProperties messageProperties = context.IncomingMessageProperties;
+        RemoteEndpointMessageProperty endpointProperty = messageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+        HttpRequestMessageProperty requestProperty = messageProperties[HttpRequestMessageProperty.Name] as HttpRequestMessageProperty;
+        string clientIp = !string.IsNullOrEmpty(requestProperty.Headers["X-Real-IP"]) ? requestProperty.Headers["X-Real-IP"] : endpointProperty.Address;
+        string clientName = Environment.MachineName;
+        //Console.WriteLine("ClientIp: " + clientIp + "clientName:" + clientName);
+        return "ClientIp: " + clientIp + "clientName:" + clientName;
+    }
+        #endregion 截取非微信访问用户
+}

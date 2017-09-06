@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>注册</title>
+    <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link rel="stylesheet" href="../source/css/public.css">
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.js"></script>
+    <script src="../source/js/vue.min.js"></script>
+    <script src="../source/js/vue-tap.js"></script>
+
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <!--<script src="../source/js/ajax_xs.js?r=1"></script>-->
+    <!--<script src="../source/js/ajax_xs_my.js"></script>-->
+    <!--<script src="../source/js/public.js"></script>-->
+    <style>
+        .mui-btn {
+            color: #ff6a00;
+            border-radius: 5px !important;
+            width: 80%;
+        }
+
+        .abled {
+            color: #ffffff;
+            border-color: #ff6a00;
+            background-color: #ff6a00;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .link-area {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            mui.init();
+            var vm = new Vue({
+                el: "body",
+                data: {
+                    phone_number: (localStorage.getItem('reg_phone_number')) ? localStorage.getItem('reg_phone_number') : ((isDebug) ? "18605887655" : ""),
+                    isTrue: false
+                },
+                computed: {
+                    isTrue: function () {
+
+                        if (this.phone_number.length == 11) {
+
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                },
+                methods: {
+                    isValid: function () {
+                        localStorage.setItem('reg_phone_number', this.phone_number);
+                        var self = this;
+                        var data1 = { "oper_type": 201, "phone_number": self.phone_number }
+                        console.log(data1);
+                        if (!(/^1[34578]\d{9}$/.test(self.phone_number))) {
+                            mui.toast("请输入正确的手机号码");
+                        } else {
+                            if (self.phone_number == "18605887655" || self.phone_number == "18324254558")
+                                myhref.href = "../pagesCommon/registerNew2.html?phoneNumber=" + self.phone_number;
+                            else {
+                                postAjaxMUI(baseUrlUser + '/user/check_exist_user.aspx', data1, "post", function (json) {
+                                    if (json.code == 200) {
+                                        mui.toast("该手机号已被其他账号绑定，您可直接登录");
+                                        return;
+                                    } else {
+                                        myhref.href = "../pagesCommon/registerNew2.html?phoneNumber=" + self.phone_number;
+                                    }
+                                    //操作json.data;
+                                });
+                            }
+                        }
+                    }
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div class="mui-content mui-fullscreen" style="background-color: #fff;">
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title" id="title">注册新用户</h1>
+        </header>
+        <div class="innerCenter" v-cloak>
+            <form class="mui-input-group ys-input-group" style="margin: 60px 40px 0;">
+                <div class="mui-input-row" style="margin-bottom:5px;">
+                    <label style="width:20%;padding-right:0px;padding-left:0px;">+86</label>
+                    <input style="width:80%;" maxlength="11" type="tel" class="mui-input-clear" value="" placeholder="手机号码" v-model="phone_number">
+                </div>
+                <div class="mui-h6" style="margin-bottom:20px;">
+                    手机号帮您永久保存题库，也可以找更多同学<!--注册即表示你同意《爱帮服务协议》-->
+                    <a href="login2.html">直接登录</a>
+                </div>
+            </form>
+            <div style="margin-top: 20px;">
+                <button disabled="disabled" v-if="!isTrue" class="mui-btn mui-btn-long">下一步</button>
+                <button :class="[{'abled' : isTrue}]" v-if="isTrue" class="mui-btn mui-btn-long" @click="isValid">下一步</button>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/mycollect.css" />
+		<script src="../source_jz/7xiyzi_js/20160409_weixinjquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/js/public_jianzhi.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../source_7niu/artTemplate.js"></script>
+		<script src="../../../source_7niu/jquery.cookie.js"></script>
+		<script src="../source_jz/js/localStorage.js"></script>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinpromise.min.js"></script>
+		<script src="../source_jz/js/ajax_jz_pack.js"></script>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinJudgeBrowser.js" type="text/javascript" charset="utf-8"></script>
+		<title>我的收藏</title>
+	</head>
+	<script type="text/javascript">
+		(function(m, ei, q, i, a, j, s) {
+			m[a] = m[a] || function() {
+				(m[a].a = m[a].a || []).push(arguments)
+			};
+			j = ei.createElement(q),
+				s = ei.getElementsByTagName(q)[0];
+			j.async = true;
+			j.charset = 'UTF-8';
+			j.src = i + '?v=' + new Date().getUTCDate();
+			s.parentNode.insertBefore(j, s);
+		})(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+		_MEIQIA('entId', 53303);
+	</script>
+
+	<body>
+		<!--页面加载 开始-->
+		<div id="preloader1">
+			<div id="status1">
+				<p class="center-text"><span></span></p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#status").hide();//.fadeOut();
+			$("#preloader").hide();//.delay(300).fadeOut("slow");
+		</script>
+		<header>
+			我的收藏
+			<a href="javascript:window.history.go(-1);" class="header_btn_left_back btn_back_jianzhi"></a>
+		</header>
+
+		<div class="nocollege" id="waitwork">
+			<img src="../../../source_7niu//20161117zanwucolle@3x.png"/>
+			<p>还没有收藏...</p>
+		</div>
+		<!--兼职-->
+		<div class="partlist" id="colleect">
+			<ul id="caini">
+				
+			</ul>
+		</div>
+		<div class="bottomload"><img src="https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinload.gif" />上拉加载更多...</div>
+		<script type="text/html" id="jianzhilist">
+			{{each partJobFavorites as b}}
+				{{if b.partJob.category == "COMMON_PART_JOB"}}
+					<li class="line-normal-wrapper" data-partjobId="{{b.partJob.partJobId}}" onclick="jumpstatus(this)">
+						<img src="{{b.partJob.partJobLogo}}" class="partlogo"/>
+						<div class="rightcon">
+							<div class="jobtitles">
+								<span class="nthtitle">{{b.partJob.partJobTitle}}</span>
+								{{if b.partJob.Ticketone != null || b.partJob.Ticketwo != null}}
+									<span class="nthadmon">加薪</span>
+								{{/if}}
+								<span class="moneytiker">{{b.partJob.salaryUnit}}{{b.partJob.salaryTimeUnit.chinese}}</span>
+							</div>
+							<div class="hotnumber"><img src="https://ojlf2aayk.qnssl.com/20170222fire@3x.png">{{b.partJob.hotScore}}</div>
+							<!--<div class="hotnumber"><img src="https://ojlf2aayk.qnssl.com/20170222fire@3x.png">{{b.partJob.hotScore}}</div>-->
+							{{if b.partJob.partJobTags != null}}
+								<div class="fuli">
+									{{each b.partJob.partJobTags as s}}
+										<input type="button" value="{{s}}" /> 
+									{{/each}}	
+								</div>
+							{{/if}}	
+							{{if b.partJob.newJobStandTime != null}}
+								<div class="time_times">{{b.partJob.newJobStandTime}}</div>
+							{{/if}}	
+							{{if b.partJob.addressBuilding == null && b.partJob.addressDetail != null}}	
+								<div class="place_places">{{b.partJob.addressDetail}}</div> 
+								{{if b.partJob.distance != null}}
+									<div class="kilometers">/{{b.partJob.distance}}</div>
+								{{/if}}		
+							{{/if}}
+							{{if b.partJob.addressBuilding != null && b.partJob.addressDetail != null}}
+								<div class="place_places">{{b.partJob.addressBuilding}} </div>
+								{{if b.partJob.distance != null}}
+									<div class="kilometers">/{{b.partJob.distance}}</div>
+								{{/if}}
+							{{/if}}
+						</div>
+					</li>	
+					<div class="canclecollege" data-partJobFavoriteId="{{b.partJobFavoriteId}}" onclick="cancleCollege(this)">取消收藏</div>
+				{{/if}} 
+				{{if b.partJob.category == "BOUTIQUE_PART_JOB"}}
+				<a href="qualitypart.html?partJobId={{b.partJob.partJobId}}">
+					<li class="line-normal-wrapper" data-partjobId="{{b.partJob.partJobId}}" onclick="jumpstatus(this)">
+						<img src="{{b.partJob.partJobLogo}}" class="partlogo"/>
+						<div class="rightcon">
+							<div class="jobtitles">
+								<span class="nthtitle">{{b.partJob.partJobTitle}}</span>
+								{{if b.partJob.Ticketone != null || b.partJob.Ticketwo != null}}
+									<span class="nthadmon">加薪</span>
+								{{/if}}
+								<span class="moneytiker">{{b.partJob.salaryUnit}}{{b.partJob.salaryTimeUnit.chinese}}</span>
+							</div>
+							<!--<div class="hotnumber"><img src="https://ojlf2aayk.qnssl.com/20170222fire@3x.png">{{b.partJob.hotScore}}</div>-->
+							{{if b.partJob.partJobTags != null}}
+								<div class="fuli">
+									{{each b.partJob.partJobTags as s}}
+										<input type="button" value="{{s}}" /> 
+									{{/each}}	
+								</div>
+							{{/if}}	
+							{{if b.partJob.newJobStandTime != null}}
+								<div class="time_times">{{b.partJob.newJobStandTime}}</div>
+							{{/if}}	
+							{{if b.partJob.addressBuilding == null && b.partJob.addressDetail != null}}	
+								<div class="place_places">{{b.partJob.addressDetail}}</div> 
+								{{if b.partJob.distance != null}}
+									<div class="kilometers">/{{b.partJob.distance}}</div>
+								{{/if}}		
+							{{/if}}
+							{{if b.partJob.addressBuilding != null && b.partJob.addressDetail != null}}
+								<div class="place_places">{{b.partJob.addressBuilding}} </div>
+								{{if b.partJob.distance != null}}
+									<div class="kilometers">/{{b.partJob.distance}}</div>
+								{{/if}}
+							{{/if}}
+						</div>
+					</li>	
+				</a>
+				<div class="canclecollege" data-partJobFavoriteId="{{b.partJobFavoriteId}}" onclick="cancleCollege(this)">取消收藏</div>
+				{{/if}} 
+				{{/each}}
+		</script>
+	</body>
+
+	<script type="text/javascript">
+		$("body").append('<div class="gotop" id="gotop"><div>');
+		$(window).scroll(function() {
+			$(document).scrollTop() > 300 ? $("#gotop").fadeIn() : $("#gotop").fadeOut()
+		});
+		$("#gotop").click(function() {
+			$("html,body").animate({
+				scrollTop: 0
+			}, 300)
+		});
+
+		$(window).bind('scroll', function() {
+			show()
+		});
+
+		function show() {
+			if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+				loadMore();
+			}
+		}
+
+		/** 获取首页基本数据*/
+		pageNum = 1;
+		var overAllData = {};
+		overAllData.token = token;
+		init(overAllData);
+		function init(data) {
+			console.log(data);
+			postAjax('/partJobFavorite/partJob/list.aspx', data).then(function (data) {
+				if(data.success) {
+					console.log(data.data);
+					$("#caini").html(template('jianzhilist', data.data));
+					if(data.data.partJobFavorites == null) {
+						$(".nocollege").show();
+						$('body').css('background','#FFFFFF');
+					}
+					if(data.data.pageNum >= data.data.totalPageNum) {
+						$('.bottomload').hide();
+					} else {
+						$('.bottomload').show();
+					}
+					touchDelete();
+				} else {
+					//提示取数据失败原因
+					alert(data.errMsg);
+				}
+			});
+		}
+		function loadMore() {
+			var data1 = {};
+			var user_id = localUserInfo.user_id;// getCookie("identity_new");
+			data1.token = token;
+			valueTovalue(overAllData, data1);
+			data1.pageNum = pageNum;
+			postAjax('/partJobFavorite/partJob/list.aspx', data1).then(function (data) {
+				var success = data.success;
+				if(success) {
+					console.log(data.data);
+					$("#listcolleect").append(template('jianzhilist', data.data));
+					pageNum = data.data.pageNum;
+					if(data.data.pageNum >= data.data.totalPageNum) {
+						jump(3); //倒计时3秒
+					} else {
+						$('.bottomload').show();
+					}
+					touchDelete();
+				} else {
+					//提示取数据失败原因
+					alert(data.errMsg);
+				}
+			});
+		}
+
+		function jump(count) { //倒计时3秒
+			window.setTimeout(function() {
+				count--;
+				if(count > 0) {
+					$('.bottomload').text("暂无更多数据");
+					jump(count);
+				} else {
+					$('.bottomload').hide();
+				}
+			}, 1000);
+		}
+		
+		function jumpstatus(obj){
+			var parjobId = $(obj).attr("data-partjobId");
+			location.href = "jobdetails.html?partJobId=" + parjobId;
+		}
+		
+		function cancleCollege(obj){
+			var data = {};
+			data.token = token;
+			data.partJobFavoriteId = $(obj).attr('data-partJobFavoriteId');
+			postAjax('/partJobFavorite/delete.aspx', data).then(function (data) {
+				if(data.success) {
+					if(data.errMsg == '删除收藏成功') {
+						popover('取消收藏成功');
+					}
+					init(overAllData);
+				} else {
+					alert(data.errMsg);
+				}
+			});
+		}
+		
+		function touchDelete() {
+			// 获取所有行，对每一行设置监听
+			var lines = $(".line-normal-wrapper");
+			var len = lines.length;
+			var lastX, lastXForMobile;
+
+			// 用于记录被按下的对象
+			var pressedObj; // 当前左滑的对象
+			var lastLeftObj; // 上一个左滑的对象
+
+			// 用于记录按下的点
+			var start;
+
+			// 网页在移动端运行时的监听
+			for(var i = 0; i < len; ++i) {
+				lines[i].addEventListener('touchstart', function(e) {
+					lastXForMobile = e.changedTouches[0].pageX;
+					pressedObj = this; // 记录被按下的对象 
+
+					// 记录开始按下时的点
+					var touches = event.touches[0];
+					start = {
+						x: touches.pageX, // 横坐标
+						y: touches.pageY // 纵坐标
+					};
+				});
+
+				lines[i].addEventListener('touchmove', function(e) {
+					// 计算划动过程中x和y的变化量
+					var touches = event.touches[0];
+					delta = {
+						x: touches.pageX - start.x,
+						y: touches.pageY - start.y
+					};
+
+					// 横向位移大于纵向位移，阻止纵向滚动
+					if(Math.abs(delta.x) > Math.abs(delta.y)) {
+						event.preventDefault();
+					}
+				});
+
+				lines[i].addEventListener('touchend', function(e) {
+					var diffX = e.changedTouches[0].pageX - lastXForMobile;
+					if(diffX < -150) {
+						$(pressedObj).animate({
+							marginLeft: "-80px"
+						}, 300); // 左滑
+						lastLeftObj && lastLeftObj != pressedObj &&
+							$(lastLeftObj).animate({
+								marginLeft: "0"
+							}, 300); // 已经左滑状态的按钮右滑
+						lastLeftObj = pressedObj; // 记录上一个左滑的对象
+					} else if(diffX > 150) {
+						$(pressedObj).animate({
+							marginLeft: "0"
+						}, 300); // 右滑
+						lastLeftObj = null; // 清空上一个左滑的对象
+					}
+				});
+			}
+
+			// 网页在PC浏览器中运行时的监听
+			for(var i = 0; i < len; ++i) {
+				$(lines[i]).bind('mousedown', function(e) {
+					lastX = e.clientX;
+					pressedObj = this; // 记录被按下的对象
+				});
+
+				$(lines[i]).bind('mouseup', function(e) {
+					var diffX = e.clientX - lastX;
+					if(diffX < -150) {
+						$(pressedObj).animate({
+							marginLeft: "-80px"
+						}, 300); // 左滑
+						lastLeftObj && lastLeftObj != pressedObj &&
+							$(lastLeftObj).animate({
+								marginLeft: "0"
+							}, 300); // 已经左滑状态的按钮右滑
+						lastLeftObj = pressedObj; // 记录上一个左滑的对象
+					} else if(diffX > 150) {
+						$(pressedObj).animate({
+							marginLeft: "0"
+						}, 300); // 右滑
+						lastLeftObj = null; // 清空上一个左滑的对象
+					}
+				});
+			}
+		}
+	</script>
+
+</html>

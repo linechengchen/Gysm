@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <div id="shareImage" style="display:none;">
+        <img src="../image/hdt2.jpg" />
+    </div>
+    <title>题库（2017新）</title>
+
+    <link href="../css/mui/mui.min.css" rel="stylesheet" />
+    <link href="../css/swiper/swiper.min.css" rel="stylesheet" />
+    <link href="../css/app.css?r=219191" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/index.css">
+    <!--<link rel="stylesheet" type="text/css" href="../css/aui.css">-->
+    <link rel="stylesheet" type="text/css" href="../css/aui.min.css">
+
+    <style type="text/css">
+        /*.aui-bar {
+            background: url('../image/bar1.png') no-repeat #e74c3c;
+            background-size: 100% auto;
+            background-position: 0 bottom;
+                    }*/
+        .headerclass {
+            min-width: 200px;
+            min-height: 210px;
+            background: url('../image/hdt2.jpg') no-repeat; /*1122.jpg*/
+            position: relative;
+            background-origin: content;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        #cover2 {
+            text-align: center;
+            margin: 0px auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 20000;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .fxImg1 {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-danger" id="aui-header">
+        <a class="mui-action-back aui-btn aui-btn-danger aui-pull-left" id="back1"> <span class="aui-iconfont aui-icon-left"></span> </a>
+        <div class="aui-title" id="title">
+            <!--{{scname }} {{kemuName}}题库（2016新）-->
+        </div>
+        <div style="float:right; font-size:.13rem"><a href="" id="tiku2"></a></div>
+    </header>
+
+    <div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+        <img class="fxImg1" src="../image/shareWX.png" />
+        <br />
+        <br />
+        <br />
+        <br /><br /><br /><br /><br /><font style="color:white;font-size:23px;font-weight:bolder">长按扫码，分享您的需要<br /><br /></font>
+        <img id="img2wei" src="" />
+        <br /><br /><font class="fonttixing">爱帮先生，因您需要而在</font>
+    </div>
+
+    <div class="swiper-container" style="height:200px">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <img src="../../../image/hdt-xin1.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="../../../image/hdt-xin2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="../../../image/hdt-xin3.jpg">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div id="optionTypeList-parent">
+    </div>
+    <script id="optionTypeList-detail-tpl" type="text/html">
+        <div class="aui-content-padded aui-card" style="margin: 2px 1px;">
+            <ul class="aui-list-view">
+                {{if has_reader}}
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_read.html?has_reader=1&source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum}}&questionid_max={{questionid_max}}&sc={{sc}}&sc_sum={{sc_sum}}&order={{order}}&r="><i class="aui-iconfont aui-icon-edit aui-text-info"></i>掌阅复习<span class="aui-badge aui-badge-info" id="order">{{reader_sum}}</span></a>
+                </li>
+                {{/if}}
+                <li class="aui-list-view-cell aui-indexed-list-view-group" data-win="cuoti">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=cuoti&sc={{sc}}&sc_sum={{sc_sum}}&question_sum={{question_sum_cuoti}}"><i class="aui-iconfont aui-icon-edit aui-text-danger" style=""></i><span class="aui-iconfont aui-icon-favorfill aui-text-danger" data-value="*"></span>我的错题库<span class="aui-badge aui-badge-danger" id="a_num">{{question_sum_cuoti}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum}}&questionid_max={{questionid_max}}&sc={{sc}}&sc_sum={{sc_sum}}&order={{order}}&r="><i class="aui-iconfont aui-icon-edit aui-text-info"></i>顺序刷题<span class="aui-badge aui-badge-info" id="order">{{question_sum}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum1}}&questionid_max={{questionid_max1}}&sc={{sc}}&sc_sum={{sc_sum1}}&optionType=1&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>多选题（含辨析题）<span class="aui-badge aui-badge-info">{{question_sum1}}</span></a><!--success-->
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum0)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum0}}&questionid_max={{questionid_max0}}&sc={{sc}}&sc_sum={{sc_sum0}}&optionType=0&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>单选题<span class="aui-badge aui-badge-info">{{question_sum0}}</span></a><!--warning-->
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum2)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum2}}&questionid_max={{questionid_max2}}&sc={{sc}}&sc_sum={{sc_sum2}}&optionType=2&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>判断题<span class="aui-badge aui-badge-info">{{question_sum2}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum4)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum4}}&questionid_max={{questionid_max3}}&sc={{sc}}&sc_sum={{sc_sum3}}&optionType=4&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>不定项<span class="aui-badge aui-badge-info">{{question_sum4}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum3}}&questionid_max={{questionid_max4}}&sc={{sc}}&sc_sum={{sc_sum4}}&optionType=3&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>简答题（含论述题）<span class="aui-badge aui-badge-info">{{question_sum3}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum5)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum5}}&questionid_max={{questionid_max5}}&sc={{sc}}&sc_sum={{sc_sum5}}&optionType=5&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>填空题<span class="aui-badge aui-badge-info">{{question_sum5}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum7)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum7}}&questionid_max={{questionid_max7}}&sc={{sc}}&sc_sum={{sc_sum7}}&optionType=7&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>PPT图文<span class="aui-badge aui-badge-info">{{question_sum7}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum6)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum6}}&questionid_max={{questionid_max6}}&sc={{sc}}&sc_sum={{sc_sum6}}&optionType=6&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>名词解释题<span class="aui-badge aui-badge-info">{{question_sum6}}</span></a>
+                </li>
+                <li class="aui-list-view-cell" style="{{setStyle(question_sum8)}}" data-win="sequence">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum8}}&questionid_max={{questionid_max8}}&sc={{sc}}&sc_sum={{sc_sum8}}&optionType=8&order={{order}}&r=">&nbsp;&nbsp;&nbsp;<i class="aui-iconfont aui-icon-edit aui-text-success"></i>巧背单词<span class="aui-badge aui-badge-info">{{question_sum8}}</span></a>
+                </li>
+
+                <li class="aui-list-view-cell" data-win="random">
+                    <a class="aui-arrow-right"
+                       data-href="../pages/kemu_shuati.html?source1={{source1}}&trans={{trans}}&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=random&question_sum={{question_sum}}&questionid_max={{questionid_max}}&sc={{sc}}&sc_sum={{sc_sum}}&order={{order}}&r="><i class="aui-iconfont aui-icon-edit aui-text-pink"></i>随机刷题<span class="aui-badge aui-badge-info " id="random">{{question_sum}}</span></a>
+                </li>
+                <!--
+                <li class="aui-list-view-cell" data-win="test">
+                    <a class="aui-arrow-right" onclick="alert('功能开发中，请与帮先生留言，直接二维码私聊，帮助完善');">模拟考试 <span class="aui-badge aui-badge-success" id="test">{{question_sum}}<span class="aui-badge aui-badge-danger">0</span></span> </a>
+                </li>-->
+            </ul>
+        </div>
+    </script>
+
+    <div class="aui-content-padded aui-card" style="margin: 25px 15px;">
+        <ul class="aui-list-view">
+            <li class="aui-list-view-cell" onclick="myhref.href = '../jinshuju_xintiku.html'">
+                <i class="aui-iconfont aui-icon-edit aui-text-success"></i>
+                <font style="font-size:10px; color:grey">若未能满足需要，请向我们反馈信息</font>
+            </li>
+        </ul>
+        <ul class="aui-list-view">
+            <li class="aui-list-view-cell" onclick="myhref.href = '../pages/kemu_shuati.html?test1=1&openid={{openid}}&neice={{neice}}&zsId={{zsId}}&kemuId={{kemuId}}&cutiType=sequence&question_sum={{question_sum}}&questionid_max={{questionid_max}}&sc={{sc}}&sc_sum={{sc_sum}}&&r='">
+                <i class="aui-iconfont aui-icon-edit aui-text-success"></i>
+                <font style="font-size:10px; color:grey">反馈入口</font>
+            </li>
+        </ul>
+        <ul class="aui-list-view">
+            <li class="aui-list-view-cell" onclick="clearAllCache1()">
+                <i class="aui-iconfont aui-icon-edit aui-text-success"></i>
+                <font style="font-size:10px; color:grey">清除本地数据</font>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../js/shuati/Dictionary.js?r=113111"></script>
+    <script src="../js/shuati/localoper.js?r=111111"></script>
+    <script src="../js/shuati/localstorage.js?r=11112111"></script>
+
+    <script src="../js/mui/mui.min.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <!--<script src="../js/lib/aes.js"></script>-->
+    <!--<script src="../js/lib/aes-ctr.js"></script>-->
+    <script src="../js/swiper/swiper.min.js"></script>
+
+    <script src="../source/js/author.js?r=1"></script>
+    <script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <script src="../js/shuati/kemu_list.js?r=14111212"></script>
+
+    <script type="text/javascript">
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 3000,
+            autoplayDisableOnInteraction: false,
+            loop: true,
+
+            effect: 'coverflow',
+            //grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflow: {
+                rotate: 100,
+                stretch: 0,
+                depth: 300,
+                modifier: 1,
+                slideShadows: true
+            }
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+        function clearAllCache1() {
+            removeLocal("last_kemu1");
+            removeLocal("last_kemu2");
+            removeLocal("last_kemu3");
+            removeLocal("last_kemu4");
+            alert('清理成功')
+            //removeLocal(errQuestionsDicKey);
+            //removeLocal(lastQuestionsDicKey);
+        }
+        (function ($, doc) {
+            console.log(params);
+            //获取本地的openid
+            params.sc = params.sc || '999';
+            params.kemuId = params.kemuId || '100001';
+            //获取本地的openid
+            params.openid = params.openid || getLocal('shuati_openid') || '';
+            if (isNotNull(params.openid)) {
+                setLocal('shuati_openid', params.openid);
+                if (params.test1)
+                    mui.toast(params.openid);
+            }
+            //错题缓存
+            var errQuestionsDic = new Dictionary();
+            var errQuestionsDicKey = "qq_" + params.kemuId + '_err';
+            errQuestionsDic.getLocal1(errQuestionsDicKey);
+            params.question_sum_cuoti = errQuestionsDic.length() || '0';
+            console.log('errQuestionsDic.length()' + errQuestionsDic.length());
+            $.ready(function () {
+                try {
+                    GetUpdateMsgTimer(params);
+                    //mui.toast("GetUpdateMsgTimer");
+                    console.log(params);
+                    checkInZF();
+                    //mui.toast("checkInZF");
+                    //document.getElementById('back1').href = indexPageUrl + "?openid=" + (params.openid || '') + "&sc=" + (params.sc || '') + "&source1=" + (params.source1 || '') + "&type1=" + (params.type1 || '') + "&neice=" +  (params.neice || '') + "&r=" +  (params.r || '');
+
+                    doc.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+
+                    fetchTimuTypeListPage(params, function (json) {
+                        try {
+                            //questionsData = json.data;
+                            //alert(json.data.St_TTimuDaXue.list[0].OptionStr);
+                            if (json && json.data && json.code == '200') {
+                                //设置标题
+                                doc.getElementById('title').innerHTML = doc.getElementsByTagName('title')[0].innerHTML = json.data.kemuName + '（2017新）';
+
+                                json.data.openid = json.data.openid || params.openid || '';
+                                params.openid = params.openid || json.data.openid;
+
+                                json.data.source1 = params.source1;
+                                json.data.neice = params.neice;
+                                json.data.zsId = params.zsId;
+                                json.data.sc = params.sc;
+                                json.data.kemuId = params.kemuId;
+                                json.data.order = params.order;
+                                json.data.trans = params.trans;
+                                if (params.sc == '312' && params.kemuId == '100003') {
+                                    json.data.question_sum0 = 0;
+                                    json.data.question_sum2 = 0;
+                                }
+                                if (!json.data.sc_sum || json.data.sc_sum != "999") {
+                                    doc.getElementById('tiku2').innerText = "大题库　";
+                                    document.getElementById("tiku2").addEventListener('tap', function (e) {
+                                        location.href = "kemuDetailList.html?tmp_sc_sum=999&" + transJsonToQuery(params);
+                                    });
+                                }
+                                if (params.tmp_sc_sum && params.tmp_sc_sum == '999') {
+                                    doc.getElementById('tiku2').innerText = "小题库　";
+                                    document.getElementById("tiku2").addEventListener('tap', function (e) {
+                                        location.href = "kemuDetailList.html?" + transJsonToQuery(params, 'tmp_sc_sum');
+                                    });
+                                }
+
+                                if (json.data.question_sum_cuoti == '-1') {
+                                    mui.toast('云端错题暂未启用<br>做题过程中，按提示免费启用哦');
+                                } else {
+                                    mui.toast('云端错题已合并：' + json.data.question_sum_cuoti + ' 本地错题：' + errQuestionsDic.length());
+                                }
+                                if (errQuestionsDic.length() > 0 || json.data.question_sum_cuoti == 1)
+                                    json.data.question_sum_cuoti = errQuestionsDic.length();
+                                //意外情况
+                                if (errQuestionsDic.length() > parseInt(json.data.question_sum_cuoti))
+                                    json.data.question_sum_cuoti = errQuestionsDic.length();
+                                //else if (parseInt(params.question_sum_cuoti) > parseInt(json.data.question_sum_cuoti))
+                                //    json.data.question_sum_cuoti = params.question_sum_cuoti;
+
+                                addOptionListToDomAfter(json.data);
+
+                                if (parseInt(json.data.question_sum) == 0) {
+                                    alert("还未上架，在整理资料中，如果您有题库请发给爱帮先生，非常非常感谢您");
+                                    document.getElementById('cover2').style.display = 'block';
+                                    return;
+                                }
+                                if (new Date().getHours() < 6)
+                                    mui.toast('小伙伴们祝考试顺利，遇到问题可以联系爱帮女生');
+                            }
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    });
+
+                    //跳转大题库;
+                    if (params.sc != "999" && params.sc_sum != "999" && params.sc != params.sc_sum && "999" != params.tmp_sc_sum) {
+                        if (!getLocal("tixing9")) {
+                            //e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+                            var btnArray = ['下次再提醒朕', '朕已了解'];
+                            var title1 = '温馨提示：大题库集多所大学精编,已更新到右上角,时间允许,建议最后刷一遍全历年大题库';
+                            var title2 = '优选刷小题库，再刷大题库，努力打造满分技能！';
+                            mui.confirm(title2, title1, btnArray, function (e) {
+                                try {
+                                    setLocal("tixing9", "1");
+                                    if (e.index == 1) {
+                                        //location.href = "kemuDetailList.html?tmp_sc_sum=999&" + transJsonToQuery(params);
+                                    }
+                                } catch (e) {
+
+                                }
+                            });
+                        }
+                    }
+                } catch (e) {
+                    //mui.toast(e.message);
+                    alert(e.message)
+                }
+
+                //alert(JSON.stringify(params));
+                //alert(111);
+                if (params.kemuId && params.kemuName && params.sc_sum && params.sc && params.sc != "999") {
+                    //console.clear();
+                    list0 = {
+                        KemuId: params.kemuId,
+                        KemuName: decodeURI(params.kemuName),
+                        Sc_sum: params.sc_sum,
+                        Sc: params.sc
+                    };
+                    list1 = getLocal("last_kemu1");
+                    //alert(JSON.stringify(list1));
+                    list2 = getLocal("last_kemu2");
+                    //alert(JSON.stringify(list2));
+                    list3 = getLocal("last_kemu3");
+                    //alert(JSON.stringify(list3));
+                    list4 = getLocal("last_kemu4");
+                    //alert(JSON.stringify(list4));
+                    try {
+                        if (list1 && list1.KemuId && list1.KemuId == params.kemuId) {
+                            //alert(5)
+                        }
+                        else {
+                            //alert(6)
+                            //if (list1 && list1.KemuId && list2 && list2.KemuId && list2.KemuId == params.kemuId) {
+                            //    if (list1)
+                            //        setLocal("last_kemu2", (list1));
+                            //    if (list2)
+                            //        setLocal("last_kemu1", (list2));
+                            //}
+                            //else if (list1 && list1.KemuId && list3 & list3.KemuId && list3.KemuId == params.kemuId) {
+                            //    if (list1)
+                            //        setLocal("last_kemu3", list1)
+                            //    if (list3)
+                            //        setLocal("last_kemu1", list3);
+                            //}
+                            //else if (list1 && list1.KemuId && list4 && list4.KemuId && list4.KemuId == params.kemuId) {
+                            //    if (list1)
+                            //        setLocal("last_kemu4", list1)
+                            //    if (list4)
+                            //        setLocal("last_kemu1", list4);
+                            //}
+                            //else
+                            {
+                                if (list3)
+                                    setLocal("last_kemu4", list3);
+                                if (list2)
+                                    setLocal("last_kemu3", list2);
+                                if (list1)
+                                    setLocal("last_kemu2", list1);
+                            }
+                        }
+                    } catch (e) {
+                        //mui.toast(e.message);
+                        alert('请反馈爱帮先生,9-' + e.message)
+                    }
+                    try {
+                        setLocal("last_kemu1", list0);
+                    } catch (e) { mui.toast(e.message); }
+                }
+
+            });
+        }(mui, document));
+    </script>
+
+
+    <p class="aui-text-center">若未能满足需要，请向我们反馈信息</p>
+    <footer class="aui-nav aui-text-center" id="aui-footer">
+        <span class="" style="font-size:11px; color: grey">
+            <a onclick="document.getElementById('cover2').style.display='block';">爱帮先生</a> 因您需要而在
+            <script>document.write(params.sc);</script>
+        </span>
+    </footer>
+
+</body>
+
+
+</html>

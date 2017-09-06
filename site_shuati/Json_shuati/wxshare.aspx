@@ -1,0 +1,2 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="wxshare.aspx.cs" Inherits="Json_wxshare" %>
+{"code":200,"message":"success","data":{"signature":"d35f1f18377de13e4f9cd41280e39f5a5e5c14cf","jsapi_ticket":"sM4AOVdWfPE4DxkXGEs8VDh1wd4S_mAzFC64n5OcvjmKEzvT3A1yNsSOEl80vEIuL4sF_mXb6p_zPylteIJXnQ","url":"https://mp.qess.me/pages/indexPage.html?winzoom=1","nonceStr":"2e86080c-186e-4cbf-834b-e1d1fd47100e","timestamp":"1486645771"}}

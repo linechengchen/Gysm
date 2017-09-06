@@ -1,0 +1,532 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>刷题宝典</title>
+    <link rel="stylesheet" href="../source/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link rel="stylesheet" href="../source/css/public.css">
+      <link href="../source/mui/fonts/font_shuati/iconfont.css" rel="stylesheet" />
+      <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link href="../source/css/searchcity.css" rel="stylesheet">
+    <script src="https://api.map.baidu.com/getscript?v=2.0&ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG&services=&t=20170608143204"></script>
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.js"></script>
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <!--<script src="../source/js/ajax_xs.js"></script>-->
+    <!--<script src="../source/js/ajax_xs_my.js"></script>-->
+    <!--<script src="../source/js/public.js"></script>-->
+
+    <style>
+      .mui-search .mui-placeholder{padding-right:50px}
+      .mui-indexed-list{background-color:transparent}
+      .mask{position:absolute;background:#000;width:80%;bottom:5px;text-align:center;color:#fff;opacity:.5}</style></head>
+  
+<body >
+    <div class="mui-content mui-fullscreen" style="padding-top:54px">
+        
+        <div style="padding:5px 5px;background-color:#fff;position:absolute;top:0;left:0;width:100%">   
+            <span  class="rightSearchIcon">
+                <span style=" color:red" class="mui-backdrop-action"></span>
+            </span>
+            <div id="a123"   class="mui-indexed-list-search mui-input-row mui-search ys-mui-search mui-search-withButton "  style="border-bottom:none">
+               
+                <a style="margin-top:5px" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <input style="margin-left:10px;width:85%" id="searchCityInput"  type="search" placeholder="在这里输入搜索内容" value="">
+                <span style="margin-left:35px"  class="rightSearchIcon">
+                    <span style="color:red" class="mui-icon mui-icon-search"></span>
+                </span>
+                <div class="mui-search-button linkColor"  id="searchRight">搜索</div>
+            </div>
+        </div>
+      
+        <div id="hotSearchBlock" style="display:none">
+            <h5 style="margin-top:2px; margin-bottom:18px">搜索热词</h5><hr size=1 style="margin-left: 15px; margin-right: 15px; color:grey">
+            <div class="user-city-list">
+                <div id="hot_user_city_row" class="user-city-row">
+                    <div class="user-city-item">毛泽东</div>
+                    <div class="user-city-item">马克思</div>
+                    <div class="user-city-item">近代史</div>
+                    <div class="user-city-item">经济学</div>
+                    <div class="user-city-item">心理学</div>
+                    <div class="user-city-item">php</div>
+                    <div class="user-city-item">web</div>
+                    <div class="user-city-item">java</div>
+                    <div class="user-city-item">计算机二级</div>
+                    <!--<div class="user-city-item">艺术</div>-->
+                </div>
+            </div>
+        </div>
+        <div id="hisSearchBlock" style="display:none">
+            <h5 style="margin-top:2px; margin-bottom:18px">历史记录</h5><hr size=1 style="margin-left: 15px; margin-right: 15px; color:grey">
+            <div class="user-city-list">
+                <div id="his_user_city_row2" class="user-city-row">                    
+                </div>
+            </div>
+            <a class="fixedClearHisstoryButton2" style="bottom:50px;display:block"><!--onclick="a();"--> 
+                <span id="ClearHisstoryButton2" class="mui-badge mui-badge-primary mui-badge-cart">清除历史记录2</span>
+
+            </a>
+            <a class="fixedClearHisstoryButton" style="bottom:15px;display:block">
+                <span id="ClearHisstoryButton" class="mui-badge mui-badge-primary mui-badge-cart">清除历史记录</span>
+
+            </a>
+        </div>
+        <div id="tipSearchBlock" style="display:none">
+            <h5 style="margin-top:2px; margin-bottom:18px">热门搜索</h5><hr size=1 style="margin-left: 15px; margin-right: 15px; color:grey">
+            <div class="user-city-list">
+                <div id="tip_user_city_row" class="user-city-row">
+                </div>
+            </div>
+        </div>
+        <div id="searchResultBlock" style="position:relative;height:100%;width:100%">
+            <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div id="bookList"></div>
+                </div>
+            </div>
+            <div id="noResultBlock" style="width:100%;height:350px;top:50%;display:none" class="veryCenter innerCenter">
+                <img style="width:80px;height:80px" src="../source/webslice/1.2_search/search_noresult.png" alt="">
+                <div style="margin-top:30px">
+                    <p style="font-size:16px">暂无结果</p>
+                </div>
+                <div style="margin-top:20px">
+                    <a data-href="indexPage1_shuati.html" class="mui-btn mui-btn-primary mui-btn-long" style="border-radius:5px;min-width:150px;display:none">随便逛逛</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="fixedCartButton" style="bottom:15px;display:none">
+        <span id="booksInCartNumber" class="mui-badge mui-badge-primary mui-badge-cart" style="display:none"></span>
+        <img src="../source/webslice/0_common/web_common_cart.png">
+    </a>
+    <script type="text/javascript" charset="utf-8">
+
+
+        //$(function () {
+        //    alert($('#a123'));
+        //    $('#searchCityInput').focus();
+        //    $('#a123').addClass("mui-active");
+        //});
+        //function a()
+        //{
+        //$('#searchCityInput').trigger("focus");
+        //$('#a123').addClass("mui-active");
+        //}
+        //$(function () {
+        //    $('#searchCityInput').focus();
+        //    $('#a123').addClass("mui-active");
+        //});
+        //setTimeout(function(){
+        $(".fixedClearHisstoryButton2").click(   
+            function()
+            {
+            $('#searchCityInput').focus();
+            $('#a123').addClass("mui-active");
+            }
+        )
+     
+        //},500);
+      
+            //$(".fixedClearHisstoryButton2").click(function () {
+            //    $('#searchCityInput').focus();
+            //    $('#a123').addClass("mui-active");
+            //})
+       
+        //$(".ClearHisstoryButton2").click(function () {
+        //    $('#searchCityInput').focus();
+        //    $('#a123').addClass("mui-active");
+        //})
+        var UrlLocal = window.location.href;
+
+        //embedLoaded();
+        //function embedLoaded(e) {
+        //    alert("Loaded!");
+        //}
+        //function plusReady() {
+        //    // 在这里调用plus api
+        //}
+       
+    
+        //showSoftInput();
+        //if (UrlLocal.indexOf("?") !=-1)
+        //{
+        //    $("#ClearHisstoryButton").hide();
+        //}
+        //$("#searchCityInput").focus(function () {
+        //    document.activeElement.blur();
+        //});
+
+        //$("#searchCityInput").focus();
+        //$("#searchCityInput").click();
+       
+        setHistory(getLocal("keyword"));
+        function toSearchPage(data1) {
+            console.log(data1);
+            if (data1 = $.trim(data1)) {
+                var e = {};
+                e.keyword = data1,
+                e.app_path1 = app_path1;
+                myhref.href = "indexPage2_searchKemu_result.html?" + encodeObj(e)
+            } else
+                mui.toast("请输入搜索词");
+        }
+        function checkInputValueAndShowBlock(data1) {
+            data1 || ($("#hotSearchBlock").show(), $("#hisSearchBlock").show(), $("#searchResultBlock").hide())//, $("#ClearHisstoryButton").show()
+        }
+        function searchBooksByKeyWord(keyword, currentCityId, pageCount) {
+            1 == pageCount && $("#bookList").empty(),
+            $.when(searchkemu(keyword, currentCityId, pageCount)).done(function (data) {
+                console.log("历史记录");
+                console.log(getLocal("keyword"));
+                var hiskey1 = getLocal("keyword");
+                //var list = fengegelishi(hiskey1);
+                if ((hiskey1 == null)) {
+                    setLocal("keyword", "|" + keyword + "|"); setHistory(keyword);
+                }
+                else {
+                    var iszai = hiskey1.indexOf("|" + keyword + "|");
+                    if (iszai == -1) {
+                        setLocal("keyword", "|" + keyword + hiskey1); setHistory("|" + keyword + hiskey1);
+                    }
+                }
+                if (200 == data.code) {
+                    //$.each(list, function (i, item) {
+                    //});
+                    var data = data.data,
+                    kemus = data.kemu;
+                    var a = (!kemus);
+                    console.log('searchBooksByKeyWord2')
+                    if ((kemus)) {
+                        //保存到历史记录                      
+                        ////var str="123";                
+                        //if (isNotNull(keyword))
+                        for (var a = "",
+                            r = 0,
+                            l = kemus.length; r < l; r++) {
+                            var s = kemus[r];
+                            console.log('s.title=' + s.KemuName)
+                            a += getSingleBookTableCell(s.ZsId, s.Icon, s.KemuName, s.CreateTime, s.KemuName, s.KemuName, s.KemuName)
+                        }
+                        $("#bookList").append(a),
+                        $("#noResultBlock").hide(),
+                        $("#pullrefresh").show(),
+                        pageCount++,
+                        mui("#pullrefresh").pullRefresh().endPullupToRefresh(!1)
+                    } else 1 == pageCount && ($("#noResultBlock").show(), $("#pullrefresh").hide()),
+                    mui("#pullrefresh").pullRefresh().endPullupToRefresh(!0)
+                }
+            })
+        }
+        function pullupRefresh() {
+            console.log('pullupRefresh');
+            searchBooksByKeyWord(params.keyword, currentCityId, pageCount)
+        }
+        if (mui.init({
+
+            pullRefresh: {
+            container: "#pullrefresh",
+            up: {
+            contentinit: "",
+            contentdown: "",
+            contentrefresh: " ",
+            contentnomore: "",
+            callback: pullupRefresh
+        }
+        }
+        }), "true" == localStorage.getItem("flagCart")) {
+            var bookId = localStorage.getItem("bookId") || '';
+            localStorage.setItem("flagCart", !1),
+            $.when(addToCart(bookId)).done(function (data) {
+                200 == data.code && mui.toast("添加成功")
+            })
+        }
+        if ("true" == localStorage.getItem("flagHope")) {
+            var bookId = localStorage.getItem("bookId") || '',
+            title = localStorage.getItem("title") || '',
+            path = localStorage.getItem("path") || '',
+            marketPrice = localStorage.getItem("marketPrice") || '',
+            publisher = localStorage.getItem("publisher") || '',
+            author = localStorage.getItem("author") || '';
+            localStorage.setItem("flagHope", !1);
+            var data = {
+                user_id: cookieObj.user_id,
+                city_id: cookieObj.city_id,
+                wish_type: 0,
+                id: bookId,
+                title: title,
+                path: path,
+                marketPrice: marketPrice,
+                publisher: publisher,
+                author: author
+            };
+            $.ajax({
+                url: baseUrlWish + "/basket/wish.aspx?app_path1=" + app_path1,
+                type: "post",
+                beforeSend: function (data1) {
+                    data1.setRequestHeader("content-type", "application/json")
+                },
+                data: JSON.stringify(data),
+                success: function (data1) {
+                    200 == data1.code && mui.toast("如果到货，作业云搜将通过短信通知您")
+                }
+            })
+        }
+
+
+        //$("#searchCityInput").on("focus", function (e) {
+
+        //    $(".article").height(oldInnerHeight - $("footer").height());
+
+        //    //主要是下班这一段
+
+        //    var SCROLLY = 100;
+        //    var TIMER_NAME = 5000; // focus事件中500ms后进行判断
+        //    var MAX_SCROLL = 99999; // 越大越好
+        //    setTimeout(function () {
+        //        if (window.scrollY < SCROLLY) {
+        //            window.scrollTo(0, MAX_SCROLL);
+        //        }
+        //    }, TIMER_NAME);
+        //});
+
+
+
+
+        var params = getQueryData();
+        //$("#searchCityInput").click();
+        params && params.keyword ?
+        ($("#searchCityInput").val(params.keyword),
+        $("#hotSearchBlock").hide(), $("#hisSearchBlock").hide(),
+        $("#searchResultBlock").show(), mui.ready(function () {//MUI ready 没有搜索内容
+        
+            mui("#pullrefresh").pullRefresh().pullupLoading()
+        }), $("#searchCityInput").focus()
+        ) : //MUI ready 有搜索内容
+        ($("#hotSearchBlock").show(),
+        //$("#searchCityInput").focus()
+        //, $("#searchCityInput").focus(
+        //    function(){
+        //        document.activeElement.blur();
+        //    }
+        //),
+        $("#hisSearchBlock").show(), $("#searchResultBlock").hide());//,$("#a123").addClass("mui-active")
+        if (getLocal("keyword") == null) //cch 
+        {
+            //$("#ClearHisstoryButton").hide();
+            $("#hisSearchBlock").hide();
+        }
+
+        var pageCount = 1;
+        $("#searchCityInput").on("keyup",
+        function (data1) {
+            var e = $(this).val();
+            checkInputValueAndShowBlock(e),
+            13 == data1.keyCode && toSearchPage(e)
+        }),
+        $(".rightSearchIcon").on("tap",
+        function () {
+            toSearchPage($("#searchCityInput").val())
+        }),
+        $("#searchRight").on("tap",
+        function () {
+        
+            toSearchPage($("#searchCityInput").val())
+            
+        });
+        // cch zhaolg
+        function setHistory(keys) //历史记录
+        {
+            $("#his_user_city_row2").innerHtml = "";
+            if (!(keys==null))
+            {
+             
+            var keylist = keys.split("|");
+            for (var i = 0; i < keylist.length; i++) {
+                if (isNotNull(keylist[i]))
+                    $("#his_user_city_row2").append("<div class='user-city-item'>" + keylist[i] + "</div>");
+            }
+            }
+            else
+            {
+             
+            }
+        }
+
+        //zlg
+        //$("#searchCityInput").focus();
+        //mui.trigger($("#searchCityInput"), "keyup");
+        var hisstory = getLocal("keyword");
+        var booksIncart = [];
+        $("body").on("tap", "#ClearHisstoryButton",
+       function () {
+           setLocal("keyword", null);
+           mui.toast("清除成功");
+           $("#hisSearchBlock").hide();
+           //$("#ClearHisstoryButton").hide();         
+       }),
+
+
+        $("body").on("tap", ".fixedCartButton",
+        function () {
+            cookieObj.Token && 2 == cookieObj.Token && (localStorage.setItem("historyUrl", window.location.href), mui.openWindow({
+                url: "../pagesCommon/login.html"
+            })),
+            $.when(cartList()).done(function (data1) {
+                if (200 == data1.code && data1.data.carts) {
+                    for (var e = 0; e < data1.data.carts.length; e++) booksIncart.push(data1.data.carts[e].relationId);
+                    booksIncart.length > 0 && $("#booksInCartNumber").text(booksIncart.length).show()
+                }
+                myhref.href = "cartPage.html"
+            })
+        }),
+        $("#bookList").on("tap", ".smallCartIcon",
+        function () {
+            var data1 = $(this).closest("ul").attr("data-bookId");
+            $.when(isBindCloudBook()).done(function (e) {
+                200 != e.code && (localStorage.setItem("historyUrl", window.location.href), localStorage.setItem("bookId", data1), localStorage.setItem("flagCart", !0), mui.openWindow({
+                    url: "../pagesCommon/login.html?" + transJsonToQuery(params)
+                }))
+            }),
+            booksIncart.indexOf(data1) < 0 ? $.when(addToCart(data1)).done(function (e) {
+                200 == e.code && (mui.toast("添加成功"), booksIncart.push(data1), $("#booksInCartNumber").text(booksIncart.length))
+            }) : mui.toast("请勿重复添加")
+        }),
+        $("#bookList").on("tap", ".smallHopeIcon",
+        function () {
+            var data1 = $(this).closest("ul").attr("data-bookId"),
+            e = $(this).closest("ul").attr("data-title"),
+            o = $(this).closest("ul").attr("data-path"),
+            a = $(this).closest("ul").attr("data-marketPrice"),
+            r = $(this).closest("ul").attr("data-publisher"),
+            l = $(this).closest("ul").attr("data-author"),
+            s = {
+                user_id: cookieObj.user_id,
+                city_id: cookieObj.city_id,
+                wish_type: 0,
+                id: data1,
+                title: e,
+                path: o,
+                marketPrice: a,
+                publisher: r,
+                author: l
+            };
+            cookieObj.Token && 2 == cookieObj.Token && !cookieObj.isLogin && (localStorage.setItem("historyUrl", window.location.href), localStorage.setItem("bookId", data1), localStorage.setItem("title", e), localStorage.setItem("path", o), localStorage.setItem("marketPrice", a), localStorage.setItem("publisher", r), localStorage.setItem("author", l), localStorage.setItem("flagHope", !0), mui.openWindow({
+                url: "../pagesCommon/login.html"
+            })),
+            $.ajax({
+                url: baseUrlWish + "/basket/wish.aspx?app_path1=" + app_path1,
+                type: "post",
+                beforeSend: function (data1) {
+                    data1.setRequestHeader("content-type", "application/json")
+                },
+                data: JSON.stringify(s),
+                success: function (data1) {
+                    200 == data1.code && mui.toast("如果到货，作业云搜将通过短信通知您")
+                }
+            })
+        }),
+        //console.log( getLocal("keyword"),
+        $("#hotSearchBlock").on("tap", ".user-city-item",
+        function () {
+            var data1 = $(this).text();
+            toSearchPage(data1)
+        })
+        $("#hisSearchBlock").on("tap", ".user-city-item",
+        function () {
+            var data1 = $(this).text();
+            toSearchPage(data1)
+        })
+        $("#tipSearchBlock").on("tap", ".user-city-item",
+        function () {
+            var data1 = $(this).text();
+            toSearchPage(data1)
+        })
+    
+        //zlg
+        var keyword1 = $("#searchCityInput").val();
+        var date1;
+        $(function () {//searchBooks(keyword, currentCityId, pageCount)
+            $("#searchCityInput").keyup(function (evt) {//控制查询结果div坐标
+                //$("#ClearHisstoryButton").hide();
+                var k = window.event ? evt.keyCode : evt.which;
+                //输入框的id为txt_search，这里监听输入框的keyup事件
+                //不为空 && 不为上箭头或下箭头或回车
+                var keyword = $("#searchCityInput").val();
+                console.log(keyword1 + "=对比=" + keyword);
+                if (!date1) date1 = new Date();
+                //if (keyword == "")
+                //{
+                //    $("#ClearHisstoryButton").show();
+                //}
+
+                if (new Date().getTime() - date1.getTime() < 800) { return; }
+                if (keyword != "" && k != 38 && k != 40 && k != 13 && keyword1 != keyword) {
+                    $.when(searchKeywordTipskemu(keyword, app_path1)).done(function (data) {//keyword, app_path1
+                        if (data.code == 200) {
+                            var data = data.data,
+                            kemus = data.kemu;
+                          
+                            //getSingleBookTableCell()
+                            //var hotCity = data.data.books;
+                            ////alert(hotCity.length)
+                            //hotCity = search(hotCity, keyword);
+                            //if (hotCity.length > 0)
+                            //    $("#tip_user_city_row").empty();
+                            //for (var j = 0, length = hotCity.length; j < length; j++) {
+                            //    var _hc = hotCity[j];
+                            //    $("#tip_user_city_row").append('<div class="user-city-item" data-id="' + _hc.id + '">' + _hc.bookname + '</div>')
+                            //}
+                            //if (hotCity.length > 0)
+                            //    $("#tipSearchBlock").css("display", "block");
+                            //keyword1 = keyword;
+
+                        } else {
+                           
+                            $("#tip_user_city_row").empty();
+                            $("#tipSearchBlock").css("display", "none");
+                        }
+                    });
+                }
+            });
+        });
+        //function plusReady() {
+         
+        //    var Context = plus.android.importClass("android.content.Context");
+        //    var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+        //    var main = plus.android.runtimeMainActivity();
+        //    var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+        //    imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+        //    alert(1);
+        //}
+        //document.addEventListener("plusready", plusReady, false);
+
+
+        function search(list, keyWord)
+        {
+            //正则表达式
+            var len = list.length;
+            var arr = [];
+            var reg = new RegExp(keyWord);
+            for (var i = 0; i < len; i++) {
+                //如果字符串中不包含目标字符会返回-1
+                if (list[i].bookname.match(reg)) {
+                    arr.push(list[i]);
+                }
+            }
+            return arr;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

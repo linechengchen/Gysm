@@ -1,0 +1,336 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gzh.aspx.cs" Inherits="_Default" %>
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title><%=name1 %>刷题宝典2016版</title>
+		<link type="text/css" rel="stylesheet" href="css\aui.min.css">
+		<link rel="stylesheet" href="css\swiper.min.css">
+		<style>
+			html, body {
+				position: relative;
+				height: 100%;
+			}
+			body {
+				background: #eee;
+				font-size: 14px;
+				color: #000;
+				margin: 0;
+				padding: 0;
+			}
+			.swiper-container {
+				width: 100%;
+				height: 45%;
+			}
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+			}
+			.swiper-slide img {
+				width: 100%;
+				height: 100%;
+			}
+			#cover1 {
+				text-align:center ;
+				margin:0px auto;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				background: rgba(0, 0, 0, 0.7) ;
+			}
+			#cover1 img {
+				margin:0px auto;				 
+				/*height:100%;*/
+                width:53%;
+			}
+            #cover1_shenqing {
+                text-align: center;
+                margin: 0px auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: none;
+                z-index: 20000;
+                background: rgba(0, 0, 0, 0.7);
+            }
+
+            #cover1_shenqing img {
+                margin: 0px auto;
+                /*height: 100%;*/
+                width:53%;
+            }
+            
+			#cover2 {
+				text-align:center ;
+				margin:0px auto;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				background: rgba(0, 0, 0, 0.7) ;
+			}
+			#cover2 img {
+				 margin:0px auto;				 
+				 /*height:100%;*/
+                 width:53%;
+			}
+
+            
+			#cover222 {
+				text-align:center ;
+				margin:0px auto;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;		    
+				display: none;
+				z-index: 20000;
+				background: rgba(0, 0, 0, 0.7) ;
+			}
+			#cover222 img {
+				 margin:0px auto;				 
+				 /*height:100%;*/
+                 width:53%;
+			}
+		</style>
+	</head>
+	<body>
+    <form id="form1" runat="server">
+    </form>
+		<header class="aui-bar aui-bar-nav aui-bar-danger" id='aui-header'>
+			<div class="aui-title">
+				<%=name1 %> 刷题宝典
+			</div>
+		</header>
+        
+		<div id="cover222" onclick="document.getElementById('cover2').style.display='';">
+            <br /><br /><br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >迁移云服，版本已升级</font><br />
+            <img id="img2wei" src="image/分享/完整版本_num/<%=tu2wei %>" />
+            <br /><br /><font style="color:white;font-size:28px;font-weight:bolder" >请向爱帮先生私聊获取</font>
+            
+		</div>
+
+		<div id="cover2" onclick="document.getElementById('cover2').style.display='';">
+            <br /><br /><br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >长按扫码，联系作者<br /></font>
+            <img id="img2wei" src="image/分享/完整版本_num/<%=tu2wei %>" />
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >有兴趣的同学问啥都可以</font>
+            
+		</div>
+
+		<div id="cover1" onclick="document.getElementById('cover1').style.display='';" style="display: none;">
+			<br /><font style="color:white;font-size:30px;font-weight:bolder" >请点击右上角<br />将有趣的神器分享给朋友<br />或分享朋友圈</font><br /><br />
+            <img src="image\分享\完整版本\<%=tu2wei %>">
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >谢谢分享，棒棒哒</font>
+		</div>
+        
+		<div id="cover1_shenqing" onclick="document.getElementById('cover1_shenqing').style.display='';" style="display: none;">
+			<br /><font style="color:white;font-size:30px;font-weight:bolder" ><br />扫二维码告诉作者<br />感谢童鞋一起完善题库</font><br /><br />
+            <img src="image\分享\完整版本\<%=tu2wei %>">
+            <br /><br /><font style="color:white;font-size:30px;font-weight:bolder" >学术、技术都可以讨论哈</font>
+		</div>
+
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="image\huadongtu1.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image\hdt2.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image\huadongtu3.jpg">
+                </div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+		<!-- Swiper JS -->
+		<div></div>
+		<div></div>
+		<div class="aui-content">
+			<ul class="aui-grid-nine">
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('sx');" style="height:100px">
+					<span class="aui-iconfont aui-icon-pay  aui-text-info"></span>
+					<p>
+						思修题库
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('mks');" style="height:100px">
+					<span class="aui-iconfont aui-icon-pay aui-text-warning"></span>
+					<p>
+						马克思原理
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('jds');" style="height:100px">
+					<span class="aui-iconfont aui-icon-pay aui-text-primary"></span>
+					<p>
+						近代史题库
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('mg');" style="height:100px">
+					<span class="aui-iconfont aui-icon-pay aui-text-danger"></span>
+					<p>
+						毛泽东概论
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('kjks');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-danger"></span>
+					<p>
+						会计考试
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('sfks');" style="height:100px">
+					<span class="aui-iconfont aui-icon-pay aui-text-info"></span>
+					<p>
+						司法考试
+					</p>
+				</li>
+                <%if(sc.Contains("405wy")){ %>                
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('xyzh');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+					<p>
+						西医综合
+					</p>
+				</li>               
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('bstk');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-primary"></span>
+					<p>
+						胞生题库
+					</p>
+				</li>
+                 <%
+                      BLL3.dicZhEn.ToString();
+                 }%>
+                <%if(sc.Contains("194oj")){ %>                
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('jrtk');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+					<p>
+						金融题库
+					</p>
+				</li>
+                 <%}%>
+                <%if (sc.Contains("310zcd"))
+                  { %>                
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('jsll');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+					<p>
+						军事理论
+					</p>
+				</li>
+                 <%}%>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('yysj');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-warning"></span>
+					<p>
+						英语四级
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="OpenNew('yylj');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-primary"></span>
+					<p>
+						英语六级
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="alert('正在加紧整理题库中，请向帮先生提出您的需要');" style="height:100px">
+					<span class="aui-iconfont aui-icon-edit aui-text-primary"></span>
+					<p>
+						考研英语
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center" onclick="document.getElementById('cover2').style.display='block';" style="height:100px">   <!--alert('请向爱帮先生提出 您想收录的新考题库');fenxiang_shenqing();-->
+					<span class="aui-iconfont aui-icon-write aui-text-pink"></span>
+					<p>
+						申请新题库
+					</p>
+				</li>
+				<%--<li class="aui-col-xs-3 aui-text-center" onclick="document.getElementById('cover2').style.display='block';" style="height:100px">   <!--alert('请向爱帮先生提出 您想收录的新考题库');fenxiang_shenqing();-->
+					<span class="aui-iconfont aui-icon-myfill aui-text-success"></span>
+					<p>
+						一键分享
+					</p>
+				</li>--%>
+				<%--<li class="aui-col-xs-3 aui-text-center" onclick="fenxiang();" style="height:100px">
+					<span class="aui-iconfont aui-icon-radiobox aui-text-black"></span>
+					<p>
+						分享
+					</p>
+				</li>--
+				<!--<li class="aui-col-xs-4 aui-text-center" onclick="Open('https://www.zybuluo.com/qq49519201/note/201986');">
+					<span class="aui-iconfont aui-icon-question aui-text-warning"></span>
+					<p>
+						帮助
+					</p>
+				</li>-->
+				<!--<li class="aui-col-xs-4 aui-text-center" onclick="alert('请用系统自带浏览器打开下载app');Open('https://app.111.com/');">
+					<span class="aui-iconfont aui-icon-hotfill aui-text-danger"></span>
+					<p>
+						下载app
+					</p>
+				</li>-->--%>
+			</ul>
+		</div>
+		<footer class="aui-nav aui-text-center" id="aui-footer">
+			<span class="">咨询 -> <a onclick="document.getElementById('cover2').style.display='block';">公益帮先生</a>  </span>
+		</footer>
+        <!--<img src="https://c.cnzz.com/wapstat.php?siteid=1256953625&r=&rnd=940643640" width="0" height="0">-->	</body>
+	<script src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js\list.js"></script>
+	<script>
+	    !function () {
+	        ajax({
+	            type: "get",
+	            url: 'msg_info.html',
+	            dataType: "text",
+	            success: function (data) {
+	                //alert(data)																			
+	                //fenxiang()
+	            }
+	        });
+	    }();
+	    function isWeiXin() {
+	        var ua = window.navigator.userAgent.toLowerCase();
+	        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+
+	    var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 3000,
+	        autoplayDisableOnInteraction: false,
+	        loop: true
+	    });
+	    var OpenNew = function (kc) {
+	        myhref.href = "main/list2.aspx?kemuName=" + kc + "&sc=<%=sc%>";
+	    }
+	    var Open = function (kc) {
+	        myhref.href = kc;
+	    }
+	    var fenxiang = function () {
+	        document.getElementById('cover1').style.display = 'block';
+	    }
+	    var fenxiang_shenqing = function () {
+	        document.getElementById('cover1_shenqing').style.display = 'block';
+	    }
+        <% if (sc == "194oj" || sc.StartsWith("4") || sc == "")
+           {%>
+	    document.getElementById('cover222').style.display = 'block';
+        <%}%>
+	</script>
+</html>

@@ -1,0 +1,228 @@
+@charset "utf-8";
+body{ font-family:"微软雅黑" !important;padding: 0px;margin: 0px;background-color:#ebebeb;}
+a{text-decoration:none;}
+ul{padding: 0;margin: 0;}
+ul li{list-style-type:none;}
+p {padding: 0;margin: 0;}
+
+.center {text-align: center;}
+
+.size14 {font-size: 14px;}
+.size16 {font-size: 16px;}
+.size18 {font-size: 18px;}
+
+/* 清除浮动 */
+.cb {clear: both;}
+
+.height8 {height: 8px;}
+.height16 {height: 16px;}
+.height30 {height: 30px;}
+
+.btn-div {margin: 0 16px;}
+.btn-div .btn-div-button {
+	border-radius: 4px;background-color: #47d088;
+	width: 100%;margin: 0 auto;
+	height: 40px;line-height: 40px;
+	font-size:14px;border: 0px;color: #fff;}
+
+.hide{display: none;}
+
+.load-more .load-more-status{display: none;color:#333;text-align: center;font-size: 14px;}
+
+.header {position: relative;width: 100%;height: 50px;line-height: 50px;background-color: #47d088;}
+.header .header-center {position: absolute;width: 100px;height: 100%;text-align: center;z-index: 1;font-size: 18px;left: 50%;margin-left: -50px;color: #fff;}
+.header .header-left {position: absolute;left: 0px;width: 50px;height: 50px;line-height: 50px;text-align: center;font-size: 24px;background-color: #47d088;color: #fff;}
+.header .header-left:HOVER {background-color: #27ae60;color: #fff;}
+.header .header-right {position: absolute;right: 0px;width: 50px;height: 50px;line-height: 50px;text-align: center;font-size: 24px;background-color: #47d088;color: #fff;display: block;}
+.header .header-right:HOVER {background-color: #27ae60;color: #fff;}
+
+.home-page {color: #fff;}
+.home-page .balance {background-color: #47d088;padding: 16px;}
+.home-page .balance .balance-money {font-size: 50px;text-align: center;}
+.home-page .balance .balance-withdrawals-btn {border-radius:50%;width: 100px;height: 100px;font-size:30px;
+background-color: #fff;text-align: center;line-height: 100px;color: #47d088;margin: 0 auto;display: block;}
+
+.home-page .balance .balance-withdrawals-btn:HOVER {color: #fff;background-color:#27ae60;}
+
+.home-page .balance .prompt {border-top: 1px solid #fff;}
+.home-page .balance .prompt .prompt-op {position: relative;height: 40px;line-height: 40px;}
+.home-page .balance .prompt .prompt-op .prompt-op-title {position: absolute;left: 0px;}
+.home-page .balance .prompt .prompt-op .prompt-op-point-1 {
+	position: absolute;right: 0px;font-size: 22px;transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-o-transform:rotate(90deg); }
+.home-page .balance .prompt .prompt-op .prompt-op-point-2 {
+	position: absolute;right: 0px;font-size: 22px;
+	transform:rotate(270deg);
+	-ms-transform:rotate(270deg);/* IE 9 */
+	-moz-transform:rotate(270deg); /* Firefox */
+	-webkit-transform:rotate(270deg);/* Safari 和 Chrome */
+	-o-transform:rotate(270deg); }
+	
+.home-page .bill-list {background-color: #fff;}
+.home-page .bill-list .bill-list-title {color: #333333;height: 30px;line-height: 30px;padding: 0 16px;border-bottom: 1px solid #ccc;}
+
+/* 绑定支付宝或银行卡 */
+.bind-bank .bind-bank-ul li {background-color: #fff;height: 50px;line-height: 50px;margin-bottom: 1px;}
+.bind-bank .bind-bank-ul li .bind-bank-label {position: absolute;width: 120px;font-size: 14px;
+	height: 30px;line-height: 52px;padding-left: 16px;}
+.bind-bank .bind-bank-ul li .bind-bank-div {margin: 0 20px 0 120px;}
+.bind-bank .bind-bank-ul li .bind-bank-input {
+	border-radius: 4px;border: 1px solid #eee;height: 30px;position: relative;padding: 2px 4px;width: 100%;
+}
+
+.bind-bank .bind-bank-save-div {
+	margin: 0 24px;
+}
+.bind-bank .bind-bank-save-btn {
+	border-radius: 4px;background-color: #47d088;
+	width: 100%;margin: 0 auto;
+	height: 40px;line-height: 40px;
+	font-size:14px;border: 0px;color: #fff;
+}
+.bind-bank .bind-bank-save-btn:HOVER {
+	background-color: #27ae60;
+}
+
+
+/* 进度条 */
+.loading-model {
+	position: fixed;top : 0px;
+	left : 0px;width: 100%;
+	height: 100%;background-color: #000;
+	filter:alpha(opacity=50);-moz-opacity:0.5;
+	opacity:0.5;z-index: 100000;display: none;
+}
+
+.loading-model .loading-model-position {
+	position: absolute;left: 50%;top: 50%;margin: -15px 0 0 -15px;
+}
+.help {
+    width: 30px;height: 30px;
+    border: 1px #fff solid; border-radius: 50%;
+    -webkit-animation: rotation 1s ease-in-out infinite;-moz-animation: rotation 1s ease-in-out infinite;animation: rotation 1s ease-in-out infinite;
+}
+.help:after{
+    width: 5px;height: 5px;position: absolute;content: "";
+    background-color: rgba(255,255,255,1);border-radius: 100%;
+}
+@-webkit-keyframes rotation{
+    0%{-webkit-transform: rotate(0deg);}
+    100%{-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes rotation{
+    0%{-moz-transform: rotate(0deg);}
+    100%{-moz-transform: rotate(360deg);}
+}
+@keyframes rotation{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+
+/* 绑定列表 */
+.bank-list {background-color: #47d088;width: 100%;min-height: 600px;}
+.bank-list .bank-entity {border-radius: 4px;background-color: #fff;margin: 0 16px;padding:0 10px;color: #666;height: 100px;line-height: 100px;display: block;}
+.bank-list .bank-entity:HOVER {background-color: #eee;}
+.bank-list .bank-entity .add-bank {text-align: center;font-size: 20px;text-align: center;}
+.bank-list .bank-entity .bank-entity-right {float: right;vertical-align: middle;}
+.bank-list .bank-title {color: #fff;padding: 0 16px;}
+.bank-list .bank-entity .bank-entity-data {}
+.bank-list .bank-entity .bank-entity-data li {height: 40px;line-height: 60px;}
+.bank-list .bank-entity .bank-entity-data-children {}
+.bank-list .bank-entity .bank-entity-data-children .bank-entity-data-children-left {position: absolute;}
+.bank-list .bank-entity .bank-entity-data-children .bank-entity-data-children-right {text-align: right;margin: 0 16px 0 100px;}
+
+/* 登录界面 */
+.login .fast-sign-list li {background-color: #fff;height: 50px;line-height: 50px;margin-bottom: 1px;}
+.login .fast-sign-list li .input-title {position: absolute;width: 120px;font-size: 14px;color:#666;
+	height: 30px;line-height: 52px;padding-left: 16px;}
+.login .fast-sign-list li .input-value {margin: 0 20px 0 120px;}
+.login .fast-sign-list li .input-value-info {
+	border-radius: 4px;border: 1px solid #eee;height: 30px;position: relative;padding: 2px 4px;width: 100%;
+}
+	
+.login .login-btn-div {margin: 0 16px;}
+.login .login-btn-div-button {
+	border-radius: 4px;background-color: #47d088;
+	width: 100%;margin: 0 auto;
+	height: 40px;line-height: 40px;
+	font-size:14px;border: 0px;color: #fff;}
+.login .login-btn-div-button:HOVER {background-color: #27ae60;}
+
+/* 提现界面 */
+.withdrawals .pay-type-select {margin: 16px;}
+.withdrawals .pay-type-select li {
+	float: left;width: 50%;background-color: #fff;text-align: center;padding: 8px 0;color: #47d088;
+	font-size: 14px;
+}
+.withdrawals .pay-type-select li.first {border-radius:4px 0 0 4px;}
+.withdrawals .pay-type-select li.second {border-radius:0px 4px 4px 0px;}
+.withdrawals .pay-type-select li.activity {background-color: #47d088;color: #fff;}
+
+.withdrawals .bind-bank-ul li {background-color: #fff;height: 50px;line-height: 50px;margin-bottom: 1px;color: #666;}
+.withdrawals .bind-bank-ul li .bind-bank-label {position: absolute;width: 120px;font-size: 14px;
+	height: 30px;line-height: 52px;padding-left: 16px;}
+.withdrawals .bind-bank-ul li .bind-bank-div {margin: 0 20px 0 120px;text-align: right;}
+.withdrawals .bind-bank-ul li .bind-bank-input {
+	border-radius: 4px;border: 1px solid #eee;height: 30px;position: relative;padding: 2px 4px;width: 100%;
+}
+.withdrawals .bind-bank-save-div {margin: 0 24px;}
+.withdrawals .bind-bank-save-btn {
+	border-radius: 4px;background-color: #47d088;
+	width: 100%;margin: 0 auto;
+	height: 40px;line-height: 40px;
+	font-size:14px;border: 0px;color: #fff;
+}
+.withdrawals .bind-bank-save-btn-fail {
+	border-radius: 4px;background-color: #999;
+	width: 100%;margin: 0 auto;
+	height: 40px;line-height: 40px;
+	font-size:14px;border: 0px;color: #fff;}
+.withdrawals .bind-bank-save-btn:HOVER {background-color: #27ae60;}
+
+.modal {display: none;}
+.modal-background {
+	position: fixed;z-index: 10000;background-color: #000;
+	filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;top: 0;left: 0;width: 100%;height: 100%;}
+/* 	弹出输入密码框 */
+.withdrawals .password-body {
+	position: fixed;width: 250px;height: 160px;
+	top: 50%;left: 50%;margin: -90px 0 0 -136px;
+	padding: 10px;background-color: #eee;z-index: 10001;
+	border-radius: 10px;text-align: center;
+}
+.withdrawals .password-body .password-title {color: #666;margin-bottom: 20px;}
+.withdrawals .password-body .password-input {margin-bottom: 20px;width: 100%;border-radius: 4px;}
+.withdrawals .password-body .password-input input {width: 240px;height: 30px;line-height: 30px;border: 0px;border-radius: 4px;padding: 4px;}
+.withdrawals .password-body .password-input input:FOCUS {outline:gray;}
+.withdrawals .password-body .password-btn {position: relative;width: 100%;height: 30px;}
+.withdrawals .password-body .password-btn li {position: absolute;width: 120px;height: 40px;line-height:40px;text-align: center;border-radius: 4px;}
+.withdrawals .password-body .password-btn .password-btn-cancel {left: 0px;color: #666;background-color: #fff;}
+.withdrawals .password-body .password-btn .password-btn-cancel:HOVER {background-color: #999;}
+.withdrawals .password-body .password-btn .password-btn-submit {right: 0px;color: #fff;background-color: #47d088;}
+.withdrawals .password-body .password-btn .password-btn-submit:HOVER {background-color: #27ae60;}
+
+.bill-detail .balance-label {text-align: right;color: #666;height: 30px;line-height: 30px;padding-right: 16px;}
+.bill-detail .balance-money {font-size: 36px;text-align: center;color: #000;}
+.bill-detail .bill-into .bill-into-ul li {padding: 8px 16px;margin-bottom: 1px;}
+.bill-detail .bill-into .bill-into-ul li .bill-into-ul-label {position: absolute;color: #999;width: 80px;text-align: center;}
+.bill-detail .bill-into .bill-into-ul li .bill-into-ul-content {margin-left: 80px;}
+.bill-detail .balance {background-color: #fff;}
+.bill-detail .bill-into .bill-into-ul li {background-color: #fff;font-size: 14px;}
+
+.home-page .apply-list-ul {background-color: #fff;}
+.home-page .apply-cash-time {color: #666;padding: 6px 16px;}
+.home-page .apply-cash-time .money {color: #FF7F00;}
+	
+.bill-list-ul {color: #333;background-color: #ebebeb;}
+.bill-list-ul li {height: 50px;line-height: 50px;padding: 8px 16px;margin-bottom: 1px;background-color: #fff;}
+.bill-list-ul li:HOVER {background-color: #eee;}
+.bill-list-ul .bill-list-ul-img {position: absolute;width: 50px;height: 50px;}
+.bill-list-ul .bill-list-ul-img .collect-money {position:absolute;background-color: #47d088;border-radius: 50%;width: 50px;height: 50px;line-height: 50px;text-align: center;color: #fff;font-size: 28px;}
+.bill-list-ul .bill-list-ul-content {margin-left: 50px;position: relative;}
+.bill-list-ul .bill-list-ul-content .bill-list-ul-money {position: absolute;right: 0px;top: -4px;}
+.bill-list-ul .bill-list-ul-content .bill-list-ul-time {position: absolute;left: 8px;}
+.bill-list-ul .bill-list-ul-content .bill-list-ul-time .bill-list-ul-time-title {height: 24px;line-height: 20px;font-size: 14px;}
+.bill-list-ul .bill-list-ul-content .bill-list-ul-time .bill-list-ul-time-content {height: 24px;line-height: 24px;font-size: 14px;color: #999;}

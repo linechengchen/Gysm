@@ -1,0 +1,133 @@
+﻿using AgileFrame.Orm.PersistenceLayer.BLL.Base;
+using AgileFrame.Orm.PersistenceLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class JsonBook_user_consignees_c49ef69b-3a2a-4002-9d1a-996edb : BasePageShuati
+{
+    /// <summary>
+    /// post到页面的参数对象
+    /// </summary>
+    [Serializable]
+    public class PostData
+    {
+        public static PostData get(System.Web.UI.Page this1)
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer javaScriptSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            PostData PostData = javaScriptSerializer.Deserialize<PostData>(getString(this1));
+            return PostData;
+        }
+        public static string getString(System.Web.UI.Page this1)
+        {
+            string json1 = (this1.Request.InputStream != null) ? (new System.IO.StreamReader(this1.Request.InputStream).ReadToEnd()) : ""; this1.Request.InputStream.Close();
+            return json1;
+        }
+        //public string user_id;
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {                   
+        JsonRoot r1 = new JsonRoot();
+
+    }
+    /*
+     //{
+//	"code":200,
+//	"message":"SUCCESS",
+//	"data":{
+//		"list":[{
+//			"city":"温州",
+//			"campus":"E号楼",
+//			"consignee_name":"赵老师1",
+//			"county":"龙湾区",
+//			"dorm":"独特",
+//			"is_default":"0",
+//			"consignee_phone":"18324254558",
+//			"campus_id":"4260",
+//			"province":"浙江",
+//			"school_id":"304",
+//			"user_id":"c49ef69b-3a2a-4002-9d1a-996edb402779",
+//			"province_id":"1",
+//			"school":"浙江东方职业技术学院",
+//			"user_consignee_id":"1f06533c-bf82-4463-851c-e8f42116ff5d",
+//			"region":"华东",
+//			"consignee_student_no":"785",
+//			"city_id":"36"
+//		},
+//		{
+//			"city":"温州",
+//			"campus":"旭阳",
+//			"consignee_name":"陈成行",
+//			"county":"瓯海区",
+//			"dorm":"450",
+//			"is_default":"0",
+//			"consignee_phone":"18324254558",
+//			"campus_id":"4232",
+//			"province":"浙江",
+//			"school_id":"282",
+//			"user_id":"c49ef69b-3a2a-4002-9d1a-996edb402779",
+//			"province_id":"1",
+//			"school":"温州职业技术学院",
+//			"user_consignee_id":"44e5c086-a9ae-4826-940e-7e6ce4757cdd",
+//			"region":"华东",
+//			"consignee_student_no":"14025101",
+//			"city_id":"36"
+//		},
+//		{
+//			"city":"温州",
+//			"campus":"A区7号楼三单元",
+//			"consignee_name":"章云",
+//			"county":"瓯海区",
+//			"dorm":"650",
+//			"is_default":"0",
+//			"consignee_phone":"18324254558",
+//			"campus_id":"4153",
+//			"province":"浙江",
+//			"school_id":"196",
+//			"user_id":"c49ef69b-3a2a-4002-9d1a-996edb402779",
+//			"province_id":"1",
+//			"school":"温州大学",
+//			"user_consignee_id":"933addff-00e3-4005-a885-ac60d0f32696",
+//			"region":"华东",
+//			"consignee_student_no":"6688",
+//			"city_id":"36"
+//		}]
+//	}
+//}
+
+     */
+    private void 例子代码()
+    {
+        //post获取post过来的所有json字符串参数
+        PostData PostData1 = PostData.get(this);
+        if (PostData1 == null) return;
+        //if(PostData1.user_id == null || PostData1.user_id == "undefine" || PostData1.user_id == "null") return;
+
+        //get获取所有json字符串参数
+        string user_id = "";
+        if (string.IsNullOrEmpty(Request["user_id"]))
+            user_id = Convert.ToString(Request["user_id"]);
+
+        JsonRoot r1 = new JsonRoot();
+        TUserInfo user1 = new TUserInfo();
+        user1.Top(100);
+        TUserInfo cond1 = new TUserInfo();
+        List<TUserInfo> list1 = BLLTable<TUserInfo>.Select(user1, cond1);//取得多行记录
+
+        TUserInfo row1 = BLLTable<TUserInfo>.GetRowData(user1, cond1);//取得单行记录
+
+        int ret1 = BLLTable<TUserInfo>.Update(user1, TUserInfo.Attribute.User_id);
+        if (ret1 > 0)
+        {
+            r1.code = 200;
+            r1.data.Add(list1);
+            r1.data.Add(row1);
+            string json1 = r1.ToJsonHeadLower();
+            Response.Write(json1);
+            Response.End();
+        }
+    }
+}

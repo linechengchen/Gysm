@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>上传健康证</title>
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/healthCard.css"/>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinjquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/js/public_jianzhi.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/js/localStorage.js"></script>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinpromise.min.js"></script>
+		<script src="../source_jz/js/ajax_jz_pack.js"></script>		
+		<script type="text/javascript" src="../../../source_7niu/artTemplate.js"></script>
+		<script type="text/javascript" src="https://7xiyzi.com1.z0.glb.clouddn.com/z.js"></script>
+	</head>
+	<script type="text/javascript">
+		(function(m, ei, q, i, a, j, s) {
+		    m[a] = m[a] || function() {
+		        (m[a].a = m[a].a || []).push(arguments)
+		    };
+		    j = ei.createElement(q),
+		        s = ei.getElementsByTagName(q)[0];
+		    j.async = true;
+		    j.charset = 'UTF-8';
+		    j.src = i + '?v=' + new Date().getUTCDate();
+		    s.parentNode.insertBefore(j, s);
+		})(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+		_MEIQIA('entId', 53303);
+	</script>
+	<body>
+		<!--页面加载 开始-->
+	  	<div id="preloader1">
+	   		<div id="status1">
+	    		<p class="center-text"><span></span></p>
+	    	</div>
+	 	</div>
+		
+		<!--<div class="load_quan">
+			<img src=""/>
+		</div>-->
+		
+		<header>
+			<a href="javascript:window.history.go(-1);" class="header_btn_left_back btn_back_jianzhi"></a>
+			上传健康证
+		</header>
+		
+		<div class="healpic">
+            <img src="../../../source_7niu/updata@2x.png" id="img">
+            <img src="../../../source_7niu/upload%202px@2x.png" class="upbtn">
+            <img src="../../../source_7niu/Oval%20664@2x.png" class="uploadsuccess">
+			<input type="file" class="clickupload" name="imgOne" id="file"/>
+			<div class="modifyimg">修改</div>
+			<input type="file" class="upAgain" id="uploadAgain"/>
+		</div>
+		<div class="conttishi">请上传您的健康证，这将提高商家对您的录取率。</div>
+		<input type="button" class="uploadcard" value="提交" />
+		<input type="button" class="uploadcardag" value="提交" />
+		
+		<!--弹窗-->
+		<div class="updataload">
+			<div class="bg_back"></div>
+			<div class="tishi">
+                <img src="../../../source_7niu/20160606load.gif" />
+			</div>
+		</div>
+		<input type="hidden" id="imageupdata" value="" />
+	</body>
+	
+	<script type="text/javascript">
+		z.plimg(z.$('file'),z.$('img'),function(file,img,url){
+			$(".modifyimg").show();
+			$(".uploadsuccess").show();
+			$(".upAgain").show();
+			$(".upbtn").hide();
+			$("#imageupdata").val(url);
+			$(".uploadcard").attr("onclick","uploadhecd()").css("background-color","#2DB871");
+		 });
+		  z.plimg(z.$('uploadAgain'),z.$('img'),function(uploadAgain,img,url){
+		  });
+		  
+		  $(".upAgain").click(function(){
+		  		$(".uploadcard").hide();
+		  		$(".uploadcardag").show();
+		  });
+		  
+		  
+		information();
+		function information() {//
+			var data = {};
+			data.token = token;
+			postAjax('/user/information/refresh.aspx', data).then(function (data) {
+				var success = data.success;
+				if (success) {
+					console.log(data.data);
+					if (data.data.haveHealthCertificate == true) {
+						$("#img").attr("src",data.data.healthCertificate);
+						$(".uploadsuccess").show();
+						$(".modifyimg").show();
+						$(".upAgain").show();
+						$(".upbtn").hide();
+						$(".clickupload").hide();
+						setTimeout(function(){
+							$("#preloader").hide();//.delay(300).fadeOut("slow");
+						},500);
+					} else {
+						setTimeout(function(){
+							$("#preloader").hide();//.delay(300).fadeOut("slow");
+						},500);
+					}
+					
+				} else {
+					popover(data.errMsg);
+				}
+			});
+		}
+		  
+		  function uploadhecd () {
+					//创建FormData对象
+					var data = new FormData();
+					data.append('appKey', appKey);
+					data.append('version', version);
+					data.append('token', getCookie("identity_new"));
+					//为FormData对象添加数据
+					$.each($('#file')[0].files, function(i, file) {
+						data.append('imageFile', file);
+					});
+					
+					$.ajax({
+					    url: fixUrlJson + "/userInfoPool/updateHealthCertificate.aspx",
+						type: 'POST',
+						data: data,
+						dataType: 'json',
+						cache: false,
+						contentType: false, //不可缺
+						processData: false, //不可缺
+						success: function(data) {
+							//是否获取数据成功
+							var success = data.success;
+							if (success) {
+							//获取用户上传的照片
+								console.log(data);
+								$("#imageupdata").val(data.data.healthCertificate);
+								$(".headpic").attr("src",$("#imageupdata").val());
+								popover("上传成功");
+								setTimeout("myhref.href = 'my.html'",2000);
+								$(".upbtn").hide();
+							} else {
+								//提示数据失败原因
+								if(data.errMsg == '图片对象为空'){
+									alert('请选择您要上传的图片');
+								}else{
+									alert(data.errMsg);
+								}
+							}
+						},
+						error: function() {
+							alert('网络错误');
+						},
+						beforeSend: function() {
+							$(".updataload").show();
+						},
+						complete: function() {
+							$(".updataload").fadeOut();
+						}
+					});
+				}
+				//修改
+				$(".uploadcardag").click(function() {
+					//创建FormData对象
+					var data = new FormData();
+					data.append('appKey', appKey);
+					data.append('version', version);
+					data.append('token', getCookie("identity_new"));
+					//为FormData对象添加数据
+					$.each($('#uploadAgain')[0].files, function(i, file) {
+						data.append('imageFile', file);
+					});
+					$.ajax({
+					    url: fixUrlJson + "/userInfoPool/updateHealthCertificate.aspx",
+						type: 'POST',
+						data: data,
+						dataType: 'json',
+						cache: false,
+						contentType: false, //不可缺
+						processData: false, //不可缺
+						success: function(data) {
+							//是否获取数据成功
+							var success = data.success;
+							if (success) {
+								//获取用户上传的照片
+							console.log(data);
+							$("#imageupdata").val(data.data.healthCertificate);
+							$(".headpic").attr("src",$("#imageupdata").val());
+							popover("上传成功");
+							setTimeout("myhref.href = 'my.html'",2000);
+							$(".upbtn").hide();
+							} else {
+								//提示取数据失败原因
+								if(data.errMsg == '图片对象为空'){
+									alert('请选择您要上传的图片');
+								}else{
+									alert(data.errMsg);
+								}
+							}
+						},
+						error: function() {
+							alert('网络错误');
+						},
+						beforeSend: function() {
+							$(".updataload").show();
+						},
+						complete: function() {
+							$(".updataload").fadeOut();
+						}
+					});
+				});
+	</script>
+
+</html>

@@ -1,0 +1,193 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<!--<meta name="viewport" content="width=device-width,initial-scale=1.0" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+<title>IU学车代金券摇一摇</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"> 
+<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <script type="text/javascript" src="js/localstorage.js?11"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/red.js?111"></script>
+    <style>
+        #shareit {
+            -webkit-user-select: none;
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            text-align: center;
+            top: 0;
+            left: 0;
+            z-index: 105;
+        }
+
+            #shareit img {
+                max-width: 60%;
+            }
+        #shareit2 {
+            -webkit-user-select: none;
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            text-align: center;
+            top: 0;
+            left: 0;
+            z-index: 105;
+        }
+
+            #shareit img2 {
+                max-width: 60%;
+            }
+
+        .arrow {
+            position: absolute;
+            right: 10%;
+            top: 5%;
+        }
+
+        #share-text {
+            margin-top: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div  id="ceshi"style="display:none;">
+        <a href="#" onclick="test1()">测试</a>
+        <a href="#" onclick="test2()">清空次数</a>
+        <a href="#" id="yichou"></a>
+    </div>
+   
+<!-- 红包音乐 -->
+    <!--<audio src="music/red-01.mp3" id="shakemusic" style="display: block;"></audio>-->
+<audio id="shakemusic" src="music/red-01.mp3" style="display: none;"></audio>
+<audio id="openmusic" src="music/red-02.mp3" style="display: none;"></audio>
+<!-- End 红包音乐 -->
+<!-- 红包 -->
+<div class="red_bg">
+    <div class="red-logo">
+    </div>
+	<div class="red-ts"></div>
+	<div class="red-ss-bg">
+		<span class="red-ss animated"></span>
+	</div>
+	<div class="red-jh">
+		您还有<span id="span1"></span>次机会
+	</div>
+    <div id="shareit">
+        <img class="arrow" src="img/guide1.png">
+        <a href="#" id="follow">
+            <img id="share-text" src="img/123.gif">
+        </a>
+    </div>
+    <div id="shareit2">
+     
+        <a href="#" id="follow">
+            <img id="share-img2" src="img/123.gif">
+        </a>
+    </div>
+    <div class="red-tc">
+        <!-- 已中奖 -->
+        <div class="red-yzj">
+           
+            <div class="red-tc-k">
+                <p>￥<span id="span2"></span>元</p>
+             
+                恭喜你获得</br>IU学车代金券
+            </div>
+            <div class="red-tc-btn">
+                <button onclick="shuaxin()">查看代金券</button>
+             
+                <button onclick="shuaxin()">关闭</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="red-tc1">
+
+ 
+        <div class="red-yzj">
+            <div class="red-tc-k">
+                <img src="img/red-bw.png">
+                哎呀！</br>您的代金券被风刮走了啊
+        
+            </div>
+            <div class="red-tc-btn">
+                <button>再摇一次</button>
+                <button onclick="shuaxin()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="red-tc2">
+
+        <!-- 机会用光了 -->
+        <div class="red-yzj">
+            <div class="red-tc-k">
+                <img src="img/erweima.jpg">
+                没有抽中，真遗憾！</br>
+                机会用光了哦！转发并扫描二维码，客服小妹将给你180元代金券
+            
+            </div>
+            <div  class="red-tc-btn">
+                <button id="share_btn">转发朋友圈</button>&nbsp;
+
+            </div>
+        </div>
+        <!-- End 机会用光了 -->
+    </div>
+
+    <script>
+        //立即分享到微信朋友圈点击事件
+        $("#share_btn").on("click", function () {
+            $("#shareit").show();
+        });
+ 
+
+
+        $("#shareit").on("click", function () {
+            $("#shareit").hide();
+        })
+        $("#share_btn2").on("click", function () {
+            $("#shareit2").show();
+        });
+        $("#share_btn2").on("click", function () {
+            $("#shareit2").hide();
+        });
+    </script>
+<!-- End 红包 -->
+    <br />
+   
+
+  
+    <div>
+        <label style=" margin :35%; font-size:20px;"> 我的优惠卷</label>
+    </div>
+
+
+    <div class="red-yzj"  style="width:90%; align-content:center">
+
+            <div class="youhuijuan1" style="margin:0 auto; display:none;float:left">
+                <p>￥<span>50.00</span>元</p>
+
+                IU学车代金券</br><span style="font-size:12px;">每次只能用一张</span>
+            </div>
+            <div class="youhuijuan2" style="margin:0 auto; display:none; float:right">
+                <p>￥<span>80.00</span>元</p>
+
+                IU学车代金券</br> <span style="font-size:12px;">每次只能用一张</span>
+            </div>
+
+        </div>
+ 
+    </div>
+    
+    
+    
+    </body>
+</html>

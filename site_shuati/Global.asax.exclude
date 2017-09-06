@@ -1,0 +1,39 @@
+﻿<%@ Application Language="C#" %>
+
+<script runat="server">
+    
+    void Application_Start(object sender, EventArgs e)
+    {
+        //try
+        //{
+        //    AgileFrame.Core.ConsoleService.IsNeedWebConsole = true;
+        //    AgileFrame.Core.ConsoleService.Fatal("bs控制台启动");
+           
+        //}
+        //catch { }
+    }
+    
+    void Application_End(object sender, EventArgs e) 
+    {
+        //在应用程序关闭时运行的代码
+        
+    }
+        
+    void Application_Error(object sender, EventArgs e) 
+    { 
+        //在出现未处理的错误时运行的代码
+        //它将捕获所有 Application 级别的 UnhandleException 和 HttpException（比如：访问的页面不存在等）
+        //因为 Server.Transfer 将固定抛出 ThreadAbort Exception 异常，不用理会。
+        //在指定的 Error.aspx 里你可以通过  Server.GetLastError() 来进行，错误分类，日志处理，显示信息等工作。
+        
+    }
+
+    void Session_Start(object sender, EventArgs e)
+    {
+    }
+
+    void Session_End(object sender, EventArgs e)
+    {
+    }
+       
+</script>

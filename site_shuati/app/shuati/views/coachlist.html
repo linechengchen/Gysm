@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui/mui.css">
+    <link rel="stylesheet" href="../css/mui/iconfont.css">
+    <link rel="stylesheet" href="../css/mui/icons-extra.css" />
+    <link rel="stylesheet" href="../css/mui/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/zui.css">
+    <link href="../css/IU.css" rel="stylesheet" />
+</head>
+
+
+
+<body>
+    <div class="mui-content">
+        <div id="slider" class="mui-slider mui-fullscreen">
+            <div class="mui-table zui-slider-header">
+                <div class="mui-table-cell mui-text-left zui-sliderHeader-item zui-sliderHeader-left">
+                    <span class="mui-icon mui-icon-reload zui-icon"></span>
+                </div>
+                <div class="mui-table-cell zui-sliderHeader-item">
+                    <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                        <a class="zui-item mui-control-item mui-active" href="#item1mobile">待办公文</a>
+                        <a class="zui-item mui-control-item" href="#item2mobile">已办公文</a>
+                        <a class="zui-item mui-control-item" href="#item3mobile">全部公文</a>
+                    </div>
+                    <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+                </div>
+                <div class="mui-table-cell mui-text-right zui-header-item zui-sliderHeader-right">
+                    <span class="mui-icon-extra mui-icon-extra-heart zui-icon"></span>
+                </div>
+            </div>
+            <div class="mui-slider-group">
+                <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+                    <div class="mui-table zui-query">
+                        <div class="mui-table-cell mui-text-left zui-query-label">
+                            <span>上课时间：</span>
+                        </div>
+                        <div class="mui-table-cell zui-query-datetime">
+                            <a href="#" id="datetime-select">时间</a>
+                        </div>
+                        <div class="mui-table-cell mui-text-right zui-query-button">
+                            <a href="#">筛选</a>
+                        </div>
+                    </div>
+                    <!--<ul>
+                        <li>
+                            <div class='mui-media-body'>dsdsd</div>
+                           wesdsd
+                        </li>
+                    </ul>
+                    <ul >
+                        <li v-for="(index,item) in xc_Coach">
+                            <div class='mui-media-body' v-text="item.Name"></div>
+                            {{item.Name}}
+                            {{index}}
+                            {{item.Student}}
+                        </li>
+                    </ul>-->
+
+                    <div class="mui-scroll-wrapper zui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="ul" >
+                                
+                                <li class="mui-table-view-cell" v-for="(index,item) in xc_Coach">
+                                    <div class="mui-slider-cell">
+                                        <div class="zui-contact-cell mui-table" @click="todetail(item.Id)">
+                                            <div class="zui-contact-avatar mui-table-cell">
+                                                <img src="{{item.Img}}" />
+                                            </div>
+                                            <div class="zui-contact-content mui-table-cell">
+                                                <div class="mui-clearfix">
+                                                    <h4 class="zui-contact-name">{{item.Name}}</h4>
+                                                </div>
+                                                <p class="mark mui-h6">
+                                                    <span class="school-name" style="color:#1d1a1a;">{{item.Jiaxiao_name}}</span>
+                                                    <span class="coach-score">
+                                                        ：{{item.Score}}
+                                                    </span>
+                                                </p>
+                                                <p>
+
+                                                    <span class="coach-ping">
+                                                        {{item.Student}}学员
+                                                    </span>
+                                                    <span class="school-rank">
+                                                        本市排名{{item.City_rank}}名
+                                                    </span>
+                                                </p>
+
+
+                                            </div>
+                                            <div class="zui-contact-button mui-table-cell mui-text-right">
+                                                <a href="#">
+                                                    <span class="mui-icon iconfont icon-avspeaker zui-icon-video"></span>
+                                                </a>
+                                                <span class="zui-separate"></span>
+                                                <a href="#" class="zui-contact-link">
+                                                    <span>预约</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                               
+                            </ul>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div id="item2mobile" class="mui-slider-item mui-control-content">
+                    1111
+                </div>
+                <div id="item3mobile" class="mui-slider-item mui-control-content">
+                    2222
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--<script src="../js/mui/mui.js"></script>-->
+<script src="../xianshu/source/mui/js/mui.min.js"></script>
+<script src="../js/mui/mui.picker.min.js"></script>
+<script src="../xianshu/source/js/vue.min.js"></script>
+<script src="../xianshu/source/js/vue-tap.js"></script>
+<script>
+    (function ($) {
+        var vm = new Vue({
+            el: "body",
+            data: {
+                xc_Coach: []
+            },
+            ready: function () {
+               
+                //mui.ajax('http://stbd.aibangxs.com/site_shuati/json_shuati/ListTTeacherInfo.aspx', { // cch
+            },
+            computed: {
+
+
+            },
+            created: function () {
+                var self = this;
+                mui.ajax('http://localhost:62259/json_shuati/ListTcoachinfo.aspx', { // cch
+                    data: {},
+                    dataType: 'json', //服务器返回json格式数据
+                    type: 'get', //HTTP请求类型
+                    timeout: 10000, //超时时间设置为10秒；
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                  
+                    success: function (data) {
+                        self.xc_Coach = data.data.xc_Coach;
+                        //self.items = data.xc_Coach;
+                        if (data['code'] == '200') {
+                            console.log(self.xc_Coach);
+                            //console.log(items.xc_Coach[0]);
+                            
+                        } else {
+
+                        }
+                    },
+                    error: function (xhr, type, errorThrown) {
+                        //异常处理；
+                        console.log(type);
+                    }
+                });
+
+                mui.init();
+            },
+            methods: {
+                todetail: function (id) {
+                    myhref.href = "coachDetail.html?id=" + id;
+                }
+
+            }
+        });
+
+        $('.mui-scroll-wrapper').scroll({
+            indicators: true //是否显示滚动条
+        });
+
+        var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
+                //force repaint
+                sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
+            }
+        });
+
+        /*================================ 时间组件 ====================================*/
+        var btns = $('#datetime-select');
+        btns.each(function(i, btn) {
+            btn.addEventListener('tap', function() {
+
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+                var that = this;
+                /*
+                 * 首次显示时实例化组件
+                 * 示例为了简洁，将 options 放在了按钮的 dom 上
+                 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+                 */
+                var picker = new $.DtPicker(options);
+                picker.show(function(rs) {
+                    /*
+                     * rs.value 拼合后的 value
+                     * rs.text 拼合后的 text
+                     * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                     * rs.m 月，用法同年
+                     * rs.d 日，用法同年
+                     * rs.h 时，用法同年
+                     * rs.i 分（minutes 的第二个字母），用法同年
+                     */
+                    //                result.innerText = '选择结果: ' + rs.text;
+                    that.text = rs.text;
+                    /*
+                     * 返回 false 可以阻止选择框的关闭
+                     * return false;
+                     */
+                    /*
+                     * 释放组件资源，释放后将将不能再操作组件
+                     * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+                     * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+                     * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+                     */
+                    picker.dispose();
+                });
+            }, false);
+        });
+        /*================================ 时间组件 ====================================*/
+
+
+        mui(".mui-table-view").on('tap','.zui-contact-link',function() {
+              // 打开新闻详情
+              mui.openWindow({
+                  id: 'teacherDetail',
+                  url: 'coachDetail.html',
+                  styles: {
+                      top: '45px', //新页面顶部位置
+                      bottom: '0px' //新页面底部位置
+                  }
+              });
+        })
+
+        // mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
+        //
+        //     //打开新闻详情
+        //     // mui.openWindow({
+        //     //     id: 'teacherDetail',
+        //     //     url: 'teacherDetail.html',
+        //     //     styles: {
+        //     //         top: '45px', //新页面顶部位置
+        //     //         bottom: '0px' //新页面底部位置
+        //     //     }
+        //     // });
+        // });
+
+    })(mui);
+</script>
+
+</html>

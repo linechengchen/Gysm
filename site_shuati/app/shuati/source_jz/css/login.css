@@ -1,0 +1,710 @@
+body {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: #FFFFFF;
+	padding: 0;
+	color: #333;
+	overflow-x: hidden;
+}
+a{
+	color: #000000;
+	text-decoration: none;
+}
+body,
+input,
+button {
+	font-family: Microsoft YaHei, sans-serif;
+	font-size: 14px;
+}
+
+.tits{
+	position: fixed;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	font-size: 18px;
+}
+.header_btn_left_back {
+	position: fixed;
+	top: 10px;
+	left: 2%;
+	height: 30px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 54px;
+	overflow: hidden
+} 
+.btn_back{
+	width: 30px;
+	height: 30px;
+	background: url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinback_arrow.png) 10px center no-repeat;
+	background-size: 10px 18px;
+	z-index: 1;
+}
+
+.headed{
+	width: 100%;
+	height: 191px;
+	background: url(../source_7niu//201607045-640.png) no-repeat center;
+	background-size: 100% 191px; 
+	text-align: center;
+}
+
+.headed .headlogo{
+	width: 70px;
+	margin-top: 79px;
+}
+
+.logincenter{
+	position: absolute;
+	width: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+.logincenter .forgetrez{
+	margin-left: 10%;
+	float: left;
+	color: #ff8200;
+	font-size: 12px;
+	margin-top: 10px;
+	}
+.logincenter .phonenum{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+	margin-top: 38px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.logincenter .phonenum .phoneico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 50px;
+	text-align: center;
+}
+.logincenter .phonenum .phoneico img{
+	width: 23px;
+	
+}
+.logincenter .phonenum .phoneright{
+	width: 70%;
+	height: 32px;
+	outline: none;
+	font-size: 14px;
+	float: left;
+	border: none;
+}
+.logincenter .phonepsd{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+	margin-top: 18px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.logincenter .phonepsd .phonepsdico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 50px;
+	text-align: center;
+}
+.logincenter .phonepsd .phonepsdico img{
+	width: 23px;
+}
+.logincenter .phonepsd .phonepsdright{
+	width: 70%;
+	outline: none;
+	font-size: 14px;
+	height: 32px;
+	float: left;
+	border: none;
+}
+.logincenter .button{
+	width: 80%;
+	height: 40px;
+	border-radius: 5px;
+	background: #a3e6c3;
+	margin: 30px 0 0 10%;
+	color: #FFFFFF;
+	border: none;
+	font-size: 18px;
+	outline: none;
+	-webkit-appearance: none;
+}
+.thirdlogin{
+	width: 100%;
+	margin-top: 50px;
+	height: 30px;
+	line-height: 30px;
+}
+.thirdlogin .threeline{
+	width: 28%;
+	height:1px ; 
+	background-color: #CCCCCC;
+	margin-left: 9%;
+	margin-top: 14px;
+	float: left;
+}
+.thirdlogin .disanfang{
+	width: 20%;
+	height: 30px;
+	color: #CCCCCC;
+	font-size: 12px;
+	margin-left: 3%;
+	margin-right: 2%;
+	float: left;
+}
+.thirdlogin .fourline{
+	width: 28%; 
+	height:1px ;
+	background-color: #CCCCCC;
+	margin-right: 8%;
+	margin-top: 14px;
+	float: left;
+}
+.logindown{
+	width: 100%;
+	height: 42px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.logindown .qqlogin{
+	width: 41px;
+	height: 41px;
+	background: url(../source_7niu//20160704qq.png) center no-repeat ;
+	background-size: 41px 41px;
+	margin-left: 28%;
+	float: left;
+}
+.logindown .weixinlogin{
+	width: 41px;
+	height: 41px;
+	background: url(../source_7niu//20160704weixin@2x.png) center no-repeat ;
+	background-size: 41px 41px;
+	margin-left: 3%;
+	float: left;
+}
+.logindown .zhifubaologin{
+	width: 41px;
+	height: 41px;
+	background: url(../source_7niu//20160704zhifubao.png) center no-repeat ;
+	background-size: 41px 41px;
+	margin-left: 3%;
+	float: left;
+}
+
+.popover {
+	position: fixed;
+	top: 50%;
+	left: 45%;
+	width: 160px;
+	font-size: 13px;
+	padding: 20px 10px;
+	margin: -20px 0 0 -60px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	text-align: center;
+	color: #fff;
+}
+
+/*注册*/
+.rezcenter{
+	position: relative;
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+}
+.rezcenter .forgetrez{
+	margin-left: 10%;
+	float: left;
+	color: #ff8200;
+	font-size: 12px;
+	margin-top: 10px;
+	}
+.rezcenter .loginma{
+	float: right;
+	margin-right: 10%;
+	color: #ff8200;
+	font-size: 12px;
+	margin-top: 10px;
+}
+	
+.rezcenter .phonenum{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.rezcenter .phonenum .phoneico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 55px;
+	text-align: center;
+}
+.rezcenter .phonenum .phoneico img{
+	width: 23px;
+	
+}
+.rezcenter .phonenum .phoneright{
+	width: 70%;
+	height: 32px;
+	outline: none;
+	font-size: 14px;
+	float: left;
+	border: none;
+}
+.rezcenter .picma{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+}
+.rezcenter .picma .picico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 55px;
+	text-align: center;
+}
+.rezcenter .picma .picico img{
+	width: 19px;
+}
+.rezcenter .picma .picright{
+	width: 43%;
+	font-family: "microsoft yahei" sans-serif;
+	outline: none;
+	font-size: 14px;
+	height: 32px;
+	border: none;
+	float: left;
+}
+.rezcenter .picma .imgvolid{
+	margin-top: 5px;
+	float: right;
+}
+.rezcenter .yanzhengma{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+}
+.downbg{
+	margin-left: 10%;
+	width: 50%;
+	height: 1px;
+	background: #DDDDDD;
+}
+.downbg1{
+	margin-left: 10%;
+	width: 50%;
+	height: 1px;
+	background: #DDDDDD;
+}
+.rezcenter .yanzhengma .yanzico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 55px;
+	text-align: center;
+}
+.rezcenter .yanzhengma .yanzico img{
+	width: 23px;
+}
+.rezcenter .yanzhengma .yanzright{
+	width: 40%;
+	outline: none;
+	font-size: 14px;
+	margin-top: 2px;
+	height: 30px;
+	float: left;
+	border: none;
+}
+.msgs{
+	float:right;
+	margin-top: -30px;
+	margin-right: 10%;
+	display:inline-block;
+	width:90px;
+	color:#fff;
+	font-size:12px;
+	text-align:center;
+	height:30px;
+	line-height:30px;
+	background:#ff8200;
+	cursor:pointer;
+	border-radius:5px;
+	z-index: 99999;
+}
+.verificodes{
+	float:right;
+	width:80px;
+	height:30px;
+	background:#A3E6C3;
+	border-radius:5px;
+	font-size:12px;
+	color:#ffffff;
+	text-align: center;
+	line-height:30px;
+	margin: 12px 0 0 0;
+	cursor: pointer;
+}
+
+.rezcenter .button{
+	width: 80%;
+	height: 40px;
+	border-radius: 5px;
+	background: #a3e6c3;
+	margin: 30px 0 0 10%;
+	color: #FFFFFF;
+	border: none;
+	font-size: 18px;
+	outline: none;
+	-webkit-appearance: none;
+}
+
+.rezcenter .choose{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 12px;
+}
+.rezcenter .choose span{
+	color: #ff8200;
+}
+.nextone{
+	position: relative;
+	width: 100%;
+	height: 200px;
+	margin-top: 80px;
+}
+
+.nextone .phonepsd{
+	width: calc(100% - 20%);
+	margin-left: 10%;
+	height: 40px;
+	margin-top: 18px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.nextone .phonepsd .phonepsdico{
+	width: 15%;
+	height: 40px;
+	float: left;
+	line-height: 50px;
+	text-align: center;
+}
+.nextone .phonepsd .phonepsdico img{
+	width: 23px;
+}
+.nextone .phonepsd .phonepsdright{
+	width: 70%;
+	outline: none;
+	font-size: 14px;
+	height: 32px;
+	float: left;
+	border: none;
+}
+.nextone .phonepsd .psdright{
+	width: 70%;
+	outline: none;
+	font-size: 14px;
+	height: 32px;
+	float: left;
+	border: none;
+}
+.nextone .button{
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	background: #A3E6C3;
+	margin: 30px 0 0 5%;
+	color: #FFFFFF;
+	border: none;
+	font-size: 18px;
+	outline: none;
+	-webkit-appearance: none;
+}
+.popoverer {
+	position: fixed;
+	top: 60%;
+	left: 20%;
+	width: 60%;
+	height: 40px;
+	background: #efefef;
+	border-radius: 30px;
+	text-align: center;
+	color: #ff8200;
+	font-size: 13px;
+	line-height: 40px;
+}
+.popoverer img{
+	width:23px; 
+	vertical-align:middle;
+}
+
+/*更换登陆账号*/
+.notes{
+	font-size: 15px;
+	margin: 60px 0 0 5%;
+}
+.change{
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	margin-top: 20px;
+	background: #FFFFFF;
+}
+/*.changebgs{
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	margin-top: 20px;
+	background: #FFFFFF;
+}*/
+.change .line{
+	width: 100%;
+	height: 2px;
+	margin-top: 10px;
+	border-bottom: 1px solid #E4E4E4;
+}
+.change .fontone{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.change .fonttwo{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 15px;
+	margin: 10px 0 0 0;
+}
+.change input{
+	position: absolute;
+	width: 60%;
+	height: 25px;
+	border: none;
+	font-size: 16px;
+	background-color:transparent;
+	margin: -25px 0 0 30%;
+	padding-left: 0%;
+}
+.change input.wid{
+	width: 35%;
+}
+.msgs1{
+	background:#E6E6E6;
+	color:#818080;
+	border:1px solid #CCCCCC;
+}
+.change .button{
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	background: #ff8200;
+	margin: 40px 0 0 5%;
+	color: #FFFFFF;
+	font-size: 18px;
+	-webkit-appearance: none;
+}
+.change span.zhuc{
+	position: absolute;
+	margin: 90px 0 0 5%;
+	color: #ff8200;
+}
+.change span.wanj{
+	float: right;
+	margin: 90px 5% 0 0;
+	color: #ff8200;
+}
+
+.changebgs{
+	position: absolute;
+	width: 100%;
+	height: 240px;
+	margin-top: 60px;
+	background: #FFFFFF;
+}
+
+.changebgs .line{
+	width: 100%;
+	height: 2px;
+	margin-top: 10px;
+	border-bottom: 1px solid #E4E4E4;
+}
+.changebgs .fontone{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.changebgs .fonttwo{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 15px;
+	margin: 10px 0 0 0;
+}
+.changebgs input{
+	position: absolute;
+	width: 60%;
+	height: 25px;
+	border: none;
+	font-size: 16px;
+	background-color:transparent;
+	margin: -25px 0 0 30%;
+	padding-left: 0%;
+}
+:focus {outline: none; }
+.changebgs input.wid{
+	width: 35%;
+}
+/*.fast-code{
+	float:right;
+	margin-top: -27px;
+	margin-right: 5px;
+	display:inline-block;
+	width:90px;
+	color:#fff;
+	font-size:12px;
+	border:1px solid #ff8200;
+	text-align:center;
+	height:30px;
+	line-height:30px;
+	background:#ff8200;
+	cursor:pointer;
+	border-radius:5px;
+	z-index: 99999;
+}*/
+
+.msgs .fast-code-show{
+	margin: -1px 0 0 -1px;
+	width:90px;
+	height:30px;
+	background: #E6E6E6;
+	border-radius:5px;
+	border: 1px solid #E6E6E6;
+	display: none;
+}
+.changebgs img{
+	float:right;
+	margin-top: -27px;
+	margin-right: 5px;
+	display:inline-block;
+	width:90px;
+	color:#fff;
+	font-size:12px;
+	/*border:1px solid #ff8200;*/
+	text-align:center;
+	height:30px;
+	line-height:30px;
+	/*background:#ff8200;*/
+	cursor:pointer;
+	border-radius:5px;
+	z-index: 99999;
+}
+.changebgs .button{
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	background: #ff8200;
+	margin: 40px 0 0 5%;
+	color: #FFFFFF;
+	font-size: 18px;
+	-webkit-appearance: none;
+}
+.changebgs .button_xiu{
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	background: #ff8200;
+	margin: 40px 0 0 5%;
+	color: #FFFFFF;
+	font-size: 18px;
+	-webkit-appearance: none;
+}
+.changebgs p.yuedu{
+	position: absolute;
+	margin: 90px 0 0 5%;
+	padding-left: 25px;
+	font-size: 14px;
+	line-height: 20px;
+}
+.changebgs p img.dui{
+	position: absolute;
+	margin: 3px 0 0 -20px;
+	width: 15px;
+	height: 15px;
+	padding-right: 10px;
+}
+
+.changea{
+	position: absolute;
+	width: 100%;
+	height: 145px;
+	margin-top: 60px;
+	background: #FFFFFF;
+}
+.changea .line{
+	width: 100%;
+	height: 2px;
+	margin-top: 10px;
+	border-bottom: 1px solid #E4E4E4;
+}
+.changea .fontone{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.changea .fonttwo{
+	color: #ff8200;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	border-right: 1px solid #E4E4E4;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 15px;
+	margin: 10px 0 0 0; 
+}
+.changea input{
+	position: absolute;
+	width: 60%;
+	height: 25px;
+	border: none;
+	font-size: 16px;
+	background-color:transparent;
+	margin: -25px 0 0 30%;
+	padding-left: 0%;
+}
+.changea .button{
+	width: 90%;
+	height: 40px;
+	border-radius: 5px;
+	background: #ff8200;
+	margin: 40px 0 0 5%;
+	color: #FFFFFF;
+	font-size: 18px;
+	-webkit-appearance: none;
+}

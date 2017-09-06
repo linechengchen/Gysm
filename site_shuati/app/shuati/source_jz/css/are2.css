@@ -1,0 +1,32 @@
+.diqu{
+	width: 100%;
+	overflow-x: hidden;
+}
+.diqu p{
+	padding-left: 10px;
+	color: #ff8200;/*color: #2CCB72;*/
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	margin: 0;
+	border-bottom: 1px solid #ff8200;/*color: #2CCB72;*/
+}
+.diqu p.cityname{
+	color: #424242;
+	background: #FFFFFF;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #E4E4E4;
+}
+.diqu ul{
+	width: 100%;
+}
+.diqu ul li{
+	width: 100%;
+	padding-left: 10px;
+	height: 40px;
+	line-height: 40px;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E4E4E4;
+	color: #424242;
+}

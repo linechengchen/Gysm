@@ -1,0 +1,4 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="viewPage.aspx.cs" Inherits="JsonBook_home_viewPage" %>
+{"code":200,"message":"success","data":{}}
+<%--{"timestamp":1486811521228,"status":400,"error":"Bad Request","exception":"org.springframework.http.converter.HttpMessageNotReadableException","message":"Could not read document: Unrecognized token 'pageName': was expecting ('true', 'false' or 'null')\n at [Source: java.io.ByteArrayInputStream@e2bfa3d; line: 1, column: 10]; nested exception is com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'pageName': was expecting ('true', 'false' or 'null')\n at [Source: java.io.ByteArrayInputStream@e2bfa3d; line: 1, column: 10]","path":"/home/viewPage"}--%>
+<%--pageName=DonateBooks&pageURL=http%3A%2F%2Fh5.qess.me%2Fbook_collection%2FrecycleBook.html%3Ftoken%3Db8dc2e6e0b7d634bcf67be3e4093ef84--%>

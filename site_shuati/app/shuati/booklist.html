@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<title>课后作业</title>
+		<link href="css/mui/mui.min.css" rel="stylesheet" />
+		<link href="css/swiper/swiper.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/aui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/booklist.css">
+		<script src="js/mui/mui.min.js"></script>
+		<script src="js/lib/template.js"></script>
+		<script src="js/swiper/swiper.min.js"></script>
+		<script src="js/booklist.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			(function($, doc) {
+				$.ready(function() {
+					fetchBanner(function(json) {
+						var html = template('banners-tpl', json.data);
+						doc.getElementById('bannerSwiper').innerHTML = html;
+
+						var mySwiper = new Swiper('.swiper-container', {
+							// Optional parameters
+							direction: 'horizontal',
+							loop: true,
+						})
+					})
+
+					fetchBookList(function(json) {
+						var html = template('booklist-tpl', json.data);
+						doc.getElementById('booklistContainer').innerHTML = html;
+					})
+
+				});
+			})(mui, document)
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="tool-box">
+				<div class="address-box">
+					<span>温州</span>
+					<span class="mui-icon mui-icon-arrowdown"></span>
+				</div>
+				<div class="search-box relative">
+					<div class="search-bg">
+
+					</div>
+					<div class="search-ct absolute">
+						<input type="text" placeholder="搜索您需要的教材" />
+						<span class="mui-icon mui-icon-search"></span>
+					</div>
+				</div>
+			</div>
+			<div class="header">
+				<div class="banner-box swiper-container">
+					<div class="swiper-wrapper" id="bannerSwiper">
+						<!-- Slides -->
+						<div class="swiper-slide"><img src="./image/test_bg.jpg" /></div>
+						<div class="swiper-slide"><img src="./image/test_bg.jpg" /></div>
+						<div class="swiper-slide"><img src="./image/test_bg.jpg" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="booklist-container" id="booklistContainer">
+
+				</div>
+
+			</div>
+		</div>
+
+		<script id="banners-tpl" type="text/html" style="display:none;">
+			{{each banners as bannerItem i}}
+			<div class="swiper-slide"><img src="{{bannerItem.path}}" /></div>
+			{{/each}}
+		</script>
+
+		<script id="booklist-tpl" type="text/html" style="display:none;">
+			{{each txts as booklists i}}
+
+			<div class="booklist-outer-box">
+				<div class="title-box">
+					<div class="title">
+						<span class="text">{{booklists.name}}</span>
+					</div>
+					<div class="more-box">
+						<span class="text">查看更多</span>
+						<span class="mui-icon mui-icon-arrowright"></span>
+					</div>
+				</div>
+				<div class="booklist-inner-box">
+					{{each booklists.books as bookItem i}}
+					<div class="book-item">
+						<div class="book-img">
+							<img src="{{bookItem.path}}" />
+						</div>
+						<div class="book-title">
+							{{bookItem.title}}
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+			{{/each}}
+		</script>
+	</body>
+
+</html>

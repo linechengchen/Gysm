@@ -1,0 +1,36 @@
+﻿.mui-table-view  .school-name 
+{
+    float:left;
+  
+}
+.mui-table-view  .coach-score
+{
+    float:right;
+    background: url(https://localhost:62259/app/images/jiaxiao-fen.png) left center no-repeat;
+    background-size: 0.896rem 0.896rem;
+    padding-left: 1.344rem;
+    margin-right: 0.96rem;
+    font-size:13px;
+  
+}
+.mui-table-view .school-rank
+{
+     float:left;
+    background: url(https://localhost:62259/app/images/city_rank.png) left center no-repeat;
+    background-size: 1.024rem;
+    padding-left: 1.3rem;
+        color: #1dacf9;
+          font-size:12px;
+
+}
+.mui-table-view .coach-ping
+{
+     float:right;
+    background: url(https://localhost:62259/app/images/icon_student.png) left center no-repeat;
+    background-size: 1.024rem;
+    padding-left: 1.3rem;
+        color: #1dacf9;
+       font-size:12px;
+
+}
+

@@ -1,0 +1,96 @@
+﻿using AgileFrame.Core;
+using AgileFrame.Orm.PersistenceLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class testop : BasePageShuati
+{
+    Common com = new Common();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!IsPostBack)
+            {
+                if (Session["openid"] == null)
+                {
+                    Session["wx_url"] = "testop.aspx";
+                    Response.Redirect(com.getwx_url());
+                    Response.Write("0");
+                    return;
+                }
+                Response.Write(Convert.ToString(Session["openid"]));
+                return;
+                //return;
+
+                // 获取access_token;
+                string access_token = com.userAccessToken();
+
+                // 获取用户信息
+                string url = "https://api.weixin.qq.com/cgi-bin/user/info";
+                string data = string.Format("access_token={0}&openid={1}&lang=zh_CN", access_token, Convert.ToString(Session["openid"]));
+
+                string result = com.HttpGet(url, data);
+                string errcode = com.GetJsonValue(result, "errcode");
+
+                string subscribe, openid, nickname, sex, city, country, head_img_url, subscribe_time, remark, groupid, province, language;
+
+                subscribe = com.GetJsonValue(result, "subscribe");
+                openid = com.GetJsonValue(result, "openid");
+                nickname = com.GetJsonValue(result, "nickname");
+                sex = com.GetJsonValue(result, "sex");
+                city = com.GetJsonValue(result, "city");
+                country = com.GetJsonValue(result, "country");
+                head_img_url = com.GetJsonValue(result, "head_img_url");
+                subscribe_time = com.GetJsonValue(result, "subscribe_time");
+                remark = com.GetJsonValue(result, "remark");
+                groupid = com.GetJsonValue(result, "groupid");
+                province = com.GetJsonValue(result, "province");
+                language = com.GetJsonValue(result, "language");
+
+                if (subscribe == "1")
+                {
+                    head_img_url = head_img_url.Replace("/", "");
+                    imgHead.ImageUrl = head_img_url;
+                    lblWxName.Text = nickname;
+
+                    WX_USER_INFO us = new WX_USER_INFO();
+
+                    us.SUBSCRIBE = Int32.Parse(subscribe);
+                    us.Openid = openid;
+                    us.NICK_NAME = nickname;
+                    us.SEX = Int32.Parse(sex);
+                    us.LANGUAGE = language;
+                    us.CITY = city;
+                    us.PROVINCE = province;
+                    us.COUNTRY = country;
+                    us.HEAD_IMG_URL = head_img_url;
+                    us.SUBSCRIBE_TIME = subscribe_time;
+                    us.REMARK = remark;
+                    us.GROUPID = Int32.Parse(groupid);
+                    us.Add(us);
+
+                    Response.Write(JsonServiceBase.ToJson(us));//  JsonHelper.GetJSON<WX_USER_INFO>(us));
+
+                    if (!us.Exists(WX_USER_INFO.Attribute.Openid, openid))
+                    {
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('请关注我行公众号！');window.location.href='http://stbd.aibangxs.com/site_shuati/FollowME.aspx';</script>");
+                }
+            }
+
+        }
+        catch (Exception e1)
+        {
+            Cs.Error(e1.ToString());
+        }
+    }
+}

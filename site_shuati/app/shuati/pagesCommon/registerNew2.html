@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>注册</title>
+    <link rel="stylesheet" href="../source/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css" />
+    <link rel="stylesheet" href="../source/css/public.css" />
+    <!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.js"></script>
+    <script src="../source/js/vue.min.js"></script>
+    <script src="../source/js/vue-tap.js"></script>
+    <script src="../source/js/author.js?r=1"></script><script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <!--<script src="../source/js/ajax_xs.js"></script>-->
+    <!--<script src="../source/js/ajax_xs_my.js"></script>-->
+    <!--<script src="../source/js/public.js"></script>-->
+    <script src="../source/js/jquery.base64.js"></script>
+    <style>
+        .mui-btn {
+            color: #ff6a00;
+            border-radius: 5px !important;
+            width: 80%;
+        }
+
+        .abled {
+            color: #ffffff;
+            border-color: #ff6a00;
+            background-color: #ff6a00;
+        }
+        /*.mui-btn {
+            color: #ccc;
+            border-radius: 5px !important;
+            width: 80%;
+        }*/
+        /*.abled {
+            color: #016df1;
+            border-color: #016df1;
+        }*/
+        .notice {
+            font-size: 12px;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+    </style>
+    <script>
+        $(function () {
+            mui.init();
+            console.log(appId);
+            console.log(host1);
+
+            //cch
+            //myhref.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId + "&redirect_uri=" +
+            //                //baseUrlHtml + "/wechat/wxlogin.aspx?redirectUrl=" +
+            //                host1 + "/site_shuati/app/xianshu/pages/registernew.html" +
+            //                "&response_type=code&scope=snsapi_userinfo&state=stdb#wechat_redirect";
+
+            var phoneNumber1 = getQueryStr("phoneNumber"),
+            vcode1 = function () {
+                var t = this;
+                t.restTime <= 0 && $.ajax({
+                    url: baseUrlUser + "/user/vcode.aspx?phoneNumber=" + phoneNumber1 + "&type=2",
+                    type: "get",
+                    success: function (data) {
+                        if (200 == data.code) {
+                            mui.toast("发送成功"),
+                            t.restTime = 60;
+                            var o = setInterval(function () {
+                                t.restTime--,
+                                t.restTime <= 0 && window.clearInterval(o)
+                            },
+                            1e3)
+                        }
+                    }
+                })
+            },
+            register1 = function () {
+                var t = /^(?![\d]+$)(?![a-zA-Z]+$)(?![!#$%^&]+$)[\da-zA-Z!#$%^&]{6,20}$/;
+                var t = /^(?:\d+|[a-zA-Z]+|[!@#$%^&*]+){6,20}$/;
+                if (!t.test(this.password)) return void mui.toast("请输入正确密码6-20位");
+
+                var t2 = /^[\u4E00-\u9FA5]{2,4}$/;//new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9])*$");
+                if (!t2.test(this.real_name)) return void mui.toast("请输入正确的真实姓名");
+
+                localStorage.setItem('reg_real_name', this.real_name);
+                //var password1 = $.base64.btoa(this.password),
+                var password1 = (this.password);
+                var realName1 = (this.real_name);
+                dataInput = {
+                    vcode: this.verifyCode,
+                    password: password1,
+                    real_name: realName1,
+                    openid: openid,
+                    unionid: unionid,
+                    phone_number: phoneNumber1
+                };                
+                postAjaxMUI(baseUrlUser + "/user/signUp.aspx", dataInput, "post", function (data) {
+                    try {
+                        if (data.code != 200) {
+                            mui.toast(data.message);
+                            console.error(data.errMsg);
+                        }
+                        else {
+                            //判断data.data跳转微信登录
+                            var t = getLocalCityInfo();
+                            //恢复注释
+                            document.cookie = "city_id=" + t.city_id || '',
+                            document.cookie = "city_name=" + encodeURI(t.city_name) || '';
+                            document.cookie = "Token=" + data.data.token || '',
+                            document.cookie = "isLogin=true",
+                            document.cookie = "user_id=" + data.data.user_id || '',
+                            document.cookie = "openid=" + data.data.openid || '',
+                            document.cookie = "nick_name=" + data.data.nick_name || '',
+                            document.cookie = "phone_number=" + data.data.phone_number || '',
+                            setLocalUserInfo(data.data.user_id, data.data.token, data.data.openid, data.data.phone_number);
+                            localStorage.setItem("flagUrl", !0);
+                            //t.city_id && t.city_name && $.ajax({
+                            //    url: baseUrlJson + "/wechat/editCookie.aspx?city_id=" + t.city_id,
+                            //    type: "GET",
+                            //    beforeSend: function (t) {
+                            //        t.setRequestHeader("token", data.data.token),
+                            //        t.setRequestHeader("version", "2.0")
+                            //    }
+                            //});
+                            mui.toast("注册成功");
+                            //判断是否跳转微信登录页
+                            if (!isWeixin) {
+                                var url1 = localStorage.getItem("historyUrl") ? localStorage.getItem("historyUrl") : "indexPage.html";
+                                //alert(url1);
+                                location.href = url1;
+                            } else {
+                                var url1 = localStorage.getItem("historyUrl") ? localStorage.getItem("historyUrl") : "indexPage.html";
+                                if (data.data.user_id) document.cookie = "user_id=" + data.data.user_id;
+                                var data1 = { "user_id": data.data.user_id, "type": 3, "openid": localUserInfo.openid, "unionid": localUserInfo.unionid };
+                                console.log("bind.aspx=localUserInfo.openid=" + +cookieObj.openid + 'data.data.user_id' + data.data.user_id + JSON.stringify(data1));
+                                console.log('baseUrlHtml=' + baseUrlHtml);
+                                postAjaxMUI(baseUrlUser + "/user/bind.aspx", data1, "post",
+                                    function (ret) {
+                                        if (ret.code == 200) {
+                                            console.log("bind.code=" + ret.code);
+                                            localStorage.setItem('regUrl', localStorage.getItem("historyUrl"));
+                                            localStorage.setItem('flagUrl', true);
+                                            var href1 = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appId +
+                                            "&redirect_uri=" +
+                                            //baseUrlHtml + "/wechat/wxlogin.aspx?redirectUrl=" +
+                                            baseUrlJson + "/wechat/wxlogin.aspx?redirectUrl=";
+                                            //如果没有选择学校，则应该进入选择学校
+                                            if (isNull(localSchoolInfo) || isNull(localSchoolInfo.school_id))
+                                                href1 += baseUrlHtmlLong + "/pages/indexPage_searchcitylist.html";// + "&user_id=" + data1.user_id;
+                                            else
+                                                href1 += baseUrlHtmlLong + "/pages/redirect.html";// + "&user_id=" + data1.user_id;
+                                            //下面这种做法因为包含问号和参数出错
+                                            //baseUrlHtml + "/pages/" + url1 + "&user_id=" + data1.user_id +
+
+                                            href1 += "&response_type=code&scope=snsapi_userinfo&state=stdb#wechat_redirect";
+                                            //myhref.href = href1
+
+                                        } else if (ret.code == 888) {
+                                            //myhref.href = "indexPage1_" + app_path1 + ".html";//baseUrlHtml + "/pages/indexPage1_jianzhi.html";
+                                            //myhref.href = document.referrer;
+                                        }
+                                    });
+                            }
+                            //end 判断是否跳转微信登录页
+                        }
+                    } catch (e) { console.error(e); alert(e.message); }
+                })
+                //var datalogin = {
+                //    password: password1,
+                //    real_name: real_name1,
+                //    phone_number: phoneNumber1
+                //}
+            };
+            new Vue({
+                el: "body",
+                data: {
+                    password: "",
+                    verifyCode: "",
+                    real_name: (localStorage.getItem('reg_real_name')) ? localStorage.getItem('reg_real_name') : "",
+                    //school: "",
+                    restTime: 0,
+                    isTrue: !1
+                },
+                computed: {
+                    tipText: function () {
+                        return this.restTime <= 0 ? "重新获取" : "重新获取（" + this.restTime + "）"
+                    },
+                    isTrue: function () {
+                        return this.password.length >= 6 && this.password.length <= 20 && 4 == this.verifyCode.length
+                    }
+                },
+                methods: {
+                    getMessage: vcode1,
+                    register: register1
+                },
+                created: function () {
+                    var t = this;
+                    t.restTime <= 0 && $.ajax({
+                        url: baseUrlUser + "/user/vcode.aspx?phone_number=" + phoneNumber1 + "&type=2",//phone_number
+                        type: "get",
+                        success: function (json) {
+                            if (200 == json.code) {
+                                mui.toast("发送成功" + json.message);
+                                t.restTime = 60;
+                                var o = setInterval(function () {
+                                    t.restTime--,
+                                    t.restTime <= 0 && window.clearInterval(o)
+                                },
+                                1e3)
+                            }
+                        }
+                    })
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div class="mui-content mui-fullscreen" style="background-color:#fff">
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title" id="title">设置密码</h1>
+        </header>
+        <div class="innerCenter" v-cloak="">
+            <form class="mui-input-group ys-input-group" style="margin:60px 40px 0">
+                <div class="mui-input-row" style="margin-bottom:20px">
+                    <!--<label style="width:20%;padding-right:0;padding-left:0">验证码</label>-->
+                    <input style="width:80%" type="number" placeholder="验证码" v-model="verifyCode" />
+                    <div class="mui-tip" :class="{'linkColor':restTime&lt;=0}" v-tap="getMessage" id="verifyCode">
+                        {{tipText}}
+                    </div>
+                </div>
+                <div class="mui-input-row" style="margin-bottom:20px">
+                    <!--<label style="width:20%;padding-right:0;padding-left:0">密码</label>-->
+                    <input style="width:80%" type="password" class="mui-input-password" placeholder="密码6-20位字符" v-model="password" />
+                </div>
+                <div class="mui-input-row" style="margin-bottom:0px">
+                    <!--<label style="width:20%;padding-right:0;padding-left:0">真实姓名</label>-->
+                    <input style="width:80%" type="text" class="mui-input-clear" placeholder="真实姓名" v-model="real_name" />
+                </div>
+                <div class="mui-h6" style="margin-bottom:10px;">
+                    你的同学也使用真实姓名，仅同学可见<!--注册即表示你同意《爱帮服务协议》-->
+                </div>
+                <!--<p class="notice">注：请将密码设置为6-20位，并且由数字和符号两种以上组合</p>-->
+            </form>
+            <div style="margin-top:30px">
+                <div disabled="disabled" v-if="!isTrue" class="mui-btn mui-btn-long" v-tap="register">
+                    完成
+                </div>
+                <div :class="[{'abled' : isTrue}]" v-if="isTrue" class="mui-btn mui-btn-long" v-tap="register">
+                    完成
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

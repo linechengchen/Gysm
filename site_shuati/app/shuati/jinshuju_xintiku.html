@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <div id="shareImage" style="display: none;">
+        <img src="image/hdt2.jpg" />
+    </div>
+    <title>题库（2017新）</title>
+
+    <script src="js/shuati/Dictionary.js?r=111"></script>
+    <script src="js/shuati/localoper.js?r=1111"></script>
+    <script src="js/shuati/localstorage.js?r=112111"></script>
+
+    <script src="js/mui/mui.min.js"></script>
+    <script src="js/lib/template.js"></script>
+    <script src="js/swiper/swiper.min.js"></script>
+
+    <script src="js/common/kemu_list.js?r=1111112"></script>
+    <link href="css/mui/mui.min.css" rel="stylesheet" />
+    <link href="css/swiper/swiper.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css\index.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/aui.css">-->
+    <link rel="stylesheet" type="text/css" href="css/aui.min.css">
+
+    <script type="text/javascript" charset="utf-8">
+        (function ($, doc) {
+            var params = getParseQuery();
+            console.log(params);
+            params.sc = params.sc || '999';
+
+            $.ready(function () {
+                //doc.getElementById('img2wei').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+                //doc.getElementById('img2wei2').src = imgSiteUrl + 'image/分享/完整版本_num/' + params.sc + '.jpg';
+                if (params.trans == '3') {
+                    doc.getElementById('title').innerText = "新题库升级，谢谢";
+                }
+
+                document.getElementById('back1').href = "kemuIndex.html?sc=" + params.sc + "&source1=" + params.source1 + "&type1=" + params.type1 + "&r=" + params.r;
+                if (params.neice) {
+                    document.getElementById('back1').href += "&neice=" + params.neice;
+                }
+            });
+        }(mui, document));
+        </script>
+        <style type="text/css">
+                /*.aui-bar {
+            background: url('image/bar1.png') no-repeat #e74c3c;
+            background-size: 100% auto;
+            background-position: 0 bottom;
+                    }*/
+                .headerclass {
+                    min-width: 200px;
+                    min-height: 210px;
+                    background: url('image/hdt2.jpg') no-repeat; /*1122.jpg*/
+                    position: relative;
+                    background-origin: content;
+                    background-position: center center;
+                    background-size: cover;
+                }
+
+            #cover2 {
+                position: fixed;
+                margin-left:2px;
+                margin-right:2px;
+                margin-top:-20px;
+                width: 100%;
+                height: 10%;
+                display: block;
+                z-index: 20000;
+                bottom: 0;
+                top: 90%;
+                left: 0;
+                background: rgb(56, 126, 182); /*rgba(0, 0, 0, 0.7);*/
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<form id="form1" runat="server"></form>-->
+
+        <header class="aui-bar aui-bar-nav aui-bar-info" id="aui-header">
+            <a href="" class="aui-btn aui-btn-info aui-pull-left" id="back1"> <span class="aui-iconfont aui-icon-left"></span> </a>
+            <div class="aui-title" id="title">
+                刷题宝典，共享题库，感谢有你
+            </div>
+        </header>
+        
+        <!--<div class="aui-content headerclass"></div>-->
+
+        <!--<div id="cover2">
+        </div>-->
+        <iframe id="optionTypeList-parent" src="https://jinshuju.net/f/b6Xphe" width="100%" height="100%" style="z-index:1"></iframe>
+
+</body>
+<!--script src="../js/swiper.min.js"></script>-->
+</html>

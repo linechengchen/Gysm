@@ -1,0 +1,220 @@
+
+.headertit{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background: #FFFFFF;
+}	
+.headertit .headleft{
+	width: 15%;
+    height: 45px;
+    float: left;
+    padding-left: 5%;
+    padding-top: 5px;
+}
+.headertit .headleft img{
+	 width: 12px;
+	 height: 20px;
+}	
+	
+.headertit .headcenter{
+	width: 60%;
+	height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 17px;
+	color: #424242;
+}	
+.headertit .headright{
+	width: 20%;
+	height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 15px;
+	color: #424242;
+}	
+
+.allcontent{
+	width: 100%;
+	background: #FFFFFF;
+}
+	
+.allcontent .updataimg{
+	width: 100%;
+	height: 112px;
+	margin-top: 15px;
+}	
+	
+.allcontent .updataimg .uptitle{
+	width:calc(100% - 32px);
+	height: 36px;
+	line-height: 36px;
+	padding-left: 16px;
+	font-size: 13px;
+	color: #888888;
+}	
+
+.allcontent .updataimg .showimg{
+	width: calc(100% - 28px);
+	height: 76px;
+	padding-left: 14px;
+}
+
+.allcontent .updataimg .showimg img{
+	width: 64px;
+    height: 64px;
+    float: left;
+    border-radius: 50%;
+}	
+
+.allcontent .updataimg .showimg input{
+	width: 120px;
+	height: 30px;
+	font-size: 14px;
+	border: none;
+	overflow: hidden;
+	float: left;
+    margin-top: 30px;
+    margin-left: 8px;
+}	
+
+.allcontent .uploadhead{
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 70px;
+    margin-top: 48px;
+    opacity: 0;
+    
+}
+.allcontent .rellyname{
+	width: calc(100% - 32px);
+	height: 68px;
+	border-top: 1px solid #DDDDDD;
+	margin-left: 16px;
+}
+.allcontent .rellyname .relname{
+	width:100%;
+	height: 36px;
+	line-height: 36px;
+	font-size: 13px;
+	color: #999999;
+}
+
+.allcontent .rellyname .showcont{
+	width: 100%;
+	height: 32px;
+}
+
+.allcontent .rellyname .showcont .ceshi1{
+	width: 10%;
+	height: 32px;
+	float: left;
+}
+
+.allcontent .rellyname .showcont .ceshi1 img{
+	width: 22px;
+	margin-top: 5px;
+}
+.allcontent .rellyname .showcont .ceshi2{
+	width: 90%;
+	height: 32px;
+	float: left;
+}
+
+.allcontent .rellyname .showcont .myname{
+	width: 99%;
+	height: 25px;
+	font-size: 15px;
+	color: #424242;
+	border: none;
+	overflow: hidden;
+}
+
+.authentication{
+	width: calc(100% - 16px);
+	height: 48px;
+	padding-left: 16px;
+	margin-top: 12px;
+	line-height: 48px;
+	font-size: 15px;
+	color: #888888;
+	background: #FFFFFF url(https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixininto@3x.png) no-repeat 96% 19px;
+    background-size: 5px auto;
+}
+.authentication .authleft{
+	width: 50%;
+	text-align: left;
+	float: left;
+}	
+.authentication .authright{
+    width: calc(50% - 27px);
+    text-align: right;
+    float: left;
+    font-size: 15px;
+    color: #424242;
+}		
+	
+.contact{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	display: none;
+}
+.contact .sex_list{
+	position: absolute;
+	width: 95%;
+	bottom: 0;
+	margin:0 0 0 2.5%;
+	border-radius: 5px;
+	z-index: 666;
+}
+.contact .sex_list ul{
+	width: 100%;
+	height: 100px;
+	margin-bottom: 10px;
+	border-radius: 8px;
+}
+.contact .sex_list ul li{
+	width: 100%;
+	height: 50px;
+	font-size: 17px;
+	line-height: 50px;
+	color: #ff8200;
+	border-bottom: 1px solid #E4E4E4;
+	border-radius: 8px;
+}
+.contact .sex_list ul li img{
+	width: 20px;
+	float: right;
+	margin :15px 10% 0 0;
+	display: none;
+}
+.contact .sex_list ul li.fristradius{
+	position: absolute;
+	bottom: 128px;
+	background: rgba(255,255,255,0.9);
+	border-radius: 5px 5px 0 0;
+}
+.contact .sex_list ul li.lastradius{
+	position: absolute;
+	background: rgba(255,255,255,0.9);
+	border-radius: 0 0 5px 5px;
+	border-bottom:none;
+	color: #59BD6A;
+	bottom: 78px;
+}
+.contact .sex_list ul li.cancelradius{
+	position: absolute;
+	background: #FFFFFF;
+	border-radius: 5px;
+	font-size: 17px;
+	color: #424242;
+	bottom: 10px;
+}	
+	

@@ -1,0 +1,146 @@
+.after:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.before:before {
+  display: block;
+  content: '';
+  clear: both;
+}
+.veryCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.verticalCenter {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+}
+.horizontalCenter {
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.full {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+body {
+  background-color: #fff;
+}
+.loginContainer {
+  width: 100%;
+}
+.loginContainer .loginContent {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+}
+.loginContainer .loginContent .closeicon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #999;
+  font-size: 17px;
+}
+.loginContainer .loginContent .loginLogo {
+  width: 80px;
+  height: 45px;
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.loginContainer .loginContent .loginLogo img {
+  width: 100%;
+  height: inherit;
+}
+.loginContainer .loginContent .topPara {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  padding-bottom: 50px;
+}
+.loginContainer .loginContent .loginBox {
+  padding: 30px;
+}
+.loginContainer .loginContent .loginBox .enterpnBox {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  margin-bottom: 30px;
+}
+.loginContainer .loginContent .loginBox .enterpnBox .enterpn {
+  font-size: 14px;
+  padding: 0;
+  height: auto;
+  border: none;
+  width: 100%;
+  padding: 5px 0;
+  margin-bottom: 0;
+}
+.loginContainer .loginContent .loginBox .entercnBox {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+.loginContainer .loginContent .loginBox .entercnBox .entercn {
+  font-size: 14px;
+  height: auto;
+  border: none;
+  padding: 0;
+  padding-right: 70px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+.loginContainer .loginContent .loginBox .entercnBox .getcn {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  width: 75px;
+  text-align: center;
+  color: #016df1;
+  font-size: 12px;
+}
+.loginContainer .loginContent .loginBox .entercnBox .regetcn {
+  color: #9a9a9a;
+  font-size: 12px;
+}
+.loginContainer .loginContent .loginBox .registerBtn {
+  display: block;
+  text-align: center;
+  width: 50px;
+  margin: auto;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 23px;
+}
+.loginContainer .loginContent .loginBox .loginBtn {
+  display: block;
+  text-align: center;
+  width: 215px;
+  border: 1px solid #016df1;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #016df1;
+  height: 45px;
+  line-height: 45px;
+  margin: auto;
+}
+/*# sourceMappingURL=login.css.map */

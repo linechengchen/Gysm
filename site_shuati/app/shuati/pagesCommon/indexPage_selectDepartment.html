@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>请您选择院系</title>
+    <script src="https://api.map.baidu.com/api?v=2.0&amp;ak=Ogc3s9tT2jSfg8GvYBScols0iyeSoUGG"></script>
+    <!--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=2eb75c537be2afc0ac47f37f4f62d4f6&plugin=AMap.CitySearch"></script>-->
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <script src="../source/js/jquery-1.11.1.min.js"></script>
+    <script src="../source/mui/js/mui.min.js"></script>
+    <script src="../source/js/mui.indexedlist.js"></script>
+    <script src="../source/js/author.js?r=1"></script>
+    <script src="../../common/source/js/authorCommon.js?r=15"></script>
+    <!--<script src="../source/js/ajax_xs.js"></script>-->
+    <!--<script src="../source/js/public.js"></script>-->
+
+    <link href="../source/mui/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../common/source/css/mui_overwrite.css">
+    <link href="../source/css/mui.indexedlist.css" rel="stylesheet" />
+    <link href="../source/css/searchcity.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .mui-bar {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">选择院系</h1>
+    </header>
+
+    <div class="mui-content">
+        <div id="list" class="mui-indexed-list" style="background-color: #fff;">
+            <div style="padding: 10px 15px;background-color: #fff;">
+                <div class="mui-indexed-list-search mui-input-row mui-search" style="border-bottom: none;">
+                    <input id="searchCityInput" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索院系" />
+                </div>
+            </div>
+            <div id="indexed_list_bar" class="mui-indexed-list-bar">
+            </div>
+            <div class="mui-indexed-list-alert"></div>
+            <div class="mui-indexed-list-inner">
+                <!--<h5 style="margin-bottom:8px;">定位院系</h5>
+                <div class="user-city-list">
+                    <div class="user-city-row">
+                        <div id="currentCity" class="user-city-item active">
+                            定位中
+                        </div>
+                    </div>
+                </div>-->
+                <h5 style="margin-bottom:8px;">点选院系（请认真选择，此项不可修改）</h5>
+                <div class="user-city-list">
+                    <div id="user_city_row" class="user-city-row">
+                    </div>
+                </div>
+                <div class="mui-indexed-list-empty-alert">
+                    没有数据
+                </div>
+
+                <div class="jiucuo-btn" id="jiucuo-btn">未找到您的院系？点此添加</div>
+                <ul class="mui-table-view" id="ul"></ul>
+                <ul id="normalCityList" class="mui-table-view"></ul>
+
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        document.getElementById("jiucuo-btn").addEventListener('tap', function (e) {
+            e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+            var btnArray = ['取消', '确定'];
+            var title1 = '感谢您输入院系';
+            var title2 = '输入院系，以便更好的为您服务：';
+            var sum1 = '例如:信息工程学院';
+            mui.prompt(title2, sum1, title1, btnArray, function (e) {
+                try {
+                    if (e.index == 1) {
+                        var answer1 = (e.value);//parseInt
+                        //alert('填写名称：' + e.value);
+                        //var params22 = JSON.parse(JSON.stringify(params)); //克隆json
+                        //params22.answer1 = answer1;
+                        //localStorage.setItem("department_name", answer1);
+                        var data1 = {
+                            "department_name": answer1 || '',
+                            "user_id": localUserInfo.user_id || '',
+                            "school_id": localSchoolInfo.school_id || ''
+                        }
+                        $.when(postDepartment(data1)).done(function (json) {
+                            try {
+                                if (json && json.code == 200) {
+                                    mui.toast("提交成功! 谢谢同学");
+                                }
+                                else
+                                    mui.toast(json.errMsg);
+                            } catch (e) {
+                                mui.toast(e);
+                                console.error('101-' + e); //mui.toast('85-' + e);
+                            }
+                        });
+                    } else {
+                    }
+                    window.location.href = window.location.href;
+                } catch (e) {
+                    console.error(e);//mui.toast('85-' + e);
+                }
+            })
+        });
+        mui.init();
+        mui.ready(function () {
+            mui.toast('请您正确选择您所在分院或系，不存在请点右下角纠错');
+            var school_id = localStorage.getItem("school_id") || '';
+            console.log('school_id=' + school_id);
+
+            $.when(seachDepartment(school_id)).done(function (departmentData) {
+                //if (typeof departmentData == "string") {
+                //    departmentData = JSON.parse(departmentData);
+                //}
+                if (departmentData.code == 200) {
+                    if (departmentData.data.TDepartments && departmentData.data.TDepartments.length > 0) {
+                        // 一个未知的城市
+                        var ul = document.getElementById('ul');
+                        var fragment = document.createDocumentFragment();
+                        mui.each(departmentData.data.TDepartments, function (index, item) {
+                            var department_name = item['name'];
+
+                            var li = document.createElement('li');
+                            li.className = 'mui-table-view-cell mui-indexed-list-item';
+                            li.innerHTML = department_name;
+                            li.setAttribute("data-id", item['id']);
+                            fragment.appendChild(li);
+                        });
+
+                        ul.appendChild(fragment);
+
+                        var header = document.querySelector('header.mui-bar');
+                        var list = document.getElementById('list');
+                        //calc hieght
+                        list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+                        //create
+                        window.indexedList = new mui.IndexedList(list);
+
+                        mui(".mui-table-view").on('tap', '.mui-table-view-cell', function () {
+
+                            //获取id
+                            //var id = this.getAttribute("data-id");
+                            var city_id = $(this).attr("data-id");
+                            var city_name = $(this).text();
+                            //console.clear();
+                            console.log(city_id);
+                            console.log(city_name);
+                            setLocalSchoolInfo(null, null, null, city_id, city_name);
+                            //var a = getLocalSchoolInfo();
+                            //localStorage.setItem("department_id", city_id);
+                            //localStorage.setItem("department_name", city_name);
+                            //alert(localStorage.getItem("department_name"));
+                            if (!localUserInfo.user_id) {
+                                //打开下一页
+                                mui.openWindow({
+                                    url: 'registerNew.html'
+                                });
+                            } else {
+                                $.when(postDepartment(localSchoolInfo)).done(function (data1) {
+                                    if (data1.code == 200) {
+                                        mui.toast("学校设置成功");
+                                    }
+                                    myhref.href = href_long("../pages/indexPage1_" + app_path1 + ".html");
+                                    return;
+                                });
+                                myhref.href = href_long("../pages/indexPage1_" + app_path1 + ".html");
+                            }
+                            ////打开下一页
+                            //mui.openWindow({
+                            //    url: '../pages/indexPage1_shuati.html'
+                            //});
+                        })
+                    } else {
+
+                    }
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>

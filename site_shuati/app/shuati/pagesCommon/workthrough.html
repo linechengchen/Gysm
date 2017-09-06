@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>我的兼职经历</title>
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../source_jz/css/workthrough.css" />
+		<script src="../source_jz/7xiyzi_js/20160409_weixinjquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/js/public_jianzhi.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../source_7niu/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../../../source_7niu/artTemplate.js"></script>
+		<script src="../source_jz/js/localStorage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinpromise.min.js"></script>
+		<script src="../source_jz/js/ajax_jz_pack.js"></script>
+		<script src="../source_jz/js/extend.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source_jz/7xiyzi_js/20160409_weixinJudgeBrowser.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<script type="text/javascript">
+		(function(m, ei, q, i, a, j, s) {
+			m[a] = m[a] || function() {
+				(m[a].a = m[a].a || []).push(arguments)
+			};
+			j = ei.createElement(q),
+				s = ei.getElementsByTagName(q)[0];
+			j.async = true;
+			j.charset = 'UTF-8';
+			j.src = i + '?v=' + new Date().getUTCDate();
+			s.parentNode.insertBefore(j, s);
+		})(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+		_MEIQIA('entId', 53303);
+	</script>
+
+	<body style="background: #FFFFFF;">
+		<!--页面加载 开始-->
+		<div id="preloader1">
+			<div id="status1">
+				<p class="center-text"><span></span></p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#status").hide();//.fadeOut();
+			$("#preloader").hide();//.delay(300).fadeOut("slow");
+		</script>
+
+		<!--<header>
+			我的工作经历
+			<a href="javascript:window.history.go(-1);" class="header_btn_left_back btn_back"></a>
+		</header>-->
+		<div class="titjinpin">
+			<div class="jingpin"></div>
+			<a href="../pagesCommon/my.html" class="header_btn_left_back btn_backs"></a>
+			<div class="tits">兼职经历</div>
+		</div>
+
+		<header class="bgdtit">
+			<a href="../pagesCommon/my.html" class="header_btn_left_back btn_back_jianzhi"></a>
+			<div id="campanytitle">兼职经历</div>
+		</header>
+
+		<div class="titles">
+			<img class="blur" src="https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinminebackground.png" />
+		</div>
+
+		<div class="zanwu" id="waitwork">
+			<img src="https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixin03.png" />
+			<p>暂时没有兼职经历</p>
+		</div>
+		<div class="admission">
+			<div class="times">
+				<ul id="luqudetails">
+				</ul>
+			</div>
+
+		</div>
+		<div class="bottomload"><img src="https://7xlnm9.com2.z0.glb.qiniucdn.com/20160409-weixinload.gif" />上拉加载更多...</div>
+	</body>
+
+	<script type="text/html" id="worklist">
+		{{each partJobApplyVOs as b}}
+		<li><b></b>
+			<div class="box">
+				<div class="time">{{b.createTime}}</div>
+				<div class="img_logo">
+					<img src="{{b.partJobVO.partJobLogo}}" />
+				</div>
+				<p class="name">{{b.partJobVO .partJobTitle}}</p>
+				{{if b.partJobEvaluation != null}}
+				<p class="pinjia" data-page="{{pageNum}}" data-num="{{b.partJobEvaluation.starCount}}"></p>
+				<div class="conts">{{b.partJobEvaluation.evaluationDesc}}</div>
+				{{/if}} {{if b.partJobEvaluation == null}}
+				<p class="pinjia" data-page="{{pageNum}}" data-num="0.0"></p>
+				<div class="conts">您还没评论</div>
+				{{/if}}
+				<div class="linehight"></div>
+			</div>
+		</li>
+		{{/each}}
+
+	</script>
+	<script type="text/javascript">
+		$(window).bind('scroll',function(){show()});
+	    function show() {
+	        if($(window).scrollTop()+$(window).height()>=$(document).height()) {
+	           loadMore();
+	        }
+	    }
+		pageNum = 1;
+		var overAllData = {};
+		var user_id = localUserInfo.user_id;// getCookie("identity_new");
+		overAllData.token = token;
+		init(overAllData);
+		function init(data) {
+		    postAjax('/partJobApply/user/list.aspx', data).then(function (data) {
+				var success = data.success;
+					if (success) {
+						console.log(data.data);
+						$("#luqudetails").html(template('worklist', data.data));
+												
+						if(isAlipay()) {
+							$(".titjinpin").hide();
+							$("header").hide();
+							$(".bgdtit").hide();
+						} else {
+							 //向下滑动时返回顶部
+							$("body").append('<div class="gotop" id="gotop"><div>');
+							$(window).scroll(function() {
+								$(document).scrollTop() > 300 ? $("#gotop").fadeIn() : $("#gotop").fadeOut()
+								$(document).scrollTop() > 150 ? $(".bgdtit").fadeIn() : $(".bgdtit").fadeOut()
+								$(document).scrollTop() > 150 ? $(".titjinpin").fadeOut() : $(".titjinpin").fadeIn()
+							});
+							$("#gotop").click(function() {
+								$("html,body").animate({
+									scrollTop: 0
+								}, 300)
+							});
+						}
+						
+						$('.pinjia').each(function(){
+							$(this).companyStars();
+						});
+						
+//						$(".pinjia").stars();
+						$("#luqudetails").find('li:first').children("b").addClass("green");
+						if(data.data.partJobApplyVOs == null) {
+							$(".zanwu").show();
+							$(".admission").hide();
+						}
+						
+						if(data.data.pageNum >= data.data.totalPageNum) {
+							$('.bottomload').hide();
+						}else{
+							$('.bottomload').show();
+						}
+					} else {
+						//提示取数据失败原因
+						alert(data.errMsg);
+					}
+			});
+		}
+		
+		function loadMore() {
+			var data1 = {};
+			var user_id = localUserInfo.user_id;// getCookie("identity_new");
+			data1.token = token;
+			valueTovalue(overAllData,data1);
+			data1.pageNum = pageNum;
+			postAjax('/partJobApply/user/list.aspx', data1).then(function (data) {
+					if (data.success) {
+						console.log(data.data);
+						$("#luqudetails").append(template('worklist', data.data));
+						$('.pinjia').each(function(){
+							if($(this).attr("data-page") == data.data.pageNum) {
+								$(this).companyStars();	
+							}
+						});
+						pageNum = data.data.pageNum;
+						if(data.data.pageNum >= data.data.totalPageNum) {
+							jump(3);//倒计时3秒
+						}else{
+							$('.bottomload').show();
+						}
+					} else {
+						//提示取数据失败原因
+						alert(data.errMsg);
+					}
+			});
+		}
+		
+		function jump(count) { //倒计时3秒
+            window.setTimeout(function(){ 
+                count--; 
+                if(count > 0) { 
+                     $('.bottomload').text("暂无更多数据");
+                     jump(count);
+                } else { 
+                    $('.bottomload').hide();
+                } 
+            }, 1000); 
+        } 
+		
+	
+	</script>
+</html>

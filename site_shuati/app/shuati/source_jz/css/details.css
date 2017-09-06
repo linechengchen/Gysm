@@ -1,0 +1,1031 @@
+input{
+	outline: none;
+	-webkit-appearance: none;
+}
+.headback{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 17px;
+	margin-top: -50px;
+}
+.headback img{
+	width: 12px;
+	height: 20px;
+	float: left;
+	margin: 17px 0 0 12px;
+}
+.headback span{
+	margin-left: -24px;
+	color: #424242;
+}
+
+.modify {
+	overflow: hidden;
+	width: 100%;
+	background: #FFFFFF;
+	margin-top: 10px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #dddddd;
+	
+}
+.modify .partjob_title{
+	width: 60%;
+	margin:20px 0 0 85px;
+	font-size: 16px;
+	color: #333333;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.modify .partjob_logo{
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	margin: 20px 0 0 10px;
+	float: left;
+}
+.modify .partjob_money{
+	font-size: 16px;
+	color: #FF8564;
+	margin: 6px 0 0 85px;
+}
+.modify .partjob_address{
+	width: calc(100% - 94px);
+	margin: 0 0 0 85px;
+}
+.modify .partjob_address img{
+	margin: 2.5px 0 0 0;
+	width: 14px;
+	float: left;
+}
+.modify .partjob_address .address_name{
+	margin: 3px 0 0 20px;
+	font-size: 13px;
+	color: #999999;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.modify .partjob_arrow{
+	float: right;
+	margin: -50px 10px 0 0;
+	width: 7px;
+	height: 16px;
+}
+
+.status_show {
+	width: 100%;
+	background: #FFFFFF;
+}
+.status_show ul {
+	width: 100%;
+	height: 44px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.status_show ul li {
+	float: left;
+	width: 49%;
+	height: 25px;
+	margin-top: 10px;
+	border-right: 1px solid #DDDDDD;
+	line-height: 25px;
+	text-align: center;
+	color: #666666;
+	font-size: 13px;
+	vertical-align: middle;
+}
+.status_show ul li.last {
+	border-right:none;
+}
+.status_show ul li img {
+	width: 18px;
+	margin: -3px 5px 0 0;
+	vertical-align:middle;
+}
+
+.status_list {
+	width: 100%;
+	background: #FFFFFF;
+}
+.status_list ul {
+	width: 100%;
+	height: 49px;
+	line-height: 49px;
+}
+.status_list ul li {
+	float: left;
+	width: 49%;
+	height: 30px;
+	margin-top: 10px;
+	border-right: 1px solid #DDDDDD;
+	line-height: 25px;
+	text-align: center;
+	color: #888888;
+	font-size: 13px;
+	vertical-align: middle;
+}
+.status_list ul li.last {
+	border-right:none;
+}
+.status_list ul li img {
+	width: 18px;
+	margin: -3px 5px 0 0;
+	vertical-align:middle;
+}
+.status_pic {
+	margin: 16px 0 0px 0;
+	width: 100%;
+}
+.status_pic .twostatus {
+	width: 100%;		
+}
+.status_pic .twostatus li {
+	float: left;
+	width: 25%;
+	text-align: center;
+	margin: 0.6rem 0;
+}
+.status_pic .twostatus li img.bigimg{
+	width: 48px;
+	margin-top: -4px;
+}
+.status_pic .twostatus li img {
+	width: 40px;
+}
+.status_pic .twostatus .status_line {
+	position: absolute;
+	width: 25px;
+	margin: 27px 0px 0 -13px;
+}
+.status_pic .twostatus li .label-font{
+	color: #888888;	
+	font-size: 13px;
+	margin-top: 10px;
+}
+.status_pic .twostatus li .label-font.color_size{
+	font-size: 15px;
+	color: #888888;
+	margin: 4px;
+}
+
+.status_pic .ul-label {
+	width: 100%;		
+}
+.status_pic .ul-label .status_jiantou {
+	position: absolute;
+	width: 8%;
+	margin: 26px 10px 0 -8px;
+}
+.status_pic .ul-label li {
+	float: left;
+	width: 22%;
+	text-align: center;
+	margin: 0.6rem 0 0 3%;
+}
+.status_pic .ul-label li .label-font{
+	color: #888888;	
+	font-size: 13px;
+	margin-top: 10px;
+}
+.status_pic .ul-label li .label-font.color_size{
+	font-size: 15px;
+	color: #888888;
+	margin: 4px;
+}
+.status_pic .ul-label li .label-img{
+	width: 40px;
+}
+.status_pic .ul-label li .label-img.bigimg{
+	width: 48px;
+	margin-top: -4px;
+}
+.status_content {
+	width: 90%;	
+	background: #fff;
+	margin-top: 120px;
+	padding: 0 5% 0 5%;
+}
+.status_content .status_title {
+	padding: 16px 0 0 0;
+	font-size: 17px;
+	color: #424242;
+}
+.status_content .status_con {
+	font-size: 15px;
+	color: #888888;
+	margin-top: 8px;
+	padding-bottom: 16px;
+}
+.status_content .status_con .time {
+	color: #ff8564;
+}
+.alreadycomplain {
+	display: none;
+}
+/*.modify h4 {
+	margin: 10px 0 0 5px;
+	font-size: 16px;
+}
+.modify p {
+	margin: 10px 0 0 5px;
+	font-size: 15px;
+}
+.modify input {
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-bottom: 15px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	color: #FFFFFF;
+	padding-left: 25px;
+	font-size: 12px;
+	outline: none;
+	display: none;
+	-webkit-appearance: none;
+}
+.modify input.tel {
+	background: #ff8200 url(../img/icon_phone@3x.png) 5px center no-repeat;
+	background-size: 15px 15px;
+}
+.modify input.mdy {
+	background: #ff8200 url(../img/white_xiugai@3x.png) 5px center no-repeat;
+	background-size: 15px 15px;
+}
+.modify input.qux {
+	background: #ff8200 url(../img/icon_cancle@3x.png) 5px center no-repeat;
+	background-size: 15px 15px;
+}
+.modify input.wan {
+	background: #ff8200 url(../img/icon_find_white@3x.png) 5px center no-repeat;
+	background-size: 15px 15px;
+}*/
+.admission {
+	overflow: hidden;
+	width: 100%;
+	margin: 12px 0 0 0;
+	background: #FFFFFF;
+	padding-top: 1px;
+	/*position: absolute;*/
+}
+.times {
+	overflow: hidden;
+	display: block;
+	margin: 0 0 0 0;
+}
+/*首先，我们要创建一个容器class*/
+
+.times ul {
+	margin-left: 25px;
+	margin-top: 20px;
+}
+/*利用ul标签的特性，设置外边框左移25px，左边边框是2px粗的实心线，颜色一般要浅一点*/
+
+.times ul li {
+	width: 100%;
+	height: 45px;
+	font-weight: narmal;
+	border-bottom: 1px solid #E4E4E4;
+	border-left: 1px solid #CDD5D7;
+	margin-top: 24px;
+}
+.times ul li.last {
+	border-bottom:none;
+}
+/*一般情况，通过li标签控制圆点回到时间线上，然后控制要出现的文字大小和是否粗体*/
+
+.times ul li b {
+	width: 10px;
+	height: 10px;
+	background: #FFFFFF;
+	border: 2px solid #ff8200;/*#2FD478;*/
+	margin: -20px 0 0 -8px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+}
+.times ul li b.green {
+	width: 12px;
+	height: 12px;
+	background: #B4EDBD;
+	border: 2px solid #ff8200;/*#2FD478;*/
+	margin: -19px 0 0 -9px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+}
+
+/*利用处理加粗以外没有其它特别属性b标签做时间轴的圆点。*/
+.times ul li .tim {
+	position: absolute;
+    font-size: 14px;
+    line-height: 10px;
+    color: #999999;
+    margin-top: 25px;
+    margin-left: 15px;
+}
+/*设置span标签的属性，让它来做时间显示，加一点边距，使时间显示离时间线远一点*/
+
+/*.times ul li:hover b {
+	border: 2px solid #ff6600;
+}*/
+/*注意这一行，前面的li标签后面加了一个:hover伪属性，意思是鼠标移上来，激活后面的属性，这样可以设置鼠标移动到整个时间范围的时候，时间点和时间显示会变色*/
+
+/*.times ul li:hover p {
+	color: #ff6600;
+}*/
+/*同上*/
+
+/*这里利用段落标签p做文字介绍*/
+.times ul li .showmesg{
+	position: absolute;
+	padding-left: 15px;
+	font-size: 15px;
+	line-height: 15px;
+	padding-right: 15px;
+	margin-top: -10px;
+}
+.times ul li .becas{
+	font-size: 12px;
+	margin-top: -10px;
+}
+.admission .more{
+	cursor:pointer;
+	background: #FFFFFF;
+	width:100%;
+    height:40px; 
+	line-height: 40px;
+	color: #ff8200;
+	font-size: 16px;
+	text-align:center;
+	border-bottom: 1px solid #E4E4E4;
+	border-top: 1px solid #E4E4E4;
+}
+.admission .more.up_one{
+	background: #FFFFFF;
+	background-size: 18px 8px;
+	width:100%;
+    height:40px; 
+	margin: 0 0 0 0;
+	line-height: 40px;
+	color: #ff8200;
+	font-size: 16px;
+	text-align:center;
+	border-bottom: 1px solid #E4E4E4;
+	border-top: 1px solid #E4E4E4;
+}
+.admission .more img{
+	width: 20px;
+	padding-left: 10px;
+}
+.telphone{
+	width: 100%;
+	height: 85px;
+	margin-top: 10px;
+	border-bottom: 1px solid #E4E4E4;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+.telphone p{
+	font-size: 16px;
+	margin: 10px 0 0 20px;
+}
+.telphone input{
+	width: 25%;
+	height: 30px;
+	margin-top: 10px;
+	margin-left:20px;
+	font-size: 14px;
+	border:1px solid #E4E4E4;
+	border-radius: 5px;
+	background: #FFFFFF;
+	-webkit-appearance: none;
+}
+
+.detailes{
+	width: 100%;
+	background: #FFFFFF;
+	margin-top: 13px;
+	overflow: hidden;
+}
+.detailes .signup{
+	width: 90%;
+	height: 40px;
+	margin: 0 0 0 5%;
+	border-bottom: 1px solid #DDDDDD;
+}
+.detailes .signup .picbiao{
+	width: 5px;
+	height: 15px;
+	background: #ff8200;
+	float: left;
+	margin-top: 12.5px;
+	border-radius: 1.5px 0 0 1.5px;
+	box-shadow: 0 0 10px #6ADB7C; 
+}
+.detailes .signup .signuptitle{
+	width: 80%;
+	margin-left: 8px;
+	float: left;
+	font-size: 17px;
+	color: #888888;
+	margin-top: 8px;
+}
+.detailes .signuocon{
+	width: 100%;
+}
+.detailes .signuocon .moreli{
+	width: 90%;
+	margin:0 5% 0 5%;
+	border-bottom: 1px solid #DDDDDD;
+}
+.detailes .signuocon .moreli .centerli{
+	width: 80%;
+}
+.detailes .signuocon .moreli .centerli .sititles{
+	width: 100%;
+	color: #999999;
+	margin-top: 12px;
+	font-size: 12px;
+}
+.detailes .signuocon .moreli .centerli .titlecon{
+	width: 100%;
+	font-size: 15px;
+	color: #333333;
+	margin-top: 5px;
+	padding-bottom: 12px;
+}
+.detailes .signuocon .moreli .centerlist{
+	width: 100%;
+	margin:0 5% 0 0;
+}
+.detailes .signuocon .moreli .centerlist .sititley{
+	width: 100%;
+	color: #999999;
+	margin-top: 12px;
+	font-size: 12px;
+}
+.detailes .signuocon .moreli .centerlist .myremark{
+	width: 100%;
+	font-size: 15px;
+	color: #333333;
+	margin-top: 5px;
+	padding-bottom: 12px;
+}
+
+
+/*.registration {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #E4E4E4;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+.registration p{
+	font-size: 16px;
+	margin-top: 8px;
+	padding: 0px 0 0 5%;
+}
+.registration img{
+	position: absolute;
+	width: 100px;
+	margin: -20px 0 0 70%;
+}
+.registration ul{
+	width: 90%;
+	border-top: 1px solid #E4E4E4;
+	margin-left: 5%;
+	margin-top: -8px;
+}
+.registration ul li{
+	width: 100%;
+	margin: 10px 0 10px 0;
+	font-size: 16px;
+}
+.registration ul li .tit{
+	font-size: 14px;
+	width: 100%;
+}
+.registration ul li .tit .coltit{
+	color: #999999;
+}
+.registration ul li .tit .content_right{
+	padding-left: 20px;
+}
+.registration ul li .wid{
+	margin-left: 30%;
+	width: 80%;
+	margin-top: -21px;	
+	margin-bottom: 15px;
+}*/
+
+.ghdlzh{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: none;
+	z-index: 3;
+}
+.ghdlzh .bg_back{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #393939;
+	opacity: 0.3;
+	z-index: 555;
+}
+.ghdlzh .tishi{
+	position: absolute;
+	width: 80%;
+	height: 150px;
+	top: 50%;
+	left: 50%;
+	margin:-75px 0 0 -40%;
+	border-radius: 5px;
+	background: #FFFFFF;
+	z-index: 666;
+}
+.ghdlzh .tishi .dtishis_title{
+	width: 100%;
+	height: 50px;
+	font-size: 16px;
+	line-height: 50px;
+	color: rgba(3,3,3,1);
+}
+.ghdlzh .tishi .dtishis_con{
+	width: 100%;
+	height: 50px;
+	font-size: 16px;
+	color: rgba(3,3,3,1);
+}
+.ghdlzh .tishi input{
+	width: 65%;
+	height: 35px;
+	font-size: 16px;
+	padding-left: 5%;
+}
+.ghdlzh .tishi ul{
+	width: 100%;
+	height: 50px;
+	border-top:1px solid #E4E4E4;
+}
+.ghdlzh .tishi ul li{
+	width: 49%;
+	height: 49px;
+	font-size: 18px;
+	line-height: 50px;
+	float: left;
+	color: rgba(3,122,255,1);
+	border-right: 1px solid #E4E4E4;
+}
+.ghdlzh .tishi ul li.right{
+	border-right: none;
+	color: #ff8200;
+}
+#cancel{
+	color: #999999;
+}
+
+.contact{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: none;
+	z-index: 200;
+}
+.contact .bg_back{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #393939;
+	opacity: 0.3;
+	z-index: 555;
+}
+.contact .merchant{
+	position: absolute;
+	width: 95%;
+	bottom: 0;
+	margin:0 0 0 2.5%;
+	border-radius: 5px;
+	height: 225px;
+	z-index: 666;
+}
+.contact .merchant ul{
+	width: 100%;
+	border-top:1px solid #CCCCCC;
+	margin-bottom: 10px;
+}
+.contact .merchant ul li{
+	width: 100%;
+	height: 50px;
+	font-size: 18px;
+	line-height: 50px;
+	color: #ff8200;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E4E4E4;
+}
+.contact .merchant ul li.fristradius{
+	border-radius: 5px 5px 0 0;
+}
+.contact .merchant ul li.lastradius{
+	border-radius: 0 0 5px 5px;
+	border-bottom:none;
+	color: #999999;
+}
+.contact .merchant ul li.cancelradius{
+	border-radius: 5px;
+	/*font-weight: 700;*/
+	border-bottom:none;
+}
+
+.erweicode{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 2;
+}
+.erweicode .bg_back{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #393939;
+	opacity: 0.5;
+	z-index: 555;
+}
+.erweicode .code{
+	position: absolute;
+	width: 80%;
+	margin:40% 0 0 10%;
+	border-radius: 5px;
+	/*height: 150px;*/
+	background: #FFFFFF;
+	z-index: 666;
+}
+.erweicode .code .hong{
+	width: 100%;
+	height: 8px;
+	background: #FF8564;
+	border-radius: 5px 5px 0 0 ;
+}
+.erweicode .code p{
+	padding: 0 10px;
+	color: #666666;
+	font-size: 14px;
+}
+.erweicode .code .imgcode {
+	width: 100%;
+	text-align: center;
+}
+.erweicode .code .imgcode img{
+	width: 180px;
+	margin-bottom: 10px;
+}
+.erweicode .code .imgcode p{
+	padding-bottom: 10px;
+}
+.footerbuttom {
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	z-index: 1;
+	bottom: 0px;
+	background: #FFFFFF;
+	border-top: 1px solid #DDDDDD;
+}
+.footerbuttom .conbuttom_left{
+	height: 30px;
+	line-height: 30px;
+	background: #FFFFFF;
+	color: #ff8200;/*#2FD478;*/
+	border: none;
+	font-size: 15px;
+	margin: 10px 0 0 0;
+	padding: 0 0 0 16px;
+	float: left;
+}
+.footerbuttom .input_but_blank {
+	height: 30px;
+	background: #FFFFFF;
+	color:#999999;
+	font-size: 15px;
+	margin:10px 12px 10px 0;
+	padding: 0 5px 0 5px;
+	float: right;
+	text-align: center;
+	line-height: 30px;
+	border: 1px solid #A6B3B4;
+	border-radius: 6px;
+}
+.footerbuttom .input_but_blank img{
+	width: 22px;
+	vertical-align: middle;
+	margin: -3px 8px 0 0;
+}
+.footerbuttom .input_but_green {
+	height: 30px;
+	background: #FFFFFF;
+	margin:10px 16px 10px 0;
+	padding: 0 5px 0 5px;
+	font-size: 15px;
+	color:#ff8200;/*#2FD478;*/
+	float: right;
+	text-align: center;
+	border-radius: 6px;
+	line-height: 30px;
+	border: 1px solid #ff8200;/*#2FD478;*/
+}
+.footerbuttom .input_but_green img{
+	width: 22px;
+	margin: -3px 8px 0 0;
+	vertical-align: middle;
+}
+.footerbuttom .conbuttom_right{
+	float: right;
+}
+
+.foots {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 49px;
+	background: #FFFFFF;
+	border-top: 1px solid #E4E4E4;
+	color: #444444;
+	text-align: center;
+	font-size: 18px;
+	z-index: 1;
+}
+
+.foots input {
+	height: 30px;
+	background: #FFFFFF;
+	color:#666666;
+	border: 1px solid #707070;
+	border-radius: 3px;
+	margin: 10px 10px 0 0;
+	font-size: 13px;
+	float: right;
+}
+
+.foots input.hui {
+	background: #999999;
+	display: none;
+	opacity: 1;
+}
+.foots input.green {
+	background: #ff8200;
+	display: none;
+	opacity: 1;
+}
+.foots input.baoming{
+	width: 100%;
+	margin: 0;
+}
+.m_nav {
+	margin-top: 0px;
+	float: left;
+	width: 50%;
+	height: 30px;
+	background: #FFFFFF;
+}
+
+
+.m_nav a {
+	width: 50%;
+	text-decoration: none;
+	height: 30px;
+	text-align: center;
+	float: left;
+	color: #ff8200;/*color: #1AD46E;*/
+	margin-top: 0px;
+	font-size: 14px;
+}
+
+.m_nav a span {
+	width: 100%;
+	float: left;
+	line-height: 0px;
+	font-size: 12px;
+	color: #666666;
+	margin-top: -10px;
+	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+}
+
+.button_hui{
+	height: 30px;
+	background: #FFFFFF;
+	border-radius: 5px;
+	margin: 6px 5px 0 0;
+	float: right;
+	font-size: 13px;
+	color:#D7D7D7;
+	border: 1px solid #D7D7D7;
+	padding: 0 5px 0 5px;
+	line-height: 30px;
+	margin-right: 16px;
+	margin-top: 10px;
+}
+.internship{
+	width: 100%;
+}
+.internship li{
+	width: 100%;
+	height:92px;
+	margin-bottom: 12px;
+	background: #FFFFFF;
+}
+.internship li .personlogo{
+	width: 60px;
+	height: 60px;
+	margin: 16px;
+	float: left;
+	box-shadow: 0 3px 15px #CCCCCC;
+}
+.internship li .personlogo img{
+	width: 60px;
+	height: 60px;
+	border-radius: 4px;
+}
+.internship li .companymsg{
+	width: 70%;
+	height: 76px;
+	margin-top: 8px;
+	float: left;
+}
+.internship li .companymsg .comtitle{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 17px;
+	color: #333333;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.internship li .companymsg .salayticket{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 15px;
+	color: #FF8564;
+}
+.internship li .companymsg .comname{
+	width: 100%;
+	height: 30px;
+	font-size: 13px;
+	color: #888888;
+}
+.internship li .companymsg .comname .comadd{
+	max-width: calc(70% - 16px);
+	height: 22px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border-right: 1px solid #DDDDDD;
+	padding-right: 8px;
+	float: left;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.internship li .companymsg .comname .comres{
+	width: calc(30% - 16px);
+	float: left;
+	padding-left: 8px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+.internship li .shixistatus{
+	width: 72px;
+	height: 42px;
+	float: right;
+	margin-top: -80px;
+}
+.internship li .lookinter{
+	position: absolute;
+	width: calc(100% - 32px);
+	height: 44px;
+	background: #FFFFFF;
+	padding: 0 16px 0 16px;
+	margin-top: 102px;
+	border-top: 1px solid #DDDDDD;
+}
+.part_infos{
+	width: calc(100% - 32px);
+	margin-top: 12px;
+	padding: 0 16px 0 16px;
+	background: #FFFFFF;
+}
+.part_infos .headtitles{
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+}
+.part_infos .headtitles .moditubiao{
+	width: 5px;
+	height: 15px;
+	background: #ff8200;/*color: #1AD46E;*/
+	box-shadow: 0 5px 3px #ff8200;/*color: #1AD46E;*/
+	margin-top: 15px;
+	float: left;
+}
+.part_infos .headtitles .interviewinfo{
+	margin-left: 8px;
+	font-size: 17px;
+	color: #888888;
+	float: left;
+}
+.part_infos .infos_list {
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.part_infos .infos_list .infos_logos {
+	width: 25px;
+	float: left;
+}
+
+.part_infos .infos_list .infos_logos .infos_imgs {
+	width: 18px;
+	margin: 25px 0 0 0;
+}
+
+.part_infos .infos_list .infos_cons {
+	width: 80%;
+	float: left;
+	word-break: break-all;
+}
+
+.part_infos .infos_list .infos_cons .infos_titles {
+	font-size: 12px;
+	margin-top: 12px;
+	color: #999999;
+}
+
+.part_infos .infos_list .infos_cons .infos_texts {
+	width: 100%;
+	padding: 3px 0 10px 0;
+}
+
+.part_infos .infos_list .infos_cons .infos_texts .address_one {
+	font-size: 15px;
+	color: #333333;
+	word-wrap: nowrap;
+}
+
+.part_infos .infos_list .infos_cons .infos_texts .address_two {
+	font-size: 15px;
+	color: #333333;
+	word-wrap: nowrap;
+}
+
+.part_infos .infos_list .infos_right {
+	width: 20px;
+	float: right;
+}
+.part_infos .infos_list .infos_right .arrow_right {
+	width: 14px;
+	margin: 25px 0 0 0;
+}
+
+.part_infos .infos_list .infos_cons .infos_texts ul {
+	width: 100%;
+	margin: -17px 0 0 60px;
+	padding: 0 0 10px 0;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.part_infos .infos_list .infos_cons .infos_texts ul li {
+	float: left;
+	font-size: 15px;
+	color: #999999;
+	margin-left: 3px;
+	margin-top: -3px;
+}
+.baoxian{
+	position: absolute;
+	width: 62px;
+	height: 62px;
+	margin-left: 75%;
+    margin-top: -30px;
+    display: none;
+}
