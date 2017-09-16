@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Gysm", "..\", "{FB629F68-B669-401A-AEB5-44CA23A362A7}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -24,27 +24,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Gysm", "..\", "{FB629F68-B6
 		SlnRelativePath = "..\..\Gysm\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "后台接口", "..\..\后台接口\", "{52FFBE8C-336C-4458-A877-582E2A5CE060}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_50378"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\后台接口\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50378\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_50378"
-		Release.AspNetCompiler.PhysicalPath = "..\..\后台接口\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50378\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50378"
-		SlnRelativePath = "..\..\后台接口\"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shuatiORM", "..\shuatiORM\shuatiORM.csproj", "{4B67DC77-ABA6-4BF9-AB30-CDD245743EF7}"
 EndProject
 Global
@@ -57,10 +36,6 @@ Global
 		{FB629F68-B669-401A-AEB5-44CA23A362A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB629F68-B669-401A-AEB5-44CA23A362A7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB629F68-B669-401A-AEB5-44CA23A362A7}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{52FFBE8C-336C-4458-A877-582E2A5CE060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52FFBE8C-336C-4458-A877-582E2A5CE060}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52FFBE8C-336C-4458-A877-582E2A5CE060}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{52FFBE8C-336C-4458-A877-582E2A5CE060}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{4B67DC77-ABA6-4BF9-AB30-CDD245743EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B67DC77-ABA6-4BF9-AB30-CDD245743EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B67DC77-ABA6-4BF9-AB30-CDD245743EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,5 +43,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3873F98A-9532-45E3-BEC6-F59FEF3C4251}
 	EndGlobalSection
 EndGlobal
